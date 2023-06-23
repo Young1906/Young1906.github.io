@@ -1,7 +1,7 @@
 ---
 title: "Toward understanding Bayesian Learning"
 date: 2023-06-23T13:29:01+07:00
-draft: true 
+draft: false 
 tags: [study]
 ---
 
