@@ -1,20 +1,24 @@
 ---
 title: Noise constrastive estimation
-draft: false 
+draft: true 
 date: 2023-09-23
-tags: learning
+tags: [learning, probabilistic]
 ---
 
 
-Documenting my note why reading [**Noise-contrastive estimation** paper](https://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf).
 
-<!-- TODO -->
+Documenting my note why studying [**Noise-contrastive estimation** paper](https://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf). The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noised draw from a some distribution.
 
 ## Notation
 
 - $p_d(x)$ true probability density function (p.d.f) of data.
 - $p_n(x)$ p.d.f of noise generating distribution.
 - $r(x) = \frac{1}{1+\exp(-x)}$ sigmoid function.
+- $X = (x_1, ... x_T); x \sim p_d(x)$ be the dataset of T observations.
+- $Y = (y_1, ... y_T); y \sim p_n(y)$ be the dataset of T artificially generated noise.
+- $p_m(.; \theta)$ is estimation of $p_d(.)$ parameterized by $\theta$.
+
+The goal
 
 
 ## Threorem I
@@ -233,5 +237,7 @@ Consider eq. (7), if the support for $x$ and $y$ are equal, which mean we integr
 
 The equality in eq.(8) happend if and only if $C=D$. This result easily leads to $\hat{f}(x) = \log p_d(x)$.
 
+
 ## References
+1. [Noise-contrastive estimation: A new estimation principle for unnormalized statistical models](https://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf)
 
