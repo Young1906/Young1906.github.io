@@ -4,7 +4,6 @@ title = "iamtu.dev"
 theme="archie"
 copyright = "© iamtu_ricatto"
 
-
 # Code Highlight
 pygmentsstyle = "monokai"
 pygmentscodefences = true
@@ -49,4 +48,3 @@ weight = 3
 name = "Tags"
 url = "/tags"
 weight = 4
-
