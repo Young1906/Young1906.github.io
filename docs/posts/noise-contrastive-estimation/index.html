@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html><head lang="en">
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Noise constrastive estimation - iamtu.dev</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Documenting my note why reading Noise-contrastive estimation paper.
+Notation $p_d(x)$ true probability density function (p.d.f) of data. $p_n(x)$ p.d.f of noise generating distribution. $r(x) = \frac{1}{1&#43;\exp(-x)}$ sigmoid function. Threorem I $\tilde{J}$ attains a maximum at $f(.) = \log p_d(.)$. There are no other extrema if the noise density $p_n(.)$ is chosen such it is nonzero whenever $p_d(.)$ is nonzero.
+\begin{equation} \begin{aligned} \tilde{J}(\theta) = \frac{1}{2}\mathbb{E}_{x, y} { \log{r\big(f(x) - \log{p_n(x)}\big)} &#43; \log{\big[ 1 - r\big(f(y) - \log{p_n(y)}\big) \big]} } \end{aligned} \end{equation}" />
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="Noise constrastive estimation" />
+<meta property="og:description" content="Documenting my note why reading Noise-contrastive estimation paper.
+Notation $p_d(x)$ true probability density function (p.d.f) of data. $p_n(x)$ p.d.f of noise generating distribution. $r(x) = \frac{1}{1&#43;\exp(-x)}$ sigmoid function. Threorem I $\tilde{J}$ attains a maximum at $f(.) = \log p_d(.)$. There are no other extrema if the noise density $p_n(.)$ is chosen such it is nonzero whenever $p_d(.)$ is nonzero.
+\begin{equation} \begin{aligned} \tilde{J}(\theta) = \frac{1}{2}\mathbb{E}_{x, y} { \log{r\big(f(x) - \log{p_n(x)}\big)} &#43; \log{\big[ 1 - r\big(f(y) - \log{p_n(y)}\big) \big]} } \end{aligned} \end{equation}" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://iamtu.dev/posts/noise-contrastive-estimation/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2023-09-23T00:00:00+00:00" />
+<meta property="article:modified_time" content="2023-09-23T00:00:00+00:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Noise constrastive estimation"/>
+<meta name="twitter:description" content="Documenting my note why reading Noise-contrastive estimation paper.
+Notation $p_d(x)$ true probability density function (p.d.f) of data. $p_n(x)$ p.d.f of noise generating distribution. $r(x) = \frac{1}{1&#43;\exp(-x)}$ sigmoid function. Threorem I $\tilde{J}$ attains a maximum at $f(.) = \log p_d(.)$. There are no other extrema if the noise density $p_n(.)$ is chosen such it is nonzero whenever $p_d(.)$ is nonzero.
+\begin{equation} \begin{aligned} \tilde{J}(\theta) = \frac{1}{2}\mathbb{E}_{x, y} { \log{r\big(f(x) - \log{p_n(x)}\big)} &#43; \log{\big[ 1 - r\big(f(y) - \log{p_n(y)}\big) \big]} } \end{aligned} \end{equation}"/>
+<script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+	<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:ital,wght@1,500&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Mono" rel="stylesheet">
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="https://iamtu.dev/css/main.ac08a4c9714baa859217f92f051deb58df2938ec352b506df655005dcaf98cc0.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://iamtu.dev/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
+	
+
+	
+	
+		<script type="text/javascript"
+		src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+		</script>
+	
+		
+		<script type="text/x-mathjax-config">
+		MathJax.Hub.Config({
+			tex2jax: {
+				inlineMath: [['$','$'], ['\\(','\\)']],
+				displayMath: [['$$','$$'], ['\[','\]']],
+				processEscapes: true,
+				processEnvironments: true,
+				skipTags: ['script', 'noscript', 'style', 'textarea', 'pre'],
+				TeX: { equationNumbers: { autoNumber: "AMS" },
+						 extensions: ["AMSmath.js", "AMSsymbols.js"] }
+			}
+		});
+		</script>
+	
+
+	
+	
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.css">
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/katex.min.js"></script>
+		<script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.2/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+		
+		
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+					renderMathInElement(document.body, {
+							delimiters: [
+									{left: "$$", right: "$$", display: true},
+									{left: "$", right: "$", display: false}
+							]
+					});
+			});
+			</script>
+	
+	
+	
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="https://iamtu.dev">iamtu.dev</a>
+	</div>
+	<nav>
+		
+		<a href="/">Home</a>
+		
+		<a href="/posts">Posts</a>
+		
+		<a href="/about">About</a>
+		
+		<a href="/tags">Tags</a>
+		
+		| <span id="dark-mode-toggle" onclick="toggleTheme()"></span>
+		<script src="https://iamtu.devjs/themetoggle.js"></script>
+		
+	</nav>
+</header>
+
+<main>
+	<article>
+		<div class="title">
+			<h1 class="title">Noise constrastive estimation</h1>
+			<div class="meta">Posted on Sep 23, 2023</div>
+		</div>
+		
+
+		<section class="body">
+			<p>Documenting my note why reading <a href="https://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf"><strong>Noise-contrastive estimation</strong> paper</a>.</p>
+<!-- raw HTML omitted -->
+<h2 id="notation">Notation</h2>
+<ul>
+<li>$p_d(x)$ true probability density function (p.d.f) of data.</li>
+<li>$p_n(x)$ p.d.f of noise generating distribution.</li>
+<li>$r(x) = \frac{1}{1+\exp(-x)}$ sigmoid function.</li>
+</ul>
+<h2 id="threorem-i">Threorem I</h2>
+<blockquote>
+<p>$\tilde{J}$ attains a maximum at $f(.) = \log p_d(.)$. There are no other extrema if the noise density $p_n(.)$ is chosen such it is nonzero whenever $p_d(.)$ is nonzero.</p>
+</blockquote>
+<p>\begin{equation}
+\begin{aligned}
+\tilde{J}(\theta) = \frac{1}{2}\mathbb{E}_{x, y} {
+\log{r\big(f(x) - \log{p_n(x)}\big)}
++ \log{\big[
+1 - r\big(f(y) - \log{p_n(y)}\big)
+\big]}
+}
+\end{aligned}
+\end{equation}</p>
+<h3 id="proof">Proof</h3>
+<p>Let $\hat{f}(x)$ be the optimal function that maximizes $\tilde{J}$, and $f(x)=\hat{f}(x) + \epsilon\eta(x)$.</p>
+<p>\begin{equation}
+\begin{aligned}
+\tilde{J}(\theta) &amp;= K(\epsilon) \\
+&amp;= \frac{1}{2}\mathbb{E}_{x, y} {
+\log{
+r\big(f(x) - \log{p_n(x)}\big)
+} + \log{\big[
+1 - r\big(f(y) - \log{p_n(y)}\big)
+\big]}
+} \\
+&amp;= \frac{1}{2}\underbrace{
+\mathbb{E}_x {
+\log r\big(
+f(x) - \log p_n(x)
+\big)
+}
+}_A +
+\frac{1}{2} \underbrace{\mathbb{E}_y {
+\log{\big[
+1 - r\big(f(y) - \log{p_n(y)}\big)
+\big]}
+}}_B \\
+\implies \frac{dK}{d\epsilon} &amp;= \frac{dA}{d\epsilon} + \frac{dB}{d\epsilon}
+\end{aligned}
+\end{equation}</p>
+<p>Expand the first term of $K(\epsilon)$</p>
+<p>\begin{equation}
+\begin{aligned}
+A(\epsilon) &amp;=  \mathbb{E}_x {
+\log r\big(
+f(x) - \log p_n(x)
+\big)
+} \\
+&amp; = \int_x {
+p_d(x) \log{
+r\big(
+\hat{f}(x) + \epsilon \eta(x) - \log p_n(x)
+\big)
+} dx
+}
+\end{aligned}
+\end{equation}</p>
+<p>Taking derivative of $A(\epsilon)$</p>
+<p>\begin{equation}
+\begin{aligned}
+\frac{dA}{d\epsilon} &amp;= \frac{1}{d\epsilon} \int_x {
+p_d(x) \log{
+r\big(
+\hat{f}(x) + \epsilon \eta(x) - \log p_n(x)
+\big)
+} dx
+} \\
+&amp; = \int_x {
+p_d(x) \big[
+\frac{1}{d\epsilon}\log{
+r \big(
+\underbrace{
+\hat{f}(x) + \epsilon \eta(x) - \log p_n(x)
+}_{g(\epsilon)}
+\big)
+}
+\big]dx
+} \\
+&amp; = \int_x{
+p_d(x)
+\frac{d\log{r}}{dr}
+\frac{dr}{dg}
+\frac{dg}{d\epsilon}
+dx
+} \\
+&amp; = \int_x{
+p_d(x)
+\frac{1}{r}
+r(1-r)
+\eta(x)
+dx
+} \\
+&amp; = \int_x{
+p_d(x)
+\big[1 - r\big( \hat{f}(x) + \epsilon \eta(x) - \log p_n(x)\big) \big]
+\eta(x) dx
+}
+\end{aligned}
+\end{equation}</p>
+<p>Now let&rsquo;s turn our attention to the second term of $K(\epsilon)$</p>
+<p>\begin{equation}
+\begin{aligned}
+B(\epsilon) &amp;= \mathbb{E}_y {
+\log\big[
+1 - r\big(f(y) - \log{p_n(y)}\big)
+\big]
+} \\
+&amp; = \int_y {
+p_n(y)
+\log \big[
+1 - r \big(
+\underbrace{
+\hat{f}(y) + \epsilon \eta(y) - \log p_n(y)
+}_h
+\big)
+\big]dy
+}
+\end{aligned}
+\end{equation}</p>
+<p>Taking derivative of $B$ w.r.t $\epsilon$</p>
+<p>\begin{equation}
+\begin{aligned}
+\frac{dB}{d\epsilon} &amp;= \frac{1}{d\epsilon} \int_y{
+p_n(y)\log{
+\big[
+1 - r\big( h(\epsilon)\big)
+\big]
+}dy
+} \\
+&amp;= \int_y {
+p_n(y)
+\frac{d\log(1-r)}{d(1-r)}
+\frac{d(1-r)}{dr}
+\frac{dr}{dh}
+\frac{dh}{d\epsilon}
+dy
+} \\
+&amp; = \int_y {
+p_n(y)
+\frac{1}{1-r}
+(-1)
+r(1-r)
+\eta(y)
+} \\
+&amp; = -\int_y{
+p_n(y)
+r\big(
+\hat{f}(y) + \epsilon \eta(y) - \log p_n(y)
+\big)
+\eta(y) dy
+}
+\end{aligned}
+\end{equation}</p>
+<p>Substitute result from eq(4) and eq(6) to eq(2), $\frac{dK}{d\epsilon}$ is evaluated to $0$ at $\epsilon = 0$.</p>
+<p>\begin{equation}
+\begin{aligned}
+\frac{dK}{d\epsilon}\big\vert_{\epsilon=0}
+&amp;= \frac{dA}{d\epsilon}\big\vert_{\epsilon=0}
++ \frac{dB}{d\epsilon}\big\vert_{\epsilon=0} \\
+&amp;= \int_x {
+p_d(x)
+\big[1 - r\big( \hat{f}(x) - \log p_n(x)\big) \big]
+\eta(x) dx
+} \\
+&amp; - \int_y{
+p_n(y)
+r \big(
+\hat{f}(y) - \log p_n(y)
+\big)
+\eta(y) dy
+} \\
+&amp; = 0
+\end{aligned}
+\end{equation}</p>
+<p>Consider eq. (7), if the support for $x$ and $y$ are equal, which mean we integrate $x$ and $y$ over a same region, we can change $y$ to $x$ and rewrite eq.(7) as</p>
+<p>\begin{equation}
+\begin{aligned}
+\frac{dK}{d\epsilon} \big\vert_{\epsilon = 0}
+&amp;= \int_x {
+\underbrace{
+p_d(x)
+\big[1 - r\big( \hat{f}(x) - \log p_n(x)\big) \big]
+}_C
+\eta(x) dx
+} \\
+&amp; - \int_x{
+\underbrace{
+p_n(x)
+r \big(
+\hat{f}(x) - \log p_n(x)
+\big)
+}_D
+\eta(x) dx
+} \\
+&amp; = \int_x{(C-D)\eta(x)dx} = 0 \quad \forall \eta(x)
+\end{aligned}
+\end{equation}</p>
+<p>The equality in eq.(8) happend if and only if $C=D$. This result easily leads to $\hat{f}(x) = \log p_d(x)$.</p>
+<h2 id="references">References</h2>
+
+		</section>
+
+		<div class="post-tags">
+			
+			
+			
+		</div>
+		</article>
+</main>
+<footer>
+  <div style="display:flex"><a class="soc" href="https://github.com/young1906" rel="me" title="young1906"><i data-feather="github"></i></a>
+    <a class="border"></a></div>
+  <div class="footer-info">
+    2023  © iamtu_ricatto |  <a
+      href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+  </div>
+</footer>
+
+
+<script>
+  feather.replace()
+</script></div>
+    </body>
+</html>

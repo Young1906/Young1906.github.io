@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Posts on iamtu.dev</title>
-    <link>https://iamtu.dev/posts/</link>
-    <description>Recent content in Posts on iamtu.dev</description>
+    <title>learning on iamtu.dev</title>
+    <link>https://iamtu.dev/tags/learning/</link>
+    <description>Recent content in learning on iamtu.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© iamtu_ricatto</copyright>
-    <lastBuildDate>Sat, 23 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 23 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/tags/learning/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Noise constrastive estimation</title>
       <link>https://iamtu.dev/posts/noise-contrastive-estimation/</link>
@@ -17,17 +17,6 @@
       <description>Documenting my note why reading Noise-contrastive estimation paper.
 Notation $p_d(x)$ true probability density function (p.d.f) of data. $p_n(x)$ p.d.f of noise generating distribution. $r(x) = \frac{1}{1+\exp(-x)}$ sigmoid function. Threorem I $\tilde{J}$ attains a maximum at $f(.) = \log p_d(.)$. There are no other extrema if the noise density $p_n(.)$ is chosen such it is nonzero whenever $p_d(.)$ is nonzero.
 \begin{equation} \begin{aligned} \tilde{J}(\theta) = \frac{1}{2}\mathbb{E}_{x, y} { \log{r\big(f(x) - \log{p_n(x)}\big)} + \log{\big[ 1 - r\big(f(y) - \log{p_n(y)}\big) \big]} } \end{aligned} \end{equation}</description>
-    </item>
-    
-    <item>
-      <title>Toward understanding Bayesian Learning</title>
-      <link>https://iamtu.dev/posts/katex/</link>
-      <pubDate>Fri, 23 Jun 2023 13:29:01 +0700</pubDate>
-      
-      <guid>https://iamtu.dev/posts/katex/</guid>
-      <description>Motivation Every statistic course I ever studied start with Simple Linear Regression. A linear regression problem can be state as following
-$$ \begin{aligned} y(\mathbf{x}, \mathbf{w}) &amp;amp;= \sum_{j=0}^{M-1}{ w_j \phi_j(\mathbf{x}) = \mathbf{w}^\top \phi(\mathbf{x}) } \end{aligned} $$
-def f(): return Theory Implementation </description>
     </item>
     
   </channel>

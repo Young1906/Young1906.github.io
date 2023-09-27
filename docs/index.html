@@ -96,6 +96,19 @@
 				
 				
 				<section class="list-item">
+					<h1 class="title"><a href="/posts/noise-contrastive-estimation/">Noise constrastive estimation</a></h1>
+					<time>Sep 23, 2023</time>
+					<br><div class="description">
+	
+	Documenting my note why reading Noise-contrastive estimation paper.
+Notation $p_d(x)$ true probability density function (p.d.f) of data. $p_n(x)$ p.d.f of noise generating distribution. $r(x) = \frac{1}{1+\exp(-x)}$ sigmoid function. Threorem I $\tilde{J}$ attains a maximum at $f(.) = \log p_d(.)$. There are no other extrema if the noise density $p_n(.)$ is chosen such it is nonzero whenever $p_d(.)$ is nonzero.
+\begin{equation} \begin{aligned} \tilde{J}(\theta) = \frac{1}{2}\mathbb{E}_{x, y} { \log{r\big(f(x) - \log{p_n(x)}\big)} + \log{\big[ 1 - r\big(f(y) - \log{p_n(y)}\big) \big]} } \end{aligned} \end{equation}&hellip;
+	
+</div>
+					<a class="readmore" href="/posts/noise-contrastive-estimation/">Read more ⟶</a>
+				</section>
+				
+				<section class="list-item">
 					<h1 class="title"><a href="/posts/katex/">Toward understanding Bayesian Learning</a></h1>
 					<time>Jun 23, 2023</time>
 					<br><div class="description">
