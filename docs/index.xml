@@ -20,17 +20,6 @@ Notation $p_d(x)$ true probability density function (p.d.f) of data. $p_n(x)$ p.
     </item>
     
     <item>
-      <title>Toward understanding Bayesian Learning</title>
-      <link>https://iamtu.dev/posts/katex/</link>
-      <pubDate>Fri, 23 Jun 2023 13:29:01 +0700</pubDate>
-      
-      <guid>https://iamtu.dev/posts/katex/</guid>
-      <description>Motivation Every statistic course I ever studied start with Simple Linear Regression. A linear regression problem can be state as following
-$$ \begin{aligned} y(\mathbf{x}, \mathbf{w}) &amp;amp;= \sum_{j=0}^{M-1}{ w_j \phi_j(\mathbf{x}) = \mathbf{w}^\top \phi(\mathbf{x}) } \end{aligned} $$
-def f(): return Theory Implementation </description>
-    </item>
-    
-    <item>
       <title>About</title>
       <link>https://iamtu.dev/about/</link>
       <pubDate>Fri, 23 Jun 2023 00:00:00 +0000</pubDate>

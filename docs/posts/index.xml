@@ -19,16 +19,5 @@ Notation $p_d(x)$ true probability density function (p.d.f) of data. $p_n(x)$ p.
 \begin{equation} \begin{aligned} \tilde{J}(\theta) = \frac{1}{2}\mathbb{E}_{x, y} { \log{r\big(f(x) - \log{p_n(x)}\big)} + \log{\big[ 1 - r\big(f(y) - \log{p_n(y)}\big) \big]} } \end{aligned} \end{equation}</description>
     </item>
     
-    <item>
-      <title>Toward understanding Bayesian Learning</title>
-      <link>https://iamtu.dev/posts/katex/</link>
-      <pubDate>Fri, 23 Jun 2023 13:29:01 +0700</pubDate>
-      
-      <guid>https://iamtu.dev/posts/katex/</guid>
-      <description>Motivation Every statistic course I ever studied start with Simple Linear Regression. A linear regression problem can be state as following
-$$ \begin{aligned} y(\mathbf{x}, \mathbf{w}) &amp;amp;= \sum_{j=0}^{M-1}{ w_j \phi_j(\mathbf{x}) = \mathbf{w}^\top \phi(\mathbf{x}) } \end{aligned} $$
-def f(): return Theory Implementation </description>
-    </item>
-    
   </channel>
 </rss>
