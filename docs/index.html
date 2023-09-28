@@ -98,12 +98,11 @@
 				
 				
 				<section class="list-item">
-					<h1 class="title"><a href="/posts/noise-contrastive-estimation/">Noise constrastive estimation</a></h1>
+					<h1 class="title"><a href="/posts/noise-contrastive-estimation/">Noise constrastive estimation (editting)</a></h1>
 					<time>Sep 23, 2023</time>
 					<br><div class="description">
 	
-	Documenting my note why studying Noise-contrastive estimation paper. The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noised draw from a some distribution.
-Notation  $p_d(x)$ true probability density function (p.d.f) of data. $p_n(x)$ p.d.f of noise generating distribution. $r(x) = \frac{1}{1+\exp(-x)}$ sigmoid function. $X = (x_1, &hellip; x_T); x \sim p_d(x)$ be the dataset of T observations. $Y = (y_1, &hellip; y_T); y \sim p_n(y)$ be the dataset of T artificially generated noise.&hellip;
+	TLDR The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise draw from a some distribution. The paper setups the problem to consist of a dataset of $T$ observations $(x_1, &hellip; x_T)$ draw from a true distribution $p_d(.)$. We then try to approximate $p_d$ by a parameterized function $p_m(.;\theta)$. The estimator $\hat{\theta}_T$ is defined to be the $\theta$ that maximize function&hellip;
 	
 </div>
 					<a class="readmore" href="/posts/noise-contrastive-estimation/">Read more ⟶</a>

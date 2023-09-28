@@ -1,29 +1,34 @@
 ---
-title: Noise constrastive estimation
+title: Noise constrastive estimation (editting)
 draft: false 
 date: 2023-09-23
 tags: [learning, probabilistic-ml]
 ---
 
 
+## TLDR
 
-Documenting my note why studying [**Noise-contrastive estimation** paper](https://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf). The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noised draw from a some distribution.
+The [paper](https://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf) proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise draw from a some distribution. The paper setups the problem to consist of a dataset of $T$ observations $(x_1, ... x_T)$ draw from a true distribution $p_d(.)$. We then try to approximate $p_d$ by a parameterized function $p_m(.;\theta)$. The estimator $\hat{\theta}_T$ is defined to be the $\theta$ that maximize function
 
-## Notation
-
-- $p_d(x)$ true probability density function (p.d.f) of data.
-- $p_n(x)$ p.d.f of noise generating distribution.
-- $r(x) = \frac{1}{1+\exp(-x)}$ sigmoid function.
-- $X = (x_1, ... x_T); x \sim p_d(x)$ be the dataset of T observations.
-- $Y = (y_1, ... y_T); y \sim p_n(y)$ be the dataset of T artificially generated noise.
-- $p_m(.; \theta)$ is estimation of $p_d(.)$ parameterized by $\theta$.
-
-The goal
+$$
+J_T(\theta) = \frac{1}{2T}\sum_t{\log[h(x_t; 0)]} + \log[1-h(y_t; \theta)]
+$$
 
 
-## Threorem I
+In which: 
 
-> $\tilde{J}$ attains a maximum at $f(.) = \log p_d(.)$. There are no other extrema if the noise density $p_n(.)$ is chosen such it is nonzero whenever $p_d(.)$ is nonzero.
+- $y=(y_1, ..., y_T)$ be a dataset of $T$ observations draw from a noise density function $p_n(.)$. 
+- $h(u; \theta) = 1/(1 + e^{-G(u;\theta)})$
+- $G(u; \theta) = \log p_m(u; \theta) - \log p_n(u)$
+
+
+For $p_m(.; \theta)$ to be a valid p.d.f, we also need to include unit ingegral constraint into the optimization problem, that is $\int_x{p_m(x; \theta)dx} = 1$. However this integral is often intractable in most cases, for example when we use a neural network to parameterize $p_m(.;\theta)$.
+
+Interestingly, the paper claims that by maximizing the objective function, the result of the estimation is a valid p.d.f without having to place the unit integral contraint to the optimization (Theorem 1). In this post I'll atempt to prove the theorem as an exercise. Note that, I made an assumption that support of $x$ and $y$ are equal (in eq.7); which mean $p_n(.)$ is nonzero whenever $p_d(.)$ is nonzero and $p_n(.)$ is zero everywhere else. This is a weaker claim than the one made in the theorem. 
+
+
+## Proof of threorem I
+When the sample size $T$ becomes arbitrary large, the objective function $J_T(\theta)$ converges in probability (this is a new word for me) to $\tilde{J}$
 
 \begin{equation}
 \begin{aligned}
@@ -35,6 +40,22 @@ The goal
 }
 \end{aligned}
 \end{equation}
+
+In which $f(x) = \log p_m(x; \theta)$ is the function approximating log-likelihood the true distribution $p_d(.)$.
+
+###  Notation
+
+- $p_d(x)$ true probability density function (p.d.f) of data.
+- $p_n(x)$ p.d.f of noise generating distribution.
+- $r(x) = \frac{1}{1+\exp(-x)}$ sigmoid function.
+- $X = (x_1, ... x_T); x \sim p_d(x)$ be the dataset of T observations.
+- $Y = (y_1, ... y_T); y \sim p_n(y)$ be the dataset of T artificially generated noise.
+- $p_m(.; \theta)$ is estimation of $p_d(.)$ parameterized by $\theta$.
+
+
+### Theorem
+> $\tilde{J}$ attains a maximum at $f(.) = \log p_d(.)$. There are no other extrema if the noise density $p_n(.)$ is chosen such it is nonzero whenever $p_d(.)$ is nonzero.
+
 
 ### Proof
 
