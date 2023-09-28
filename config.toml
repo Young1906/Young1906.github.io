@@ -9,7 +9,7 @@ pygmentsstyle = "monokai"
 pygmentscodefences = true
 pygmentscodefencesguesssyntax = true
 
-disqusShortname = "iamtu_ricatto"
+disqusShortname = "iamtu-dev"
 
 paginate=5 # articles per page
 
