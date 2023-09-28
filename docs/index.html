@@ -102,7 +102,8 @@
 					<time>Sep 23, 2023</time>
 					<br><div class="description">
 	
-	TLDR The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise draw from a some distribution. The paper setups the problem to consist of a dataset of $T$ observations $(x_1, &hellip; x_T)$ draw from a true distribution $p_d(.)$. We then try to approximate $p_d$ by a parameterized function $p_m(.;\theta)$. The estimator $\hat{\theta}_T$ is defined to be the $\theta$ that maximize function&hellip;
+	TLDR The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise drawn from a distribution. The paper setups the problem into a dataset of $T$ observations $(x_1, &hellip; x_T)$ drawn from a true distribution $p_d(.)$. We then try to approximate $p_d$ by a parameterized function $p_m(.;\theta)$. The estimator $\hat{\theta}_T$ is defined to be the $\theta$ that maximize function
+$$ J_T(\theta) = \frac{1}{2T}\sum_t{\log[h(x_t; 0)]} + \log[1-h(y_t; \theta)] $$&hellip;
 	
 </div>
 					<a class="readmore" href="/posts/noise-contrastive-estimation/">Read more ⟶</a>

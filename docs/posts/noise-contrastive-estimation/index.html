@@ -2,10 +2,12 @@
 <html><head lang="en">
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>Noise constrastive estimation (editting) - iamtu.dev</title><meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="TLDR The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise draw from a some distribution. The paper setups the problem to consist of a dataset of $T$ observations $(x_1, &hellip; x_T)$ draw from a true distribution $p_d(.)$. We then try to approximate $p_d$ by a parameterized function $p_m(.;\theta)$. The estimator $\hat{\theta}_T$ is defined to be the $\theta$ that maximize function" />
+	<meta name="description" content="TLDR The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise drawn from a distribution. The paper setups the problem into a dataset of $T$ observations $(x_1, &hellip; x_T)$ drawn from a true distribution $p_d(.)$. We then try to approximate $p_d$ by a parameterized function $p_m(.;\theta)$. The estimator $\hat{\theta}_T$ is defined to be the $\theta$ that maximize function
+$$ J_T(\theta) = \frac{1}{2T}\sum_t{\log[h(x_t; 0)]} &#43; \log[1-h(y_t; \theta)] $$" />
 	<meta property="og:image" content=""/>
 	<meta property="og:title" content="Noise constrastive estimation (editting)" />
-<meta property="og:description" content="TLDR The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise draw from a some distribution. The paper setups the problem to consist of a dataset of $T$ observations $(x_1, &hellip; x_T)$ draw from a true distribution $p_d(.)$. We then try to approximate $p_d$ by a parameterized function $p_m(.;\theta)$. The estimator $\hat{\theta}_T$ is defined to be the $\theta$ that maximize function" />
+<meta property="og:description" content="TLDR The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise drawn from a distribution. The paper setups the problem into a dataset of $T$ observations $(x_1, &hellip; x_T)$ drawn from a true distribution $p_d(.)$. We then try to approximate $p_d$ by a parameterized function $p_m(.;\theta)$. The estimator $\hat{\theta}_T$ is defined to be the $\theta$ that maximize function
+$$ J_T(\theta) = \frac{1}{2T}\sum_t{\log[h(x_t; 0)]} &#43; \log[1-h(y_t; \theta)] $$" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://iamtu.dev/posts/noise-contrastive-estimation/" /><meta property="article:section" content="posts" />
 <meta property="article:published_time" content="2023-09-23T00:00:00+00:00" />
@@ -13,7 +15,8 @@
 
 <meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Noise constrastive estimation (editting)"/>
-<meta name="twitter:description" content="TLDR The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise draw from a some distribution. The paper setups the problem to consist of a dataset of $T$ observations $(x_1, &hellip; x_T)$ draw from a true distribution $p_d(.)$. We then try to approximate $p_d$ by a parameterized function $p_m(.;\theta)$. The estimator $\hat{\theta}_T$ is defined to be the $\theta$ that maximize function"/>
+<meta name="twitter:description" content="TLDR The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise drawn from a distribution. The paper setups the problem into a dataset of $T$ observations $(x_1, &hellip; x_T)$ drawn from a true distribution $p_d(.)$. We then try to approximate $p_d$ by a parameterized function $p_m(.;\theta)$. The estimator $\hat{\theta}_T$ is defined to be the $\theta$ that maximize function
+$$ J_T(\theta) = \frac{1}{2T}\sum_t{\log[h(x_t; 0)]} &#43; \log[1-h(y_t; \theta)] $$"/>
 <script src="https://iamtu.devjs/feather.min.js"></script>
 	
 	
@@ -99,7 +102,7 @@
 
 		<section class="body">
 			<h2 id="tldr">TLDR</h2>
-<p>The <a href="https://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf">paper</a> proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise draw from a some distribution. The paper setups the problem to consist of a dataset of $T$ observations $(x_1, &hellip; x_T)$ draw from a true distribution $p_d(.)$. We then try to approximate $p_d$ by a parameterized function $p_m(.;\theta)$. The estimator $\hat{\theta}_T$ is defined to be the $\theta$ that maximize function</p>
+<p>The <a href="https://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf">paper</a> proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise drawn from a distribution. The paper setups the problem into a dataset of $T$ observations $(x_1, &hellip; x_T)$ drawn from a true distribution $p_d(.)$. We then try to approximate $p_d$ by a parameterized function $p_m(.;\theta)$. The estimator $\hat{\theta}_T$ is defined to be the $\theta$ that maximize function</p>
 <p>$$
 J_T(\theta) = \frac{1}{2T}\sum_t{\log[h(x_t; 0)]} + \log[1-h(y_t; \theta)]
 $$</p>
@@ -109,10 +112,10 @@ $$</p>
 <li>$h(u; \theta) = 1/(1 + e^{-G(u;\theta)})$</li>
 <li>$G(u; \theta) = \log p_m(u; \theta) - \log p_n(u)$</li>
 </ul>
-<p>For $p_m(.; \theta)$ to be a valid p.d.f, we also need to include unit ingegral constraint into the optimization problem, that is $\int_x{p_m(x; \theta)dx} = 1$. However this integral is often intractable in most cases, for example when we use a neural network to parameterize $p_m(.;\theta)$.</p>
-<p>Interestingly, the paper claims that by maximizing the objective function, the result of the estimation is a valid p.d.f without having to place the unit integral contraint to the optimization (Theorem 1). In this post I&rsquo;ll atempt to prove the theorem as an exercise. Note that, I made an assumption that support of $x$ and $y$ are equal (in eq.7); which mean $p_n(.)$ is nonzero whenever $p_d(.)$ is nonzero and $p_n(.)$ is zero everywhere else. This is a weaker claim than the one made in the theorem.</p>
+<p>For $p_m(.; \theta)$ to be a valid p.d.f, we also need to include unit integral constraint into the optimization problem, that is $\int_x{p_m(x; \theta)dx} = 1$. However, this integral is often intractable in most cases, for example, when we use a neural network to parameterize $p_m(.;\theta)$.</p>
+<p>Interestingly, the paper claims that maximizing the objective function gives a valid p.d.f without placing the unit integral constraint on the optimization (Theorem 1). In this post, I&rsquo;ll attempt to prove the theorem as an exercise. Note that, I made an assumption that support of $x$ and $y$ are equal (in eq.7); which mean $p_n(.)$ is nonzero whenever $p_d(.)$ is nonzero and $p_n(.)$ is zero everywhere else.</p>
 <h2 id="proof-of-threorem-i">Proof of threorem I</h2>
-<p>When the sample size $T$ becomes arbitrary large, the objective function $J_T(\theta)$ converges in probability (this is a new word for me) to $\tilde{J}$</p>
+<p>When the sample size $T$ becomes arbitrarily large, the objective function $J_T(\theta)$ converges in probability (this is a new word for me) to $\tilde{J}$</p>
 <p>\begin{equation}
 \begin{aligned}
 \tilde{J}(\theta) = \frac{1}{2}\mathbb{E}_{x, y} {
