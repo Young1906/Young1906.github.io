@@ -1,6 +1,6 @@
 ---
 title: Noise constrastive estimation
-draft: true 
+draft: false 
 date: 2023-09-23
 tags: [learning, probabilistic-ml]
 ---

@@ -22,7 +22,7 @@
 
 	
 	<link rel="stylesheet" type="text/css" media="screen" href="https://iamtu.dev/css/main.ac08a4c9714baa859217f92f051deb58df2938ec352b506df655005dcaf98cc0.css" />
-		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://iamtu.dev/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"   />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="https://iamtu.dev/css/dark.726cd11ca6eb7c4f7d48eb420354f814e5c1b94281aaf8fd0511c1319f7f78a4.css"  disabled />
 	
 
 	
@@ -85,6 +85,8 @@
 		
 		<a href="/tags">Tags</a>
 		
+		| <span id="dark-mode-toggle" onclick="toggleTheme()"></span>
+		<script src="https://iamtu.devjs/themetoggle.js"></script>
 		
 	</nav>
 </header>
@@ -94,6 +96,18 @@
 				<div class="site-description"><p>I am 29 (as of 2022). My undergrad was Economics at a local university, and I am going back to school so I can pursue higher education in the field of Machine Learning &amp; Artificial Intelligence.</p></div>
 				
 				
+				
+				<section class="list-item">
+					<h1 class="title"><a href="/posts/noise-contrastive-estimation/">Noise constrastive estimation</a></h1>
+					<time>Sep 23, 2023</time>
+					<br><div class="description">
+	
+	Documenting my note why studying Noise-contrastive estimation paper. The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noised draw from a some distribution.
+Notation  $p_d(x)$ true probability density function (p.d.f) of data. $p_n(x)$ p.d.f of noise generating distribution. $r(x) = \frac{1}{1+\exp(-x)}$ sigmoid function. $X = (x_1, &hellip; x_T); x \sim p_d(x)$ be the dataset of T observations. $Y = (y_1, &hellip; y_T); y \sim p_n(y)$ be the dataset of T artificially generated noise.&hellip;
+	
+</div>
+					<a class="readmore" href="/posts/noise-contrastive-estimation/">Read more ⟶</a>
+				</section>
 				
 				
 

@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>iamtu.dev</title>
-    <link>https://iamtu.dev/</link>
-    <description>Recent content on iamtu.dev</description>
+    <title>probabilistic-ml on iamtu.dev</title>
+    <link>https://iamtu.dev/tags/probabilistic-ml/</link>
+    <description>Recent content in probabilistic-ml on iamtu.dev</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>© iamtu_ricatto</copyright>
-    <lastBuildDate>Sat, 23 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Sat, 23 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/tags/probabilistic-ml/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Noise constrastive estimation</title>
       <link>https://iamtu.dev/posts/noise-contrastive-estimation/</link>
@@ -16,15 +16,6 @@
       <guid>https://iamtu.dev/posts/noise-contrastive-estimation/</guid>
       <description>Documenting my note why studying Noise-contrastive estimation paper. The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noised draw from a some distribution.
 Notation  $p_d(x)$ true probability density function (p.d.f) of data. $p_n(x)$ p.d.f of noise generating distribution. $r(x) = \frac{1}{1+\exp(-x)}$ sigmoid function. $X = (x_1, &amp;hellip; x_T); x \sim p_d(x)$ be the dataset of T observations. $Y = (y_1, &amp;hellip; y_T); y \sim p_n(y)$ be the dataset of T artificially generated noise.</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://iamtu.dev/about/</link>
-      <pubDate>Fri, 23 Jun 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://iamtu.dev/about/</guid>
-      <description>I am 29 (as of 2022). My undergrad was Economics at a local university, and I am going back to school so I can pursue higher education in the field of Machine Learning &amp;amp; Artificial Intelligence.</description>
     </item>
     
   </channel>
