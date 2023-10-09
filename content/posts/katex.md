@@ -1,28 +1,40 @@
 ---
-title: "Toward understanding Bayesian Learning"
+title: "Understanding diffusion model"
 date: 2023-06-23T13:29:01+07:00
 draft: true 
-tags: [study]
+tags: study
 ---
+
 
 ## Motivation
 
-Every statistic course I ever studied start with Simple Linear Regression. A linear regression problem can be state as following
 
-$$
-\begin{aligned}
-    y(\mathbf{x}, \mathbf{w}) &= \sum_{j=0}^{M-1}{
-        w_j \phi_j(\mathbf{x}) = \mathbf{w}^\top \phi(\mathbf{x})
-    }
-\end{aligned}
-$$
+## Background
 
-```python
-def f():
-    return
-```
+### Generative model
+### Kullber-Leiback divergence (KL-divergence)
+
+**Definition** (Kullback-Leibler Divergence)
+
+\begin{equation}
+    \texttt{KL}(P \parallel Q) = -\int_{x \in \mathcal{X}}{p(x)\log{\frac{q(x)}{p(x)}}dx}
+\end{equation}
+
+### The Evidence Lower Bound (ELBO)
+
+\begin{equation}
+    \begin{aligned}
+        p(x) 
+        &= \int_z{p(x, z)dz}\\
+        &= \int_z{p(x\vert z)p(z)dz}
+    \end{aligned}
+\end{equation}
 
 
-## Theory
+
+### Variational Auto Encoder
+### Hierachical Variational Encoder
+
+## Denoising Diffusion Probabilistics Model
 
 ## Implementation
