@@ -6,6 +6,7 @@ draft: true
 ---
 
 
+
 ## Simulation Based Inference
 
 Imagine we have some black-box machine, such machine has some knobs and levels so we can change its inner configurations. The machine churn out some data for each configuration. The **simulation based inference (SBI)** solve the inverse problem; that is given some data, estimate the configuration, or what are the most likely value of the configuration. 

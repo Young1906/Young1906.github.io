@@ -8,7 +8,7 @@ tags: [learning, probabilistic-ml]
 
 ## TLDR
 
-The [paper](https://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf) proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise drawn from a distribution. The paper setups the problem into a dataset of $T$ observations $(x_1, ... x_T)$ drawn from a true distribution $p_d(.)$. We then try to approximate $p_d$ by a parameterized function $p_m(.;\theta)$. The estimator $\hat{\theta}_T$ is defined to be the $\theta$ that maximize function
+The [paper](https://proceedings.mlr.press/v9/gutmann10a/gutmann10a.pdf) proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise drawn from a distribution. The paper setups the problem into a dataset of \\(T\\) observations \\((x_1, ... x_T)\\) drawn from a true distribution \\(p_d(.)\\). We then try to approximate \\(p_d\\) by a parameterized function \\(p_m(.;\theta)\\). The estimator \\(\hat{\theta}_T\\) is defined to be the \\(\theta\\) that maximize function
 
 $$
 J_T(\theta) = \frac{1}{2T}\sum_t{\log[h(x_t; 0)]} + \log[1-h(y_t; \theta)]
@@ -17,12 +17,12 @@ $$
 
 In which: 
 
-- $y=(y_1, ..., y_T)$ be a dataset of $T$ observations draw from a noise density function $p_n(.)$. 
-- $h(u; \theta) = 1/(1 + e^{-G(u;\theta)})$
-- $G(u; \theta) = \log p_m(u; \theta) - \log p_n(u)$
+- \\(y=(y_1, ..., y_T)\\) be a dataset of \\(T\\) observations draw from a noise density function $p_n(.)$. 
+- \\(h(u; \theta) = 1/(1 + e^{-G(u;\theta)})\\)
+- \\(G(u; \theta) = \log p_m(u; \theta) - \log p_n(u)\\)
 
 
-For $p_m(.; \theta)$ to be a valid p.d.f, we also need to include unit integral constraint into the optimization problem, that is $\int_x{p_m(x; \theta)dx} = 1$. However, this integral is often intractable in most cases, for example, when we use a neural network to parameterize $p_m(.;\theta)$.
+For \\(p_m(.; \theta)\\) to be a valid p.d.f, we also need to include unit integral constraint into the optimization problem, that is \\(\int_x{p_m(x; \theta)dx} = 1\\). However, this integral is often intractable in most cases, for example, when we use a neural network to parameterize \\(p_m(.;\theta)\\).
 
 Interestingly, the paper claims that maximizing the objective function gives a valid p.d.f without placing the unit integral constraint on the optimization (Theorem 1). In this post, I'll attempt to prove the theorem as an exercise. Note that, I made an assumption that support of $x$ and $y$ are equal (in eq.7); which mean $p_n(.)$ is nonzero whenever $p_d(.)$ is nonzero and $p_n(.)$ is zero everywhere else.
 
