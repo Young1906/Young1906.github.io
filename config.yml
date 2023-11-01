@@ -1,10 +1,10 @@
-baseURL: "https://examplesite.com/"
-title: ExampleSite
+baseURL: "https://iamtu.dev/"
+title: iamtu
 paginate: 5
 theme: PaperMod
 
 enableRobotsTXT: true
-buildDrafts: false
+buildDrafts: true 
 buildFuture: false
 buildExpired: false
 
@@ -16,12 +16,12 @@ minify:
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
-  title: iamtu.dev 
-  description: "Learning and stuff"
-  keywords: [Blog, Portfolio, PaperMod]
+  title: iamtu
+  description: "Documenting my learning and stuff."
+  # keywords: [Blog, Portfolio, PaperMod]
   author: Me
   # author: ["Me", "You"] # multiple authors
-  images: ["<link or path of image for opengraph, twitter-cards>"]
+  # images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "January 2, 2006"
   defaultTheme: auto # dark, light
   disableThemeToggle: false
@@ -29,18 +29,19 @@ params:
   ShowReadingTime: false 
   ShowShareButtons: false 
   ShowPostNavLinks: true
-  ShowBreadCrumbs: true
-  ShowCodeCopyButtons: false
+  ShowBreadCrumbs: false 
+  ShowCodeCopyButtons: true 
   ShowWordCount: true
-  ShowRssButtonInSectionTermList: true
-  UseHugoToc: true
+  ShowRssButtonInSectionTermList: false 
+  UseHugoToc: false 
   disableSpecial1stPost: false
   disableScrollToTop: false
   comments: false 
-  hidemeta: false
+  hidemeta: true 
   hideSummary: false
-  showtoc: false
-  tocopen: false
+  showtoc: true 
+  tocopen: true 
+  math: true
 
   assets:
     # disableHLJS: true # to disable highlight.js
@@ -52,16 +53,16 @@ params:
     safari_pinned_tab: "<link / abs url>"
 
   label:
-    text: "iamtu.dev"
-    icon: /apple-touch-icon.png
+    text: "iamtu"
+    # icon: /apple-touch-icon.png
     iconHeight: 35
 
   # profile-mode
   profileMode:
     enabled: false # needs to be explicitly set
-    title: ExampleSite
+    title: iamtu.dev 
     subtitle: "This is subtitle"
-    imageUrl: "<img location>"
+    # imageUrl: "<img location>"
     imageWidth: 120
     imageHeight: 120
     imageTitle: my image
@@ -73,8 +74,8 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "Placeholder"
-    Content: Welcome to my blog
+    Title: "Tu T. Do"
+    Content: "I am 29 (as of 2022). My undergrad was Economics at a local university, and I am going back to school so I can pursue higher education in the field of Machine Learning & Artificial Intelligence."
 
   socialIcons:
     # - name: twitter
@@ -82,9 +83,9 @@ params:
     # - name: stackoverflow
     #   url: "https://stackoverflow.com"
     - name: facebook 
-      url: "https://github.com/young1906"
+      url: "https://facebook.com/tu.dothanh"
     - name: linkedin 
-      url: "https://github.com/young1906"
+      url: "https://linkedin.com/tu.dothanh"
     - name: github
       url: "https://github.com/young1906"
 
@@ -97,10 +98,10 @@ params:
     hiddenInList: true # hide on list pages and home
     hiddenInSingle: true # hide on single page
 
-  editPost:
-    URL: "https://github.com/<path_to_repo>/content"
-    Text: "Suggest Changes" # edit text
-    appendFilePath: true # to append file path to Edit link
+      # editPost:
+      #   URL: "https://github.com/<path_to_repo>/content"
+      #   Text: "Suggest Changes" # edit text
+      #   appendFilePath: true # to append file path to Edit link
 
   # for search
   # https://fusejs.io/api/options.html
@@ -115,18 +116,23 @@ params:
     keys: ["title", "permalink", "summary", "content"]
 menu:
   main:
+    - identifier: search
+      name: search
+      url: /search/
+      weight: 1
     - identifier: categories
       name: categories
       url: /categories/
-      weight: 10
+      weight: 2
     - identifier: tags
       name: tags
       url: /tags/
-      weight: 20
+      weight: 3
     - identifier: archives 
       name: archives 
       url: /archives/
-      weight: 30
+      weight: 4
+        #
 # Read: https://github.com/adityatelange/hugo-PaperMod/wiki/FAQs#using-hugos-syntax-highlighter-chroma
 pygmentsUseClasses: true
 markup:
@@ -138,3 +144,8 @@ markup:
     # lineNos: true
     # style: monokai
 
+outputs:
+  home:
+    - HTML
+    - RSS
+    - JSON # is necessary
