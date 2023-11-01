@@ -1,17 +1,20 @@
 ---
-title: "Simulation Based Inference - Likelihood Ratio Estimation"
-date: 2023-06-23T13:29:01+07:00
-draft: true 
-tags: [study, sbi]
+title: Simulation Based Inference - Likelihood Ratio Estimation
+date : 2023-10-31
+math: true
+tags : [sbi]
 ---
 
-## Background 
+# Background
 
-### Inference
+Something
+
+## Inference
 
 ### Simulation Based Inference
 
 ### Problem setup
+
 
 There are four components in the problem of **Simulation Based Inference** (SBI), namely the simulator, the parameters, the latent variables, and the observations. 
 

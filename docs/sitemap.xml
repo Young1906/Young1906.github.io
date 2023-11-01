@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://examplesite.com/</loc>
+    <lastmod>2023-10-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://examplesite.com/posts/</loc>
+    <lastmod>2023-10-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://examplesite.com/tags/sbi/</loc>
+    <lastmod>2023-10-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://examplesite.com/posts/sbi/</loc>
+    <lastmod>2023-10-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://examplesite.com/tags/</loc>
+    <lastmod>2023-10-31T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://examplesite.com/tags/learning/</loc>
+    <lastmod>2023-09-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://examplesite.com/posts/noise-contrastive-estimation/</loc>
+    <lastmod>2023-09-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://examplesite.com/tags/probabilistic-ml/</loc>
+    <lastmod>2023-09-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://examplesite.com/about/</loc>
+    <lastmod>2023-06-23T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://examplesite.com/archives/</loc>
+  </url><url>
+    <loc>https://examplesite.com/categories/</loc>
+  </url>
+</urlset>
