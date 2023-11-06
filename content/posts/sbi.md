@@ -12,14 +12,13 @@ categories: [
 
 ## Simulation Based Inference
 
-Imagine we have some black-box machine, such machine has some knobs and levels so we can change its inner configurations. The machine churn out some data for each configuration. The **simulation based inference (SBI)** solve the inverse problem; that is given some data, estimate the configuration (*Frequentist* approach), or sampling the configuration from posterior distribution (for *Bayesian* approach). For a formal definition and review of current methods for SBI, see [this paper](https://www.pnas.org/doi/full/10.1073/pnas.1912789117). In the analogy above, the black-box represents the simulator and the configurations is the simulator's parameters.
+Imagine we have some black-box machine; such a machine has some knobs and levels so we can change its inner configurations. The machine churns out some data for each configuration. The Simulation-based inference (SBI) solves the inverse problem that is given some data, estimating the configuration (Frequentist approach) or sampling the configuration from the posterior distribution (for Bayesian approach). For a formal definition and review of current methods for SBI, see [this paper](https://www.pnas.org/doi/full/10.1073/pnas.1912789117). In the analogy above, the black box represents the simulator, and the configurations are the simulator’s parameters.
 
-
-The applicability of SBI is very potential since we can almost reduce any process with defined input and output to a black-box machine [^0]. 
+The applicability of SBI has great potential since we can almost reduce any process with defined input and output to a black-box machine [^0]. 
 
 [^0]: I am a black-box machine, you are a black-box machine, everyone is a black-box machine as long as we don't care enough about the person.
 
-This post documents my note while studying [Likelihood-free MCMC with Amortized Ratio Estimator](https://proceedings.mlr.press/v119/hermans20a/hermans20a.pdf) (Hermans et al, 2020); a method developed to address SBI.
+This post documents my notes while studying [Likelihood-free MCMC with Amortized Ratio Estimator](https://proceedings.mlr.press/v119/hermans20a/hermans20a.pdf) (Hermans et al, 2020); a method developed to address SBI.
 
 ## Likelihood-free MCMC with Amortized Ratio Estimator
 
@@ -35,7 +34,7 @@ This quantity then can be used in various methods to draw sample from a distribu
 
 #### Markov Chain Monte Carlo (MCMC)
 
-In statistics, MCMC methods is a class of algorithm for sampling from probability distribution. By constructing a Markov chain that has the desired distribution as its equilibrium distribution, one can obtain a sample of the desired distribution by recording states from the chain [^1].
+In statistics, the MCMC method is a class of algorithms for sampling from a probability distribution. By constructing a Markov chain with the desired distribution as its equilibrium distribution, one can obtain a sample of the desired distribution by recording states from the state chain [^1].
 
 [^1]: Shamelessly copied from [Wikipedia](https://en.wikipedia.org/wiki/Markov_chain_Monte_Carlo). 
 
@@ -60,8 +59,8 @@ $$
 \end{equation}
 $$
 
-We can easily compute the first term of the equation since we have access to prior \\(p(\theta)\\). But we can not compute the second term because we don't have access to the likelihood function \\(p(\mathbf{x} | \theta)\\). However, we can reframe the problem in supervised-learning paradigm, so that we can use a parameterized discriminator \\(d_\theta(\mathbf{x})\\) to estimate the likelihood. The detail are described in the **Likelihood Ratio Estimator** section.
-
+<!-- We can easily compute the first term of the equation since we have access to prior \\(p(\theta)\\). But we can not compute the second term because we don't have access to the likelihood function \\(p(\mathbf{x} | \theta)\\). However, we can reframe the problem in supervised-learning paradigm, so that we can use a parameterized discriminator \\(d_\theta(\mathbf{x})\\) to estimate the likelihood. The detail are described in the **Likelihood Ratio Estimator** section. -->
+We can compute the first term of the equation since we have access to prior \\(p(\theta)\\). But we can not compute the second term because we do not have access to the likelihood function \\(p(\mathbf{x} | \theta)\\). However, we can reframe the problem in the supervised-learning paradigm, so we can use a parameterized discriminator \\(d_\theta(\mathbf{x})\\) to estimate the likelihood. The details are described in the **Likelihood Ratio Estimator** section.
 
 #### Metropolis-Hasting (MH) 
 `tbd`
