@@ -1,45 +1,30 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>ExampleSite</title>
-    <link>https://examplesite.com/</link>
-    <description>Recent content on ExampleSite</description>
-    <image>
-      <title>ExampleSite</title>
-      <url>https://examplesite.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</url>
-      <link>https://examplesite.com/%3Clink%20or%20path%20of%20image%20for%20opengraph,%20twitter-cards%3E</link>
-    </image>
+    <title>iamtu</title>
+    <link>https://iamtu.dev/</link>
+    <description>Recent content on iamtu</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 31 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://examplesite.com/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Simulation Based Inference - Likelihood Ratio Estimation</title>
-      <link>https://examplesite.com/posts/sbi/</link>
-      <pubDate>Tue, 31 Oct 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://examplesite.com/posts/sbi/</guid>
-      <description>Background Something
-Inference Simulation Based Inference Problem setup There are four components in the problem of Simulation Based Inference (SBI), namely the simulator, the parameters, the latent variables, and the observations.
- In the context of SBI, the simulator is a computer program taking parameters $\theta$, sample a series of latent states $z_i \sim p(z_i | \theta, z &amp;lt; i)$, and finally produces some observations $x \sim p(x |\theta, z)$. More concretly, the simulator implicitly define the likelihood function $p(x | \theta) = \int_z{p(x, z | \theta)dz}$.</description>
-    </item>
-    
+    <lastBuildDate>Sat, 23 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Noise constrastive estimation (editting)</title>
-      <link>https://examplesite.com/posts/noise-contrastive-estimation/</link>
+      <link>https://iamtu.dev/posts/noise-contrastive-estimation/</link>
       <pubDate>Sat, 23 Sep 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://examplesite.com/posts/noise-contrastive-estimation/</guid>
-      <description>TLDR The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise drawn from a distribution. The paper setups the problem into a dataset of $T$ observations $(x_1, &amp;hellip; x_T)$ drawn from a true distribution $p_d(.)$. We then try to approximate $p_d$ by a parameterized function $p_m(.;\theta)$. The estimator $\hat{\theta}_T$ is defined to be the $\theta$ that maximize function
+      <guid>https://iamtu.dev/posts/noise-contrastive-estimation/</guid>
+      <description>TLDR The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise drawn from a distribution. The paper setups the problem into a dataset of \(T\) observations \((x_1, &amp;hellip; x_T)\) drawn from a true distribution \(p_d(.)\). We then try to approximate \(p_d\) by a parameterized function \(p_m(.;\theta)\). The estimator \(\hat{\theta}_T\) is defined to be the \(\theta\) that maximize function
 $$ J_T(\theta) = \frac{1}{2T}\sum_t{\log[h(x_t; 0)]} + \log[1-h(y_t; \theta)] $$</description>
     </item>
     
     <item>
       <title>About</title>
-      <link>https://examplesite.com/about/</link>
+      <link>https://iamtu.dev/about/</link>
       <pubDate>Fri, 23 Jun 2023 00:00:00 +0000</pubDate>
       
-      <guid>https://examplesite.com/about/</guid>
+      <guid>https://iamtu.dev/about/</guid>
       <description>I am 29 (as of 2022). My undergrad was Economics at a local university, and I am going back to school so I can pursue higher education in the field of Machine Learning &amp;amp; Artificial Intelligence.</description>
     </item>
+    
     
     
   </channel>
