@@ -84,7 +84,9 @@ $$
     {1 - d^{\*}(\mathbf{x})}
 $$
 
-However, this method required the discriminator to be trained at every pair of \\((\theta_0, \theta_1)\\), which is impractical in the context. To overcome this issue, the paper proposed to train the discriminator to classfy dependent sample-parameter pairs \\((\mathbf{x}, \mathbf{\theta}) \sim p(\mathbf{x}, \mathbf{\theta})\\) with label \\(y=1\\) from the independent sample-parameter pairs \\((\mathbf{x}, \mathbf{\theta}) \sim p(\mathbf{x})p(\mathbf{\theta})\\) with label \\(y=0\\).
+<!-- However, this method required the discriminator to be trained at every pair of \\((\theta_0, \theta_1)\\), which is impractical in the context. To overcome this issue, the paper proposed to train the discriminator to classfy dependent sample-parameter pairs \\((\mathbf{x}, \mathbf{\theta}) \sim p(\mathbf{x}, \mathbf{\theta})\\) with label \\(y=1\\) from the independent sample-parameter pairs \\((\mathbf{x}, \mathbf{\theta}) \sim p(\mathbf{x})p(\mathbf{\theta})\\) with label \\(y=0\\). -->
+
+However, this method required the discriminator to be trained at every pair of \\((\theta_0, \theta_1)\\), which is impractical in the context. To overcome this issue, the paper proposed to train the discriminator to classify dependent sample-parameter pairs \\((\mathbf{x}, \mathbf{\theta}) \sim p(\mathbf{x}, \mathbf{\theta})\\) with label \\(y=1\\) from the independent sample-parameter pairs \\((\mathbf{x}, \mathbf{\theta}) \sim p(\mathbf{x})p(\mathbf{\theta})\\) with label \\(y=0\\).
 
 
 $$
@@ -111,7 +113,7 @@ r(\mathbf{x} | \theta) = \frac
     {1 - d^{\*}(x, \theta)}
 $$
 
-And then the likelihood ratio for any two hypothesis can be estimate at any point by
+Then the likelihood ratio for any two hypotheses can be estimated at any point by
 
 $$
 r(x | \theta_0, \theta_1) = \frac{d^{\*}(x,\theta_0)}{d^{\*}(x, \theta_1)}
@@ -121,12 +123,12 @@ $$
 
 Setup:
 
-- **The simulator**: a function take 1 parameter \\(\mu\\), and return a random variable drawn from \\(\mathcal{N}(\mu, 1)\\)
-- **The observations** \\(\mathbf{x}\\): Observation drawn from the simulator with \\(\mu = 2.5\\), which in unknown to the algorithm.
-- **The discriminator**: A simple fully connected neural network.
+- **The simulator**: a function takes 1 parameter \\(\mu\\), and return a random variable drawn from \\(\mathcal{N}(\mu, 1)\\)
+- **The observations** \\(\mathbf{x}\\): Observation drawn from the simulator with \\(\mu = 2.5\\), which is unknown to the algorithm.
+- **The discriminator**: A fully connected neural network.
 - **The prior** of the parameters: \\(\mathcal{N}(0, 1)\\)
 
-We want to draw sample from the posterior distribution \\(p(\theta | \mathbf{x})\\), where \\(x \sim \mathcal{N}(2.5, 1)\\).
+We want to draw samples from the posterior distribution \\(p(\theta | \mathbf{x})\\), where \\(x \sim \mathcal{N}(2.5, 1)\\).
 
 
 {{< collapse summary="Implementation" >}}
