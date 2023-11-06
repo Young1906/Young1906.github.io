@@ -2,7 +2,7 @@
 title: Simulation Based Inference
 date : 2023-10-31
 tags : [sbi]
-draft: true
+draft: false 
 categories: [
     "Machine Learning",
     ]
@@ -71,10 +71,52 @@ We can easily compute the first term of the equation since we have access to pri
 
 ### Likelihood Ratio Estimator 
 
-The remaining question is how to estimate the likelihood ratio \\( r(\mathbf{x} | \theta_0, \theta_1)\\). To estimate the ratio, the author employed the Likelihood Ratio Trick, training a discriminator \\(d_\phi(\mathbf{x})\\) to classify samples \\( x \sim p(\mathbf{x} | \theta_0)\\) with class label \\(y  = 1\\) from \\(\mathbf{x} \sim p(\mathbf{x} | \theta_1)\\) with class label \\(y = 0\\).
+The remaining question is how to estimate the likelihood ratio \\( r(\mathbf{x} | \theta_0, \theta_1)\\). To estimate the ratio, the author employed the Likelihood Ratio Trick, training a discriminator \\(d_\phi(\mathbf{x})\\) to classify samples \\( x \sim p(\mathbf{x} | \theta_0)\\) with class label \\(y  = 1\\) from \\(\mathbf{x} \sim p(\mathbf{x} | \theta_1)\\) with class label \\(y = 0\\). The decision function obtained by the trained discrimininator: 
+
+$$
+d^*(\mathbf{x}) = p(y = 1 | \mathbf{x}) = \frac{p(\mathbf{x} | \theta_0)}{p(\mathbf{x} | \theta_0) + p(\mathbf{x} | \theta_1)}
+$$
+
+Then the estimation of likelihood ratio can be computed by:
+
+$$
+\hat{r}(\mathbf{x} | \theta_0, \theta_1) = \frac
+    {d^{\*}(\mathbf{x})}
+    {1 - d^{\*}(\mathbf{x})}
+$$
+
+However, this method required the discriminator to be trained at every pair of \\((\theta_0, \theta_1)\\), which is impractical in the context. To overcome this issue, the paper proposed to train the discriminator to classfy dependent sample-parameter pairs \\((\mathbf{x}, \mathbf{\theta}) \sim p(\mathbf{x}, \mathbf{\theta})\\) with label \\(y=1\\) from the independent sample-parameter pairs \\((\mathbf{x}, \mathbf{\theta}) \sim p(\mathbf{x})p(\mathbf{\theta})\\) with label \\(y=0\\).
 
 
+$$
+\begin{equation}
+\begin{aligned}
+d^*(\mathbf{x}, \mathbf{\theta}) &= \frac
+    {p(\mathbf{x}, \mathbf{\theta})}
+    {
+        p(\mathbf{x}, \mathbf{\theta})
+        + p(\mathbf{x}) p(\mathbf{\theta})
+    } \\
+\end{aligned}
+\end{equation}
+$$
 
+The likelihood-to-evidence ratio is computed by
+
+$$
+r(\mathbf{x} | \theta) = \frac
+    {p(\mathbf{x} | \theta)}
+    {p(x)} =
+    \frac{p(x, \theta)}{p(x)p(\theta)} = \frac
+    {d^{\*}(x, \theta)}
+    {1 - d^{\*}(x, \theta)}
+$$
+
+And then the likelihood ratio for any two hypothesis can be estimate at any point by
+
+$$
+r(x | \theta_0, \theta_1) = \frac{d^{\*}(x,\theta_0)}{d^{\*}(x, \theta_1)}
+$$
 
 ## Toy example
 
