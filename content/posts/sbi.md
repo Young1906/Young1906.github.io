@@ -1,5 +1,5 @@
 ---
-title: Simulation Based Inference
+title: Likelihood-free MCMC with Amortized Ratio Estimator 
 date : 2023-10-31
 tags : [sbi]
 draft: false 
