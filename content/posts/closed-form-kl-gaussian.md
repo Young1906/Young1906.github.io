@@ -1,5 +1,5 @@
 ---
-title: Deriving closed-form Kullback-Leibler diverence for Gaussian Distribution 
+title: Deriving closed-form Kullback-Leibler divergence for Gaussian Distribution 
 draft: false 
 date: 2023-11-12
 tags: [learning, stat]
