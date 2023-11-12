@@ -1,0 +1,50 @@
+baseURL = "https://iamtu.dev"
+languageCode = "en-us"
+title = "iamtu.dev"
+theme="PaperMod"
+disqusShortname = "iamtu-dev"
+copyright = "© iamtu_ricatto"
+
+[params]
+  # color style
+  color = 'toggle'                           # linen, wheat, gray, light
+
+  # header social icons
+  github = 'young1906'
+  instagram = 'tutdo93'
+  linkedin = 'tu.dothanh'
+
+  # home page profile
+  # avatar = 'GRAVATAR_EMAIL'                 # gravatar email or image url
+  name = 'Tu T. Do'
+  bio = "I am 29 (as of 2022). My undergrad was Economics at a local university, and I am going back to school so I can pursue higher education in the field of Machine Learning & Artificial Intelligence."
+  math = true
+  mathjax = true
+  katex = true
+
+
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+# [[menu.main]]
+# name = "Publications"
+# url = "/publication"
+# weight = 2
+
+[[menu.main]]
+name = "Posts"
+url = "/posts"
+weight = 2
+
+# [[menu.main]]
+    "study",
+# name = "About"
+# url = "/about"
+# weight = 3
+
+[[menu.main]]
+name = "Tags"
+url = "/tags"
+weight = 4
