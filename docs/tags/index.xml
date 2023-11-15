@@ -5,22 +5,32 @@
     <link>https://iamtu.dev/tags/</link>
     <description>Recent content in Tags on iamtu</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Tue, 31 Oct 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <language>en</language>
+    <lastBuildDate>Sun, 12 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/tags/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>learning</title>
+      <link>https://iamtu.dev/tags/learning/</link>
+      <pubDate>Sun, 12 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://iamtu.dev/tags/learning/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>stat</title>
+      <link>https://iamtu.dev/tags/stat/</link>
+      <pubDate>Sun, 12 Nov 2023 00:00:00 +0000</pubDate>
+      
+      <guid>https://iamtu.dev/tags/stat/</guid>
+      <description></description>
+    </item>
+    
     <item>
       <title>sbi</title>
       <link>https://iamtu.dev/tags/sbi/</link>
       <pubDate>Tue, 31 Oct 2023 00:00:00 +0000</pubDate>
       
       <guid>https://iamtu.dev/tags/sbi/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>learning</title>
-      <link>https://iamtu.dev/tags/learning/</link>
-      <pubDate>Sat, 23 Sep 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://iamtu.dev/tags/learning/</guid>
       <description></description>
     </item>
     
