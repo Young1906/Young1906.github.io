@@ -1,5 +1,5 @@
 ---
-title: Noise constrastive estimation (editting)
+title: Noise constrastive estimation
 draft: false 
 date: 2023-09-23
 tags: [learning, probabilistic-ml]
@@ -41,25 +41,25 @@ When the sample size $T$ becomes arbitrarily large, the objective function $J_T(
 \end{aligned}
 \end{equation}
 
-In which $f(x) = \log p_m(x; \theta)$ is the function approximating log-likelihood the true distribution $p_d(.)$.
+In which \\(f(x) = \log p_m(x; \theta)\\) is the function approximating log-likelihood the true distribution $p_d(.)$.
 
 ###  Notation
 
-- $p_d(x)$ true probability density function (p.d.f) of data.
-- $p_n(x)$ p.d.f of noise generating distribution.
-- $r(x) = \frac{1}{1+\exp(-x)}$ sigmoid function.
-- $X = (x_1, ... x_T); x \sim p_d(x)$ be the dataset of T observations.
-- $Y = (y_1, ... y_T); y \sim p_n(y)$ be the dataset of T artificially generated noise.
-- $p_m(.; \theta)$ is estimation of $p_d(.)$ parameterized by $\theta$.
+- \\(p_d(x)\\) true probability density function (p.d.f) of data.
+- \\(p_n(x)\\) p.d.f of noise generating distribution.
+- \\(r(x) = \frac{1}{1+\exp(-x)}\\) sigmoid function.
+- \\(X = (x_1, ... x_T); x \sim p_d(x)\\) be the dataset of T observations.
+- \\(Y = (y_1, ... y_T); y \sim p_n(y)\\) be the dataset of T artificially generated noise.
+- \\(p_m(.; \theta)\\) is estimation of \\(p_d(.)\\) parameterized by \\(\theta\\).
 
 
 ### Theorem
-> $\tilde{J}$ attains a maximum at $f(.) = \log p_d(.)$. There are no other extrema if the noise density $p_n(.)$ is chosen such it is nonzero whenever $p_d(.)$ is nonzero.
+> \\(\tilde{J}\\) attains a maximum at \\(f(.) = \log p_d(.)\\). There are no other extrema if the noise density \\(p_n(.)\\) is chosen such it is nonzero whenever \\(p_d(.)\\) is nonzero.
 
 
 ### Proof
 
-Let $\hat{f}(x)$ be the optimal function that maximizes $\tilde{J}$, and $f(x)=\hat{f}(x) + \epsilon\eta(x)$.
+Let \\(\hat{f}(x)\\) be the optimal function that maximizes \\(\tilde{J}\\), and \\(f(x)=\hat{f}(x) + \epsilon\eta(x)\\).
 
 \begin{equation}
 \begin{aligned}
