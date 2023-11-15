@@ -5,10 +5,9 @@
     <link>https://iamtu.dev/tags/probabilistic-ml/</link>
     <description>Recent content in probabilistic-ml on iamtu</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
     <lastBuildDate>Sat, 23 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/tags/probabilistic-ml/index.xml" rel="self" type="application/rss+xml" />
     <item>
-      <title>Noise constrastive estimation (editting)</title>
+      <title>Noise constrastive estimation</title>
       <link>https://iamtu.dev/posts/noise-contrastive-estimation/</link>
       <pubDate>Sat, 23 Sep 2023 00:00:00 +0000</pubDate>
       

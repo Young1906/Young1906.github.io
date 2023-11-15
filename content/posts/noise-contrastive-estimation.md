@@ -256,7 +256,7 @@ Consider eq. (7), if the support for $x$ and $y$ are equal, which mean we integr
 \end{aligned}
 \end{equation}
 
-The equality in eq.(8) happend if and only if $C=D$. This result easily leads to $\hat{f}(x) = \log p_d(x)$.
+The equality in eq.(8) happend if and only if \\(C=D\\). This result easily leads to \\(\hat{f}(x) = \log p_d(x)\\).
 
 
 ## References
