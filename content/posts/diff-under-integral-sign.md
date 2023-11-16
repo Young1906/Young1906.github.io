@@ -55,4 +55,4 @@ def I():
     return vG(x).mean()
 ```
 
-{{< \collapse >}}
+{{< /collapse >}}
