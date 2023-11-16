@@ -84,6 +84,19 @@ Posts
 </header>
 <article class=post-entry>
 <header class=entry-header>
+<h2>Differentiation under integral sign
+</h2>
+</header>
+<div class=entry-content>
+<p>Motivating example Evaluating following integral
+$$ I = \int_0^1{\frac{1 - x^2}{\ln{x}}dx} $$
+Closed-form results $$ \begin{equation} \begin{aligned} F(t) &= \int_0^1{\frac{1-x^t}{\ln(x)}dx} \\ \implies \frac{d}{dt}F &= \frac{d}{dt}\int_0^1{\frac{1-x^t}{\ln(x)}dx}\\ &= \int_0^1{ \frac{\partial}{\partial t} \frac{1-x^t}{\ln(x)}dx }\\ &= \int_0^1{ \frac{-\ln(x)x^t}{ln(x)} dx} \\ &= \bigg[-\frac{x^{t+1}}{t+1}\bigg]_0^1\\ &= -\frac{1}{t+1}\\ \implies F(t) &= -\ln({t+1}) \\ \implies I &= f(2) = -\ln3 \end{aligned} \end{equation} $$
+Numerical approximation Code to produce the figure import numpy as np from matplotlib import pyplot as plt def I(): g = lambda x: (1 - x**2)/np....</p>
+</div>
+<a class=entry-link aria-label="post link to Differentiation under integral sign" href=https://iamtu.dev/posts/diff-under-integral-sign/></a>
+</article>
+<article class=post-entry>
+<header class=entry-header>
 <h2>Deriving closed-form Kullback-Leibler divergence for Gaussian Distribution
 </h2>
 </header>

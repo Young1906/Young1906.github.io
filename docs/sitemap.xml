@@ -2,22 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
+    <loc>https://iamtu.dev/tags/calculus/</loc>
+    <lastmod>2023-11-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://iamtu.dev/posts/diff-under-integral-sign/</loc>
+    <lastmod>2023-11-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://iamtu.dev/</loc>
+    <lastmod>2023-11-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://iamtu.dev/tags/learning/</loc>
+    <lastmod>2023-11-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://iamtu.dev/posts/</loc>
+    <lastmod>2023-11-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://iamtu.dev/tags/</loc>
+    <lastmod>2023-11-16T00:00:00+00:00</lastmod>
+  </url><url>
     <loc>https://iamtu.dev/posts/closed-form-kl-gaussian/</loc>
     <lastmod>2023-11-12T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>https://iamtu.dev/</loc>
-    <lastmod>2023-11-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://iamtu.dev/tags/learning/</loc>
-    <lastmod>2023-11-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://iamtu.dev/posts/</loc>
-    <lastmod>2023-11-12T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://iamtu.dev/tags/stat/</loc>
-    <lastmod>2023-11-12T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://iamtu.dev/tags/</loc>
     <lastmod>2023-11-12T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://iamtu.dev/categories/</loc>

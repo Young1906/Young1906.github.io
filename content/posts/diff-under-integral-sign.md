@@ -1,6 +1,6 @@
 ---
 title: Differentiation under integral sign 
-draft: true 
+draft: false 
 date: 2023-11-16
 tags: [learning, calculus]
 ---
@@ -40,3 +40,19 @@ $$
 
 ### Numerical approximation 
 ![image](/images/mcmc_integral.png)
+
+
+{{< collapse summary="Code to produce the figure" >}}
+
+```python
+import numpy as np
+from matplotlib import pyplot as plt
+
+def I():
+    g = lambda x: (1 - x**2)/np.log(x)
+    vG = np.vectorize(g)
+    x = np.random.uniform(0, 1, 10000)
+    return vG(x).mean()
+```
+
+{{< \collapse >}}
