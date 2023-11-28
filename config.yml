@@ -9,7 +9,11 @@ buildFuture: false
 buildExpired: false
 
 googleAnalytics: G-PWLR4FLELZ
-disqusShortname: iamtu-dev.disqus.com
+# disqusShortname: iamtu-dev.disqus.com
+
+services:
+  disqus:
+    shortname: iamtu-dev.disqus.com
 
 minify:
   disableXML: true
