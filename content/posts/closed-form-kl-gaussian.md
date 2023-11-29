@@ -74,7 +74,7 @@ $$
 \begin{aligned}
     \text{KL}(p\parallel q) &= A - B \\\
 &= (-\frac{1}{2}\log2\pi - \log\sigma_1 - \frac{1}{2}) - ( -\frac{1}{2}\log2\pi -\log\sigma_2 - \frac{\sigma_1^2}{2\sigma_2^2} - \frac{(\mu_1-\mu_2)^2}{2\sigma_2^2}) \\\
-    &= \log\frac{\sigma_2}{\sigma_1} + \frac{\sigma_1^2}{\sigma_2^2} + \frac{(\mu_1 -\mu_2)^2}{2\sigma_2^2} - \frac{1}{2}
+    &= \log\frac{\sigma_2}{\sigma_1} + \frac{\sigma_1^2}{2\sigma_2^2} + \frac{(\mu_1 -\mu_2)^2}{2\sigma_2^2} - \frac{1}{2}
 \end{aligned}
 $$
 
