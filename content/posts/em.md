@@ -8,6 +8,9 @@ categories: [
     ]
 ---
 
+I am review one of the topic that I am very fond of - Expectation Maximization algorithm. The first section introduces the problem and an example to make the problem more concrete. The second section describes the algorithm and my attempt to apply the algorithm to the example (how naive of me to think it is going to be simple). The third section outlines my understanding of the proof. Finally the last section is my implementation of EM using python for an assignment during my course-work.
+
+
 ## Problem 
 
 Given a statistical model \\(P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta}) = P(\boldsymbol{X} | \boldsymbol{Z}, \boldsymbol{\theta})\\), which generate set of observations \\(\boldsymbol{X}\\), where \\(\boldsymbol{Z}\\) is a latent variable and unknow parameter vector \\(\boldsymbol{\theta}\\). The goal is to find \\(\boldsymbol{\theta}\\) that maximize the marginal likelihood:

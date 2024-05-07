@@ -80,7 +80,7 @@ params:
   # home-info mode
   homeInfoParams:
     Title: "Tu T. Do"
-    Content: "I am 29 (as of 2022). My undergrad was Economics at a local university, and I am going back to school so I can pursue higher education in the field of Machine Learning & Artificial Intelligence."
+    Content: "(2024) Currently looking for PhD opportunity in the field of AI/ML. My research interest lies in Reinforcement Learning and Physics-Informed Machine Learning [(see more)](/about) ..."
 
   socialIcons:
     # - name: twitter
@@ -133,9 +133,9 @@ menu:
       name: categories
       url: /categories/
       weight: 100
-    - identifier: tags
-      name: tags
-      url: /tags/
+    - identifier: about 
+      name: about 
+      url: /about/
       weight: 1000
     - identifier: archives 
       name: archives 
