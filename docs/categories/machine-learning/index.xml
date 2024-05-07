@@ -13,7 +13,8 @@
       
       <guid>https://iamtu.dev/posts/em/</guid>
       <description>As of May&#39;24, I am looking for a doctoral training opportunity. Please check out my resume if you think I am a good fit for your program.
- Problem Given a statistical model \(P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta}) = P(\boldsymbol{X} | \boldsymbol{Z}, \boldsymbol{\theta})\), which generate set of observations \(\boldsymbol{X}\), where \(\boldsymbol{Z}\) is a latent variable and unknow parameter vector \(\boldsymbol{\theta}\). The goal is to find \(\boldsymbol{\theta}\) that maximize the marginal likelihood:</description>
+Problem Given a statistical model \(P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta}), which generate set of observations \(\boldsymbol{X}\), where \(\boldsymbol{Z}\) is a latent variable and unknow parameter vector \(\boldsymbol{\theta}\). The goal is to find \(\boldsymbol{\theta}\) that maximize the marginal likelihood:
+$$ \mathcal{L}(\boldsymbol{\theta}; \boldsymbol{X}) = P(\boldsymbol{X} | \boldsymbol{\theta}) = \int_{\boldsymbol{Z}}P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta})d\boldsymbol{Z} $$</description>
     </item>
     
     <item>
@@ -24,7 +25,7 @@
       <guid>https://iamtu.dev/posts/variational_inference/</guid>
       <description>This post is a note I take from while reading Blei et al 2018.
 Goal:
- Motivation of variational inference Understand the derivation of ELBO and its intiution Walk through the derivation, some of which was skip the in original paper Implementation of CAVI  ELBO Goal is to find \(q(z)\) to approximate \(p(z|x)\)
+Motivation of variational inference Understand the derivation of ELBO and its intiution Walk through the derivation, some of which was skip the in original paper Implementation of CAVI ELBO Goal is to find \(q(z)\) to approximate \(p(z|x)\)
 The KL-divergence
 $$ \begin{equation} \begin{aligned} KL[q(z)||p(z | x)] &amp;amp;= \int_z{q(z)\log{\frac{p(z|x)}{q(z)}} dz} \end{aligned} \end{equation} $$
 However, this quantity is intractable to compute hence, we&amp;rsquo;re unable to optimize this quantity directly.</description>

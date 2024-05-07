@@ -13,7 +13,8 @@
       
       <guid>https://iamtu.dev/posts/em/</guid>
       <description>As of May&#39;24, I am looking for a doctoral training opportunity. Please check out my resume if you think I am a good fit for your program.
- Problem Given a statistical model \(P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta}) = P(\boldsymbol{X} | \boldsymbol{Z}, \boldsymbol{\theta})\), which generate set of observations \(\boldsymbol{X}\), where \(\boldsymbol{Z}\) is a latent variable and unknow parameter vector \(\boldsymbol{\theta}\). The goal is to find \(\boldsymbol{\theta}\) that maximize the marginal likelihood:</description>
+Problem Given a statistical model \(P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta}), which generate set of observations \(\boldsymbol{X}\), where \(\boldsymbol{Z}\) is a latent variable and unknow parameter vector \(\boldsymbol{\theta}\). The goal is to find \(\boldsymbol{\theta}\) that maximize the marginal likelihood:
+$$ \mathcal{L}(\boldsymbol{\theta}; \boldsymbol{X}) = P(\boldsymbol{X} | \boldsymbol{\theta}) = \int_{\boldsymbol{Z}}P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta})d\boldsymbol{Z} $$</description>
     </item>
     
     <item>
@@ -24,7 +25,7 @@
       <guid>https://iamtu.dev/posts/variational_inference/</guid>
       <description>This post is a note I take from while reading Blei et al 2018.
 Goal:
- Motivation of variational inference Understand the derivation of ELBO and its intiution Walk through the derivation, some of which was skip the in original paper Implementation of CAVI  ELBO Goal is to find \(q(z)\) to approximate \(p(z|x)\)
+Motivation of variational inference Understand the derivation of ELBO and its intiution Walk through the derivation, some of which was skip the in original paper Implementation of CAVI ELBO Goal is to find \(q(z)\) to approximate \(p(z|x)\)
 The KL-divergence
 $$ \begin{equation} \begin{aligned} KL[q(z)||p(z | x)] &amp;amp;= \int_z{q(z)\log{\frac{p(z|x)}{q(z)}} dz} \end{aligned} \end{equation} $$
 However, this quantity is intractable to compute hence, we&amp;rsquo;re unable to optimize this quantity directly.</description>
@@ -50,7 +51,7 @@ Numerical approximation Code to produce the figure import numpy as np from matpl
       <guid>https://iamtu.dev/posts/closed-form-kl-gaussian/</guid>
       <description>The closed form of KL divergence used in Variational Auto Encoder.
 Univariate case Let
- \(p(x) = \mathcal{N}(\mu_1, \sigma_1) = (2\pi\sigma_1^2)^{-\frac{1}{2}}\exp[-\frac{1}{2\sigma_1^2}(x-\mu_1)^2]\) \(q(x) = \mathcal{N}(\mu_1, \sigma_2) = (2\pi\sigma_2^2)^{-\frac{1}{2}}\exp[-\frac{1}{2\sigma_2^2}(x-\mu_2)^2]\)  KL divergence between \(p\) and \(q\) is defined as:
+\(p(x) = \mathcal{N}(\mu_1, \sigma_1) = (2\pi\sigma_1^2)^{-\frac{1}{2}}\exp[-\frac{1}{2\sigma_1^2}(x-\mu_1)^2]\) \(q(x) = \mathcal{N}(\mu_1, \sigma_2) = (2\pi\sigma_2^2)^{-\frac{1}{2}}\exp[-\frac{1}{2\sigma_2^2}(x-\mu_2)^2]\) KL divergence between \(p\) and \(q\) is defined as:
 $$ \begin{aligned} \text{KL}(p\parallel q) &amp;amp;= -\int_{x}{p(x)\log{\frac{q(x)}{p(x)}}dx} \\ &amp;amp;= -\int_x p(x) [\log{q(x)} - \log{p(x)}]dx \\ &amp;amp;= \underbrace{ \int_x{p(x)\log p(x) dx}}_A - \underbrace{ \int_x{p(x)\log q(x) dx}}_B \end{aligned} $$
 First quantity \(A\):
 $$ \begin{aligned} A &amp;amp;= \int_x{p(x)\log p(x) dx} \\ &amp;amp;= \int_x{p(x)\big[ -\frac{1}{2}\log{2\pi\sigma_1^2 - \frac{1}{2\sigma_1^2}(x - \mu_1)^2} \big]dx}\\ &amp;amp;= -\frac{1}{2}\log{2\pi\sigma_1^2}\int_x{p(x)dx} - \frac{1}{2\sigma_1^2} \underbrace{\int_x{p(x)(x-\mu_1)^2dx}}_{\text{var(x)}}\\ &amp;amp;= -\frac{1}{2}\log{2\pi} - \log\sigma_1-\frac{1}{2} \end{aligned} $$</description>
@@ -82,8 +83,9 @@ $$ J_T(\theta) = \frac{1}{2T}\sum_t{\log[h(x_t; 0)]} + \log[1-h(y_t; \theta)] $$
       
       <guid>https://iamtu.dev/posts/real-analysis/</guid>
       <description>Notes I took during studying MIT OCW Real Analysis. The class taught by Professor Casey Rodriguez, he also taught Functional analysis.
-Resources (Useful link)  Video lecture Course&amp;rsquo;s homepage  Lecture notes Goal of the course - Gain experience with proofs - Prove statements about the real numbers, function and limits
-Lecture 1: Sets, Set operations, and Mathematical Induction Definition (Sets) A sets is a collection of objects called elements/members.</description>
+Resources (Useful link) Video lecture Course&amp;rsquo;s homepage Lecture notes Goal of the course - Gain experience with proofs - Prove statements about the real numbers, function and limits
+Lecture 1: Sets, Set operations, and Mathematical Induction Definition (Sets) A sets is a collection of objects called elements/members.
+Definition (Empty set) A set with no elements, denoted as \(\emptyset\)</description>
     </item>
     
   </channel>
