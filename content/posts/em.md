@@ -153,7 +153,7 @@ $$
         > Taking a log always seem to make thing to be better.
 
     - Finally, we need to take the expectation of the log likelihood w.r.t conditional probability of \\(\boldsymbol{Z}|\boldsymbol{X}, \boldsymbol{\theta}^{(t)}\\)
-        - For a single latent \\(z\\)
+        - Posterior for a single latent \\(z\\)
 
             $$
                 \begin{equation}
@@ -219,6 +219,62 @@ $$
 
             Where \\(\boldsymbol{Z} = \\{z^i\\}_{i=1\cdots N}; z \sim p(Z)\\); \\(\boldsymbol{Z}/z\\) denotes set all variables within \\(\boldsymbol{Z}\\) except \\(z\\).
 
+        - Having clear that up, we are able to resume from (eq. 11)
+            $$
+            \begin{aligned}
+                Q(\boldsymbol{\theta} | \boldsymbol{\theta}^{(t)}) 
+                    &= \sum\_{(x, z)} {
+                       \mathbb{E}\_{z | x, \boldsymbol{\theta}^{(t)}}{[
+                            \log p(x, z | \boldsymbol{\theta})
+                       ]}
+                    } \\\
+                    &= \sum\_{(x, z)} {\bigg[
+                        p(z = 0 | x, \boldsymbol{\theta}^{(t)}) \log p(x, z = 0 | \boldsymbol{\theta}) \\
+                        + p(z = 1 | x, \boldsymbol{\theta}^{(t)}) \log p(x, z = 1 | \boldsymbol{\theta})
+                    \\bigg]}
+            \end{aligned}
+            $$
+
+            From (eq. 7)
+
+            - 
+                $$ 
+                \begin{aligned}
+                p(x, z = 0 |\boldsymbol{\theta}) = q^x(1-q)^{1-x}(1-\tau)
+                \end{aligned}
+                $$
+            - 
+                $$ 
+                \begin{aligned}
+                p(x, z = 1 |\boldsymbol{\theta}) = p^x(1-p)^{1-x}\tau
+                \end{aligned}
+                $$
+
+            From (eq. 10)
+
+            - 
+                $$ 
+                \begin{aligned}
+                p(z = 0 | x, \boldsymbol{\theta}^{(t)})
+                & = \frac{
+                    q_t^{x}(1-q_t)^{1-x}(1-\tau_t)
+                }{
+                    q_t^{x}(1-q_t)^{1 - x} (1-\tau_t) + p_t^{x}(1-p_t)^{1 - x}\tau_t
+                }
+                \end{aligned}
+                $$
+
+            - 
+                $$ 
+                \begin{aligned}
+                p(z = 1 | x, \boldsymbol{\theta}^{(t)})
+                & = \frac{
+                    p_t^{x}(1-p_t)^{1-x}\tau_t
+                }{
+                    q_t^{x}(1-q_t)^{1 - x} (1-\tau_t) + p_t^{x}(1-p_t)^{1 - x}\tau_t
+                }
+                \end{aligned}
+                $$
 
 
 ## Proof of correctness
@@ -226,6 +282,7 @@ T.B.D
 
 ## EM for Gaussian Mixture Model
 
+- [EM for GMM's python implementation](https://github.com/young1906/em)
 
 ---
 **Foot note**
