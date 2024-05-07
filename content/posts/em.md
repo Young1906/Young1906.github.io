@@ -8,8 +8,8 @@ categories: [
     ]
 ---
 
-I am review one of the topic that I am very fond of - Expectation Maximization algorithm. The first section introduces the problem and an example to make the problem more concrete. The second section describes the algorithm and my attempt to apply the algorithm to the example (how naive of me to think it is going to be simple). The third section outlines my understanding of the proof. Finally the last section is my implementation of EM using python for an assignment during my course-work.
 
+> As of May'24, I am looking for a doctoral training opportunity. Please check out [my resume](/about) if you think I am a good fit for your program.
 
 ## Problem 
 
