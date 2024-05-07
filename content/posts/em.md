@@ -21,6 +21,8 @@ As an example for this type of problem, there are two (unfair) coin A and B with
 
 
 ## The EM algorithm
+
+### The algorithm
 The EM algorithm seeks for \\(\boldsymbol{\theta}\\) by first initiates a random parameter vector \\(\boldsymbol{\theta}^{(0)}\\) and then iteratively performs two steps, namely the expectation step (E step) and the maximization step (M step): 
 
 - (The E step) the expected loglikelihood of \\(\boldsymbol{\theta}\\), with respect to the current conditional distribution of \\(\boldsymbol{Z}\\) given observations \\(\boldsymbol{X}\\) and current estimation of \\(\boldsymbol{\theta}^{(t)}\\)
