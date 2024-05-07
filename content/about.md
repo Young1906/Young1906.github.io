@@ -4,5 +4,7 @@ date: 2023-06-23
 draft: false 
 ---
 
-I am 29 (as of 2022). My undergrad was Economics at a local university, and I am going back to school so I can pursue higher education in the field of Machine Learning & Artificial Intelligence.
+2024: Currently looking for PhD Opportunity in the field of AI/ML. My research interest lies in Reinforcement Learning and Physics-Informed Machine Learning.
+
+2022: I am 29. My undergrad was Economics at a local university, and I am going back to school so I can pursue higher education in the field of Machine Learning & Artificial Intelligence.
 

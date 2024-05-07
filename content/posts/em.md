@@ -1,0 +1,167 @@
+---
+title: Expectation Maximization - EM
+date : 2024-04-15
+tags : [learn, ml]
+draft: False 
+categories: [
+    "Machine Learning",
+    ]
+---
+
+**Note** 
+
+- I am preparing for my graduate school application, this post is written in preparation for the application and interview.
+- I suppose to be preparing a slide for my supervisor, but sometime you can't help when the mood strikes. So sorry in advance to my supervisor.
+
+## Problem 
+
+Given a statistical model \\(P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta}) = P(\boldsymbol{X} | \boldsymbol{Z}, \boldsymbol{\theta})\\), which generate set of observations \\(\boldsymbol{X}\\), where \\(\boldsymbol{Z}\\) is a latent variable and unknow parameter vector \\(\boldsymbol{\theta}\\). The goal is to find \\(\boldsymbol{\theta}\\) that maximize the marginal likelihood:
+
+$$
+\mathcal{L}(\boldsymbol{\theta}; \boldsymbol{X}) = P(\boldsymbol{X} | \boldsymbol{\theta})
+= \int_{\boldsymbol{Z}}P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta})d\boldsymbol{Z}
+$$
+
+As an example for this type of problem, there are two (unfair) coin A and B with probability of head for each coin is \\(p_A(H) = p \text{ and } p_B(H) = q\\). For each trial, we select coin A with probability \\(p(A) = \tau\\) and coin B with probability \\(p(B) = 1 -\tau\\), toss the coin and record the observation. The set of observations \\(\boldsymbol{X}\\) is the record of head or tail \\(\\{H, T, H, H, \cdots\\}\\), the latent variable which is unobserved is which coint is selected for each trail \\(\\{A, B, B, A, \cdots\\}\\), and the unknown parameter vector \\(\boldsymbol{\theta} = [p, q, \tau]\\). The goal is to find \\(\boldsymbol{\theta}\\) that best fit observations; EM is an instance of Maximum Likelihood Estimation (MLE).
+
+
+## The EM algorithm
+The EM algorithm seeks for \\(\boldsymbol{\theta}\\) by first initiates a random parameter vector \\(\boldsymbol{\theta}^{(0)}\\) and then iteratively performs two steps, namely the expectation step (E step) and the maximization step (M step): 
+
+- (The E step) the expected loglikelihood of \\(\boldsymbol{\theta}\\), with respect to the current conditional distribution of \\(\boldsymbol{Z}\\) given observations \\(\boldsymbol{X}\\) and current estimation of \\(\boldsymbol{\theta}^{(t)}\\)
+
+$$
+Q(\boldsymbol{\theta} | \boldsymbol{\theta}^{(t)}) = \mathbb{E}_{\boldsymbol{Z} \sim P(. | \boldsymbol{X}, \boldsymbol{\theta}^{(t)})} {[
+    \log P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta})
+    ]}
+$$
+
+- (The M step) update parameter vector \\(\boldsymbol{\theta}\\)
+
+$$
+\boldsymbol{\theta}^{(t+1)} = \arg\max_{\boldsymbol{\theta}} Q(\boldsymbol{\theta} | \boldsymbol{\theta}^{(t)})
+$$
+
+
+### EM for the coin example
+
+**Setup**
+- Parameter vector \\(\boldsymbol{\theta} = [p, q, \tau]\\), and its estimation at step (t) is \\(\boldsymbol{\theta}^{(t)} = [p^{(t)}, q^{(t)}, \tau^{(t)}]\\)
+- The \\(i^{th}\\) observation \\(x^{(i)}\\) is either head (H) or tail (T).
+- The coin selected for the \\(i^{th}\\) trail \\(z^{(i)}\\) is either A or B:
+    - \\(p(z^{(i)} = A) = \tau\\) 
+    - \\(p(z^{(i)} = B) = 1 -\tau\\).
+
+    For both cases, 
+    $$
+    \begin{equation}
+    p(z^{(i)}) = \tau^{\mathbb{I}(z^{(i)}=A)}(1-\tau)^{\mathbb{I}(z^{(i)}=B)}
+    \end{equation}
+    $$
+
+- When selected the coin A,
+    - Probability that we get a head (H): \\(p(x^{(i)}=H | z^{(i)} = A) = p\\)
+    - Probability that we get a head (T): \\(p(x^{(i)}=T | z^{(i)} = A) = 1 - p\\)
+
+    For both cases,
+    $$
+    \begin{equation}
+    p(x^{(i)} | z^{(i)}=A) = p^{\mathbb{I}(x^{(i)}=H)}(1 - p)^{\mathbb{I}(x^{(i)}=T)}
+    \end{equation}
+    $$
+
+- Similarly, when B is selected
+    $$
+    \begin{equation}
+    p(x^{(i)} | z^{(i)}=B) = q^{\mathbb{I}(x^{(i)}=H)}(1 - q)^{\mathbb{I}(x^{(i)}=T)}
+    \end{equation}
+    $$
+
+Where \\(\mathbb{I}(\cdot)\\) is an indicator function on a predicate
+    $$
+    \mathbb{I}(p) = \begin{cases}
+        1 \quad \text{if } p \text{ is True}\\\
+        0 \quad \text{otherwise}
+    \end{cases}
+    $$
+
+
+Once again, we generalize for both cases of \\(z^{(i)}\\)
+
+$$
+\begin{equation}
+\begin{aligned}
+p(x^{(i)} | z^{(i)}) = 
+    [p^{\mathbb{I}(x^{(i)}=H)}(1 - p)^{\mathbb{I}(x^{(i)}=T)}]^{\mathbb{I}(z^{(i)}=A)}\\\
+    \times [q^{\mathbb{I}(x^{(i)}=H)}(1 - q)^{\mathbb{I}(x^{(i)}=T)}]^{\mathbb{I}(z^{(i)}=B)}
+\end{aligned}
+\end{equation}
+$$
+
+The equation looks rather ugly, we can simplify this by encoding head as 1 and tail as 0; coin A as 1 and coin B as 0. The equation above can be written as
+
+$$
+\begin{equation}
+p(x^{(i)} | z^{(i)}) = [p^{x^{(i)}}(1-p)^{1 - x^{(i)}}]^{z^{(i)}} 
+[q^{x^{(i)}}(1-q)^{1 - x^{(i)}}]^{1-z^{(i)}}
+\end{equation}
+$$
+
+Similarly for \\(p(z^{(i)})\\)
+$$
+\begin{equation}
+    p(z^{(i)}) = \tau^{z^{(i)}}(1-\tau)^{1-z^{(i)}}
+\end{equation}
+$$
+
+**Applying EM algorithm**
+
+- The E step:
+    - Construct the joint likelihood of a single pair of observation and latent variable \\(p(x^{(i)}, z^{(i)})\\ | \boldsymbol{\theta})\\). For the conciseness, we drop the \\((i)\\) superscript from the equation.
+    
+    $$
+    \begin{equation}
+    \begin{aligned}
+        p(x, z | \boldsymbol{\theta}) = & p(x | z, \boldsymbol{\theta})p(z | \boldsymbol{\theta})\\\
+        = & [p^{x}(1-p)^{1 - x}]^{z} [q^{x}(1-q)^{1 - x}]^{1-z} \tau^{z}(1-\tau)^{1-z}
+        & \text{\tiny(from eq. 5 and 6)}
+    \end{aligned}
+    \end{equation}
+    $$
+
+    - Likelihood over entire observations \\(\boldsymbol{X}\\) and latent \\(\boldsymbol{Z}\\): 
+
+        $$\boldsymbol{X}\odot\boldsymbol{Z} := \\{(x^{(i)}, z^{(i)})\\}_{i=1\cdots N}$$
+
+        > A side note is that I am not entirely sure that \\(\odot\\) operator is appropriate in this situation.
+
+        $$
+        \begin{equation}
+            \begin{aligned}
+                P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta}) =& \prod_{(x, z) \in \boldsymbol{X}\odot\boldsymbol{Z}} {
+                   p(x, z | \boldsymbol{\theta}) 
+                }
+            \end{aligned}
+        \end{equation}
+        $$
+
+    - Log likelihood of the joint probability
+
+        $$
+        \begin{equation}
+        \begin{aligned}
+        \log P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta}) & = \sum_{(x, z)} \log p(x, z | \boldsymbol{\theta})
+        \end{aligned}
+        \end{equation}
+        $$
+
+        > Taking a log always seem to make thing to be better.
+
+    - Finally, we need to take the expectation of the log likelihood w.r.t conditional probability of \\(\boldsymbol{Z}|\boldsymbol{X}, \boldsymbol{\theta}^{(t)}\\)
+
+
+## Proof of correctness
+
+
+## EM for Gaussian Mixture Model
+
