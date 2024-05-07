@@ -218,7 +218,7 @@ $$
                 } \\\
                 & = \sum\_{z\in\boldsymbol{Z}} A 
                     \int\_{\boldsymbol{Z}\text{/}z} p(\boldsymbol{Z}\text{/}z)d(\boldsymbol{Z}/z) & \text{\tiny(A is constant w.r.t variable being integrated over)} \\\
-                & = \sum\_{z\in\boldsymbol{Z}} \mathbb{E}_z[f(z)] & \text{\tiny(Integeral overal a p.d.f evalulated to 1)}
+                & = \sum\_{z\in\boldsymbol{Z}} \mathbb{E}_z[f(z)] & \text{\tiny(Integerating over a p.d.f evalulated to 1)}
                 \end{aligned}
             $$
 
