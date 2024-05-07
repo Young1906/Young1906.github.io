@@ -8,11 +8,6 @@ categories: [
     ]
 ---
 
-**Note** 
-
-- I am preparing for my graduate school application, this post is written in preparation for the application and interview.
-- I suppose to be preparing a slide for my supervisor, but sometime you can't help when the mood strikes. So sorry in advance to my supervisor.
-
 ## Problem 
 
 Given a statistical model \\(P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta}) = P(\boldsymbol{X} | \boldsymbol{Z}, \boldsymbol{\theta})\\), which generate set of observations \\(\boldsymbol{X}\\), where \\(\boldsymbol{Z}\\) is a latent variable and unknow parameter vector \\(\boldsymbol{\theta}\\). The goal is to find \\(\boldsymbol{\theta}\\) that maximize the marginal likelihood:
@@ -46,7 +41,7 @@ $$
 ### EM for the coin example
 
 **Setup**
-- Parameter vector \\(\boldsymbol{\theta} = [p, q, \tau]\\), and its estimation at step (t) is \\(\boldsymbol{\theta}^{(t)} = [p^{(t)}, q^{(t)}, \tau^{(t)}]\\)
+- Parameter vector \\(\boldsymbol{\theta} = [p, q, \tau]\\), and its estimation at step (t) is \\(\boldsymbol{\theta}^{(t)} = [p_t, q_t, \tau_t]\\)
 - The \\(i^{th}\\) observation \\(x^{(i)}\\) is either head (H) or tail (T).
 - The coin selected for the \\(i^{th}\\) trail \\(z^{(i)}\\) is either A or B:
     - \\(p(z^{(i)} = A) = \tau\\) 
@@ -116,7 +111,7 @@ $$
 
 **Applying EM algorithm**
 
-- The E step:
+- **The (E step)**:
     - Construct the joint likelihood of a single pair of observation and latent variable \\(p(x^{(i)}, z^{(i)})\\ | \boldsymbol{\theta})\\). For the conciseness, we drop the \\((i)\\) superscript from the equation.
     
     $$
@@ -158,10 +153,82 @@ $$
         > Taking a log always seem to make thing to be better.
 
     - Finally, we need to take the expectation of the log likelihood w.r.t conditional probability of \\(\boldsymbol{Z}|\boldsymbol{X}, \boldsymbol{\theta}^{(t)}\\)
+        - For a single latent \\(z\\)
+
+            $$
+                \begin{equation}
+                \begin{aligned}
+                p(z | x, \boldsymbol{\theta}^{(t)})
+                & = \frac{p(x, z | \boldsymbol{\theta}^{(t)})}
+                    {p(x | \boldsymbol{\theta}^{(t)})} & \text{\tiny(Bayes Theorem)}\\\
+                & = \frac{p(x, z | \boldsymbol{\theta}^{(t)})}
+                    {
+                        p(x, z = 0| \boldsymbol{\theta}^{(t)}) +
+                        p(x, z = 1| \boldsymbol{\theta}^{(t)})
+                    } & \text{\tiny(Marginal likelihood over z in denominator)}\\\
+                & = \frac{
+                    [p_t^{x}(1-p_t)^{1 - x}]^{z} [q_t^{x}(1-q_t)^{1 - x}]^{1-z} \tau_t^{z}(1-\tau_t)^{1-z}
+                }{
+                    q_t^{x}(1-q_t)^{1 - x} (1-\tau_t) + p_t^{x}(1-p_t)^{1 - x}\tau_t
+                } & \text{\tiny(from eq. 7)}
+                \end{aligned}
+                \end{equation}
+            $$
+
+        - Taking the expectation
+
+            $$
+            \begin{equation}
+            \begin{aligned}
+                Q(\boldsymbol{\theta} | \boldsymbol{\theta}^{(t)}) 
+                    &= \mathbb{E}_{\boldsymbol{Z} | \boldsymbol{X}, \boldsymbol{\theta}^{(t)}}{\bigg[
+                        \sum\_{(x, z)}{\log p(x, z | \boldsymbol{\theta})}
+                    \bigg]} \\\
+                    &= \sum\_{(x, z)} {
+                       \mathbb{E}\_{\boldsymbol{Z} | \boldsymbol{X}, \boldsymbol{\theta}^{(t)}}{[
+                            \log p(x, z | \boldsymbol{\theta})
+                       ]}
+                    } \\\
+                    &= \sum\_{(x, z)} {
+                       \mathbb{E}\_{z | x, \boldsymbol{\theta}^{(t)}}{[
+                            \log p(x, z | \boldsymbol{\theta})
+                       ]}
+                    } \\\
+            \end{aligned}
+            \end{equation}
+            $$
+
+            > It is always bothering for me that in literature, the posterior, of which to be taken expectation over, for the entire set latent variables \\(\boldsymbol{Z} = \\{ z^{(1)}, \cdots z^{(n)}\\}\\) can be replaced by the posterior for a single latent \\(z\\) in (eq. 11) without explanation. So in order to understand this, consider the equation.            
+
+            $$
+                \begin{aligned}
+                \mathbb{E}_{\boldsymbol{Z}}{\bigg[\sum\_{z\in \boldsymbol{Z}}{f(z)}\bigg]} &= \int\_{\boldsymbol{Z}}{
+                    \bigg[\sum\_{z\in\boldsymbol{Z}} f(z)\bigg] p(\boldsymbol{Z}) d\boldsymbol{Z}
+                } \\\
+                & = \sum\_{z\in\boldsymbol{Z}}{\int\_{\boldsymbol{Z}}{f(z)}} p(\boldsymbol{Z})d\boldsymbol{Z} \\\
+                & = \sum\_{z\in\boldsymbol{Z}}{
+                   \int\_{\boldsymbol{Z}\text{/}z}
+                        \underbrace{\bigg[\int\_{z}f(z)p(z)dz\bigg]}\_{A=\mathbb{E}\_z[f(z)]}
+                    p(\boldsymbol{Z}\text{/}z)d(\boldsymbol{Z}/z)
+                } \\\
+                & = \sum\_{z\in\boldsymbol{Z}} A 
+                    \int\_{\boldsymbol{Z}\text{/}z} p(\boldsymbol{Z}\text{/}z)d(\boldsymbol{Z}/z) & \text{\tiny(A is constant w.r.t variable being integrated over)} \\\
+                & = \sum\_{z\in\boldsymbol{Z}} \mathbb{E}_z[f(z)] & \text{\tiny(Integeral overal a p.d.f evalulated to 1)}
+                \end{aligned}
+            $$
+
+            Where \\(\boldsymbol{Z} = \\{z^i\\}_{i=1\cdots N}; z \sim p(Z)\\); \\(\boldsymbol{Z}/z\\) denotes set all variables within \\(\boldsymbol{Z}\\) except \\(z\\).
+
 
 
 ## Proof of correctness
-
+T.B.D
 
 ## EM for Gaussian Mixture Model
 
+
+---
+**Foot note**
+- I am preparing for my graduate school application, this post is written in preparation for the application and interview.
+- I suppose to be preparing a slide for my supervisor, but sometime you can't help when the mood strikes. So sorry in advance to my supervisor.
+- Lately I haven't been myself due to the stress of application process, so writing this helps keeping me on track, somehow.

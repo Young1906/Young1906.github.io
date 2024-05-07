@@ -12,8 +12,9 @@
       <pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate>
       
       <guid>https://iamtu.dev/posts/em/</guid>
-      <description>Note
- I am preparing for my graduate school application, this post is written in preparation for the application and interview. I suppose to be preparing a slide for my supervisor, but sometime you can&amp;rsquo;t help when the mood strikes. So sorry in advance to my supervisor.  Problem Given a statistical model \(P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta}) = P(\boldsymbol{X} | \boldsymbol{Z}, \boldsymbol{\theta})\), which generate set of observations \(\boldsymbol{X}\), where \(\boldsymbol{Z}\) is a latent variable and unknow parameter vector \(\boldsymbol{\theta}\).</description>
+      <description>Problem Given a statistical model \(P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta}) = P(\boldsymbol{X} | \boldsymbol{Z}, \boldsymbol{\theta})\), which generate set of observations \(\boldsymbol{X}\), where \(\boldsymbol{Z}\) is a latent variable and unknow parameter vector \(\boldsymbol{\theta}\). The goal is to find \(\boldsymbol{\theta}\) that maximize the marginal likelihood:
+$$ \mathcal{L}(\boldsymbol{\theta}; \boldsymbol{X}) = P(\boldsymbol{X} | \boldsymbol{\theta}) = \int_{\boldsymbol{Z}}P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta})d\boldsymbol{Z} $$
+As an example for this type of problem, there are two (unfair) coin A and B with probability of head for each coin is \(p_A(H) = p \text{ and } p_B(H) = q\).</description>
     </item>
     
   </channel>
