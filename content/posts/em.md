@@ -1,6 +1,6 @@
 ---
 title: Expectation Maximization - EM
-date : 2024-04-15
+date : 2024-05-08
 tags : [learn, ml]
 draft: False 
 categories: [
