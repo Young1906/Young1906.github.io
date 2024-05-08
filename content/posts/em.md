@@ -42,8 +42,69 @@ $$
 \boldsymbol{\theta}^{(t+1)} = \arg\max_{\boldsymbol{\theta}} Q(\boldsymbol{\theta} | \boldsymbol{\theta}^{(t)})
 $$
 
+### Proof of correctness
 
-### EM for the coin example
+#### Setup
+
+We need to proof that updating parameter vector \\(\boldsymbol{\theta}\\) by EM algorithm will monotonically increase the marginal likelihood of \\(P(X|\theta)\\)
+
+$$
+   \log P(X|\theta^\*) - \log P(X|\theta^{(t)}) \geq Q(\theta^\* | \theta^{(t)}) - Q(\theta^{(t)} | \theta^{(t)}) \geq 0
+$$
+Where the second inequality come from \\(\theta^\* = \arg\max_\theta Q(\theta | \theta^{(t)}) \\)
+
+####  Proof
+
+$$
+\begin{aligned}
+    & P(X, Z | \theta) = P(Z | X, \theta) P(X | \theta) & \text{\tiny(Bayes theorem)} \\\
+    \iff & \log P(X, Z | \theta) = \log P(Z |X, \theta) + \log P(X |\theta) & \\\
+    \iff & \log P(X | \theta) = \log P(X, Z | \theta) - \log P (Z | X,\theta) & \\\
+    \implies & \log P(X | \theta) =
+        \underbrace{
+            \mathbb{E}_{Z|X,\theta^{(t)}}{[\log P(X, Z | \theta)]}
+        }\_{Q(\theta | \theta^{(t)})} + 
+        \underbrace{ - \mathbb{E}\_{Z|X,\theta^{(t)}}{[\log P(Z|X,\theta)]}
+        }\_{H(\theta | \theta^{(t)})} & \text{\tiny(taking expectation for both side)}
+\end{aligned}
+$$
+
+So consider \\(\log P(X|\theta) - \log P(X|\theta^{(t)})\\) is the change in loglikelihood of observed data when we update the parameter vector \\(\theta\\)
+
+$$
+\begin{aligned}
+    \log P(X|\theta) - \log P(X|\theta^{(t)}) & = Q(\theta|\theta^{(t)}) - Q(\theta^{(t)}|\theta^{(t)}) \\\
+        & + \underbrace{H(\theta|\theta^{(t)}) - H(\theta^{(t)}|\theta^{(t)})}_{A} \\\
+\end{aligned}
+$$
+
+Quantity \\(A\\) 
+
+$$
+\begin{aligned}
+A & = - \mathbb{E}_{Z|X,\theta^{(t)}}{[\log P(Z|X,\theta)]} - \big(
+    -\mathbb{E}\_{Z|X,\theta^{(t)}}{[\log P(Z|X,\theta^{(t)})]}
+\big) \\\
+& = \mathbb{E}\_{Z|X,\theta^{(t)}}{\bigg[
+    \log P(Z|X,\theta^{(t)}) - \log P(Z|X,\theta)
+\bigg]} \\\
+& = \int\_{Z} P(Z|X,\theta^{(t)}) \log{\frac{P(Z|X,\theta^{(t)})}{P(Z|X,\theta)} dZ}\\\
+& \geq 0 &\text{\tiny(Gibb's inequality)}
+\end{aligned}
+$$
+
+So that
+
+
+$$
+\begin{aligned}
+    \log P(X|\theta) - \log P(X|\theta^{(t)}) & = Q(\theta|\theta^{(t)}) - Q(\theta^{(t)}|\theta^{(t)}) + A \\\
+        & \geq Q(\theta|\theta^{(t)}) - Q(\theta^{(t)}|\theta^{(t)}) & \square
+\end{aligned}
+$$
+
+## Examples
+###  EM for the coin example
 
 **Setup**
 - Parameter vector \\(\boldsymbol{\theta} = [p, q, \tau]\\), and its estimation at step (t) is \\(\boldsymbol{\theta}^{(t)} = [p_t, q_t, \tau_t]\\)
@@ -226,6 +287,7 @@ $$
 
         - Having clear that up, we are able to resume from (eq. 11)
             $$
+            \begin{equation}
             \begin{aligned}
                 Q(\boldsymbol{\theta} | \boldsymbol{\theta}^{(t)}) 
                     &= \sum\_{(x, z)} {
@@ -238,6 +300,7 @@ $$
                         + p(z = 1 | x, \boldsymbol{\theta}^{(t)}) \log p(x, z = 1 | \boldsymbol{\theta})
                     \\bigg]}
             \end{aligned}
+            \end{equation}
             $$
 
             From (eq. 7)
@@ -281,11 +344,60 @@ $$
                 \end{aligned}
                 $$
 
+                This probability is often referred as membership probability, denote the membership probability of the \\(i^{th}\\) observation \\(p(z^{(i)} = 0 | x^{(i)}, \boldsymbol{\theta}^{(t)}) = a_i\\) and \\(p(z^{(i)} = 1|x^{(i)},\boldsymbol{\theta}^{(t)}) = 1 - a_i\\). With this 
 
-## Proof of correctness
-T.B.D
+    Substitute these quantities into eq. 12 we have the expectation of the log-likelihood w.r.t conditional probability of \\(\boldsymbol{Z}\\) given observations and current state of the parameters. 
 
-## EM for Gaussian Mixture Model
+    $$
+    \begin{aligned}
+        Q(\boldsymbol{\theta} | \boldsymbol{\theta}^{(t)}) = \sum_{i=1}^{N}{
+            a_i [x^{(i)}\log q + (1-x^{(i)})\log(1-q) + \log(1-\tau)]
+        } \\\
+        + (1 - a_i)[x^{(i)} \log p + (1-x^{(i)})\log (1-p) + log\\tau]
+    \end{aligned}
+    $$
+
+- The **M step**
+    $$
+    \boldsymbol{\theta}^{(t+1)} = \arg\max_{\boldsymbol{\theta}}{Q(\boldsymbol{\theta} | \boldsymbol{\theta}^{(t)})}
+    $$
+    
+    - \\(\frac{\partial Q}{\partial p} = 0 \\)
+
+        $$
+        \begin{aligned}
+            & \frac{\partial Q}{\partial p} = 0 \\\
+            \iff & \sum_{i=1}^N{(1-a_i)[\frac{ x^{(i)}}{p}} - \frac{1-x^{(i)}}{1-p}] = 0 \\\
+            \iff & \frac{1}{p}
+                \underbrace{\sum_{i=1}^N{(1-a_i)x^{(i)}}}\_{A} = \frac{1}{1-p}
+                    \underbrace{\sum_{i=1}^N{(1-a_i)(1-x^{(i)})}}\_{B} \\\
+            \implies & p = A/(A+B) \\\
+            & = \color{red}{\frac{\sum_{i=1}^N{(1-a_i)x^{(i)}}}{\sum_{i=1}^N{(1-a_i)x^{(i)}}+\sum_{i=1}^N{(1-a_i)(1-x^{(i)})}}}
+        \end{aligned}
+        $$
+
+    - \\(\frac{\partial Q}{\partial q} = 0 \\), same with \\(p\\)
+
+        $$
+        \begin{aligned}
+            \color{red}{
+            q = \frac{\sum_{i=1}^N{a_i x^{(i)}}}{\sum_{i=1}^N{a_i x^{(i)}}+\sum_{i=1}^N{a_i(1-x^{(i)})}}
+            }
+        \end{aligned}
+        $$
+
+    - \\(\frac{\partial Q}{\partial \tau} = 0 \\)
+        $$
+        \begin{aligned}
+            & \frac{\partial Q}{\partial \tau} = 0 \\\
+            \iff & \sum_{1}^N{\frac{-a_i}{1-\tau} + \frac{1-a_i}{\tau}} = 0\\\
+            \iff & \frac{1}{1-\tau}\sum_{1}^N{a_i} = \frac{1}{\tau}\sum_{i=1}^N{(1-a_i)}\\\
+            \implies & \color{red}{\tau = \frac{\sum_{i=1}^N{1-a_i}}{N}}
+        \end{aligned}
+        $$
+
+
+### EM for Gaussian Mixture Model
 
 - [EM for GMM's python implementation](https://github.com/young1906/em)
 
