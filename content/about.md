@@ -1,30 +1,38 @@
 ---
 title: "About"
-date: 2023-06-23
+date: 2024-05-09
 draft: false 
 ---
 
 <!-- (**May 2024**) Currently looking for PhD Opportunity in the field of AI/ML. My research interest lies in Reinforcement Learning and Physics-Informed Machine Learning. -->
 
-> <span style=color:red> Page under construction</span>
+> PAGE UNDER CONSTRUCTION
 
 
+---
 ## Resumes / Portfolio
 - [Academic Resume](/pdf/01_cv.pdf)
 - [Research portfolio](/pdf/interview-tudo.pdf)
 - Professional Resume
 
 
-## Contact information
+---
+## Researchs / Publications
 
-| | | 
-| --- | --- |
+### Accepted
+### Submitted 
+
+---
+## Contact
+
+|               |                               | 
+| ---           | ---:                          |
 | Email         | `tu.dothanh1906@gmail.com`    |
 | Phone         | `(+84) 343 610 772`           |
 | Github        | `young1906`                   |
 | Facebook      | `tu.dothanh`                  |
 
-
+---
 ##  Update
 ###  2024
 - Currently looking for PhD Opportunity in the field of AI/ML. My research interest lies in Reinforcement Learning and Physics-Informed Machine Learning.
@@ -33,8 +41,8 @@ draft: false
 - I am 29. My undergrad was Economics at a local university, and I am going back to school so I can pursue higher education in the field of Machine Learning & Artificial Intelligence.
 
 
----
-
+<!--
 TODO:
 - [ ] add resume
 - [ ] add research experience & research portfolio
+-->
