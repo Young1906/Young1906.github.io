@@ -12,9 +12,9 @@
       <pubDate>Wed, 08 May 2024 00:00:00 +0000</pubDate>
       
       <guid>https://iamtu.dev/posts/em/</guid>
-      <description>As of May&#39;24, I am looking for a doctoral training opportunity. Please check out my resume if you think I am a good fit for your program.
- Problem Given a statistical model \(P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta})\), which generate set of observations \(\boldsymbol{X}\), where \(\boldsymbol{Z}\) is a latent variable and unknow parameter vector \(\boldsymbol{\theta}\). The goal is to find \(\boldsymbol{\theta}\) that maximize the marginal likelihood:
-$$ \mathcal{L}(\boldsymbol{\theta}; \boldsymbol{X}) = P(\boldsymbol{X} | \boldsymbol{\theta}) = \int_{\boldsymbol{Z}}P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta})d\boldsymbol{Z} $$</description>
+      <description>Problem Given a statistical model \(P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta})\), which generate set of observations \(\boldsymbol{X}\), where \(\boldsymbol{Z}\) is a latent variable and unknow parameter vector \(\boldsymbol{\theta}\). The goal is to find \(\boldsymbol{\theta}\) that maximize the marginal likelihood:
+$$ \mathcal{L}(\boldsymbol{\theta}; \boldsymbol{X}) = P(\boldsymbol{X} | \boldsymbol{\theta}) = \int_{\boldsymbol{Z}}P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta})d\boldsymbol{Z} $$
+As an example for this type of problem, there are two (unfair) coin A and B with probability of head for each coin is \(p_A(H) = p \text{ and } p_B(H) = q\).</description>
     </item>
     
     <item>
@@ -82,8 +82,7 @@ $$ J_T(\theta) = \frac{1}{2T}\sum_t{\log[h(x_t; 0)]} + \log[1-h(y_t; \theta)] $$
       <pubDate>Fri, 23 Jun 2023 00:00:00 +0000</pubDate>
       
       <guid>https://iamtu.dev/about/</guid>
-      <description>(May 2024) Currently looking for PhD Opportunity in the field of AI/ML. My research interest lies in Reinforcement Learning and Physics-Informed Machine Learning.
-Resumes / Portfolio  Academic Resume Research portfolio Professional Resume  Contact information          Email tu.dothanh1906@gmail.com   Phone (+84) 343 610 772   Github young1906   Facebook tu.dothanh    Update 2024  Currently looking for PhD Opportunity in the field of AI/ML.</description>
+      <description>Page under construction Resumes / Portfolio  Academic Resume Research portfolio Professional Resume  Contact information          Email tu.dothanh1906@gmail.com   Phone (+84) 343 610 772   Github young1906   Facebook tu.dothanh    Update 2024  Currently looking for PhD Opportunity in the field of AI/ML. My research interest lies in Reinforcement Learning and Physics-Informed Machine Learning.  2022  I am 29.</description>
     </item>
     
     

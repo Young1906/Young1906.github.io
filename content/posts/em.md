@@ -9,7 +9,7 @@ categories: [
 ---
 
 
-> As of May'24, I am looking for a doctoral training opportunity. Please check out [my resume](/about) if you think I am a good fit for your program.
+<!--  As of May'24, I am looking for a doctoral training opportunity. Please check out [my resume](/about) if you think I am a good fit for your program. -->
 
 ## Problem 
 
@@ -400,9 +400,3 @@ $$
 ### EM for Gaussian Mixture Model
 
 - [EM for GMM's python implementation](https://github.com/young1906/em)
-
----
-**Foot note**
-- I am preparing for my graduate school application, this post is written in preparation for the application and interview.
-- I suppose to be preparing a slide for my supervisor, but sometime you can't help when the mood strikes. So sorry in advance to my supervisor.
-- Lately I haven't been myself due to the stress of application process, so writing this helps keeping me on track, somehow.

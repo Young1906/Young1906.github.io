@@ -4,7 +4,9 @@ date: 2023-06-23
 draft: false 
 ---
 
-(**May 2024**) Currently looking for PhD Opportunity in the field of AI/ML. My research interest lies in Reinforcement Learning and Physics-Informed Machine Learning.
+<!-- (**May 2024**) Currently looking for PhD Opportunity in the field of AI/ML. My research interest lies in Reinforcement Learning and Physics-Informed Machine Learning. -->
+
+> <span style=color:red> Page under construction</span>
 
 
 ## Resumes / Portfolio

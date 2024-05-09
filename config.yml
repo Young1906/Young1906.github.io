@@ -80,7 +80,7 @@ params:
   # home-info mode
   homeInfoParams:
     Title: "Tu T. Do"
-    Content: "(2024) Currently looking for doctoral trainign opportunity in the field of AI/ML. My research interest lies in Reinforcement Learning and Physics-Informed Machine Learning [(see more)](/about) ..."
+    Content: "(2024) Currently looking for doctoral trainign opportunity in the field of AI/ML.[(see more)](/about) ..."
 
   socialIcons:
     # - name: twitter
