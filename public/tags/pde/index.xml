@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Pde on iamtu</title>
+    <link>http://localhost:1313/tags/pde/</link>
+    <description>Recent content in Pde on iamtu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 09 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/pde/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learning physics-informed Neural Networks (PINN)</title>
+      <link>http://localhost:1313/posts/pinn/</link>
+      <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/pinn/</guid>
+      <description>My goal is to familiarize myself with physics-informed neural network(PINN), consist of &amp;hellip; Having no formal training on solving PDE, the first section will outline basic concepts in solving partial differential equations (PDEs), an example of a PDE, and its closed-form solution.
+Outline:
+PDE Closed-formed solution Generating data PINN PDE and the Legendre Differential Equation This section is written with instruction from this introduction by JD Moore.
+Definition (Power series)</description>
+    </item>
+    
+  </channel>
+</rss>

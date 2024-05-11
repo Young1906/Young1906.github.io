@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Machine Learning on iamtu</title>
+    <link>http://localhost:1313/categories/machine-learning/</link>
+    <description>Recent content in Machine Learning on iamtu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 09 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/machine-learning/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learning physics-informed Neural Networks (PINN)</title>
+      <link>http://localhost:1313/posts/pinn/</link>
+      <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/pinn/</guid>
+      <description>My goal is to familiarize myself with physics-informed neural network(PINN), consist of &amp;hellip; Having no formal training on solving PDE, the first section will outline basic concepts in solving partial differential equations (PDEs), an example of a PDE, and its closed-form solution.
+Outline:
+PDE Closed-formed solution Generating data PINN PDE and the Legendre Differential Equation This section is written with instruction from this introduction by JD Moore.
+Definition (Power series)</description>
+    </item>
+    
+    <item>
+      <title>Expectation Maximization - EM</title>
+      <link>http://localhost:1313/posts/em/</link>
+      <pubDate>Wed, 08 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/em/</guid>
+      <description>Problem Given a statistical model \(P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta})\), which generate set of observations \(\boldsymbol{X}\), where \(\boldsymbol{Z}\) is a latent variable and unknow parameter vector \(\boldsymbol{\theta}\). The goal is to find \(\boldsymbol{\theta}\) that maximize the marginal likelihood:
+$$ \mathcal{L}(\boldsymbol{\theta}; \boldsymbol{X}) = P(\boldsymbol{X} | \boldsymbol{\theta}) = \int_{\boldsymbol{Z}}P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta})d\boldsymbol{Z} $$
+As an example for this type of problem, there are two (unfair) coin A and B with probability of head for each coin is \(p_A(H) = p \text{ and } p_B(H) = q\).</description>
+    </item>
+    
+    <item>
+      <title>Implementing Automatic Differentiation</title>
+      <link>http://localhost:1313/posts/auto-grad/</link>
+      <pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/auto-grad/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Understanding Variational Inference</title>
+      <link>http://localhost:1313/posts/variational_inference/</link>
+      <pubDate>Thu, 29 Feb 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/variational_inference/</guid>
+      <description>This post is a note I take from while reading Blei et al 2018.
+Goal:
+Motivation of variational inference Understand the derivation of ELBO and its intiution Walk through the derivation, some of which was skip the in original paper Implementation of CAVI ELBO Goal is to find \(q(z)\) to approximate \(p(z|x)\)
+The KL-divergence
+$$ \begin{equation} \begin{aligned} KL[q(z)||p(z | x)] &amp;amp;= \int_z{q(z)\log{\frac{p(z|x)}{q(z)}} dz} \end{aligned} \end{equation} $$
+However, this quantity is intractable to compute hence, we&amp;rsquo;re unable to optimize this quantity directly.</description>
+    </item>
+    
+    <item>
+      <title>Likelihood-free MCMC with Amortized Ratio Estimator</title>
+      <link>http://localhost:1313/posts/sbi/</link>
+      <pubDate>Tue, 31 Oct 2023 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/sbi/</guid>
+      <description>Simulation Based Inference Imagine we have some black-box machine; such a machine has some knobs and levels so we can change its inner configurations. The machine churns out some data for each configuration. The Simulation-based inference (SBI) solves the inverse problem that is given some data, estimating the configuration (Frequentist approach) or sampling the configuration from the posterior distribution (for Bayesian approach). For a formal definition and review of current methods for SBI, see this paper.</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,7 +1,7 @@
 baseURL: "https://iamtu.dev/"
 title: iamtu
 paginate: 5
-theme: PaperMod
+theme: PaperMod 
 
 enableRobotsTXT: true
 buildDrafts: false 
@@ -80,7 +80,7 @@ params:
   # home-info mode
   homeInfoParams:
     Title: "Tu T. Do"
-    Content: "(2024) Currently looking for doctoral trainign opportunity in the field of AI/ML.[(see more)](/about) ..."
+    Content: "(2024) Currently looking for doctoral training opportunity in the field of AI/ML.[(see more)](/about) ..."
 
   socialIcons:
     # - name: twitter

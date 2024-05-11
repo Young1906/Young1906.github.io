@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Learn on iamtu</title>
+    <link>http://localhost:1313/tags/learn/</link>
+    <description>Recent content in Learn on iamtu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Thu, 09 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/learn/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learning physics-informed Neural Networks (PINN)</title>
+      <link>http://localhost:1313/posts/pinn/</link>
+      <pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/pinn/</guid>
+      <description>My goal is to familiarize myself with physics-informed neural network(PINN), consist of &amp;hellip; Having no formal training on solving PDE, the first section will outline basic concepts in solving partial differential equations (PDEs), an example of a PDE, and its closed-form solution.
+Outline:
+PDE Closed-formed solution Generating data PINN PDE and the Legendre Differential Equation This section is written with instruction from this introduction by JD Moore.
+Definition (Power series)</description>
+    </item>
+    
+    <item>
+      <title>Expectation Maximization - EM</title>
+      <link>http://localhost:1313/posts/em/</link>
+      <pubDate>Wed, 08 May 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/em/</guid>
+      <description>Problem Given a statistical model \(P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta})\), which generate set of observations \(\boldsymbol{X}\), where \(\boldsymbol{Z}\) is a latent variable and unknow parameter vector \(\boldsymbol{\theta}\). The goal is to find \(\boldsymbol{\theta}\) that maximize the marginal likelihood:
+$$ \mathcal{L}(\boldsymbol{\theta}; \boldsymbol{X}) = P(\boldsymbol{X} | \boldsymbol{\theta}) = \int_{\boldsymbol{Z}}P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta})d\boldsymbol{Z} $$
+As an example for this type of problem, there are two (unfair) coin A and B with probability of head for each coin is \(p_A(H) = p \text{ and } p_B(H) = q\).</description>
+    </item>
+    
+    <item>
+      <title>Implementing Automatic Differentiation</title>
+      <link>http://localhost:1313/posts/auto-grad/</link>
+      <pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate>
+      
+      <guid>http://localhost:1313/posts/auto-grad/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>
