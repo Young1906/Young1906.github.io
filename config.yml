@@ -80,7 +80,7 @@ params:
   # home-info mode
   homeInfoParams:
     Title: "Tu T. Do"
-    Content: "(2024) Currently looking for doctoral training opportunity in the field of AI/ML.[(see more)](/about) ..."
+    Content: "Into drawing chart and browsing meme."
 
   socialIcons:
     # - name: twitter
@@ -148,10 +148,10 @@ markup:
   highlight:
     noClasses: false
     # anchorLineNos: true
-    # codeFences: true
+    codeFences: true
     # guessSyntax: true
-    # lineNos: true
-    # style: monokai
+    lineNos: true
+    style: monokai
 
 outputs:
   home:

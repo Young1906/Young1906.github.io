@@ -35,6 +35,8 @@ draft: false
 ---
 ##  Update
 ###  2024
+
+#### Apr
 - Currently looking for PhD Opportunity in the field of AI/ML. My research interest lies in Reinforcement Learning and Physics-Informed Machine Learning.
 
 ### 2022
