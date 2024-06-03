@@ -1,6 +1,6 @@
 baseURL: "https://iamtu.dev/"
 title: iamtu
-paginate: 5
+paginate: 10
 theme: PaperMod 
 
 enableRobotsTXT: true
@@ -9,7 +9,7 @@ buildFuture: false
 buildExpired: false
 
 googleAnalytics: G-PWLR4FLELZ
-# disqusShortname: iamtu-dev.disqus.com
+disqusShortname: iamtu-dev.disqus.com
 
 services:
   disqus:
@@ -24,7 +24,7 @@ params:
   title: iamtu
   description: "Documenting my learning and stuff."
   # keywords: [Blog, Portfolio, PaperMod]
-  author: Me
+  author: Tu T. Do 
   # author: ["Me", "You"] # multiple authors
   # images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "January 2, 2006"
@@ -32,7 +32,7 @@ params:
   disableThemeToggle: false
 
   ShowReadingTime: false 
-  ShowShareButtons: false 
+  ShowShareButtons: true 
   ShowPostNavLinks: true
   ShowBreadCrumbs: true 
   ShowCodeCopyButtons: true 
@@ -93,6 +93,8 @@ params:
       url: "https://linkedin.com/tu.dothanh"
     - name: github
       url: "https://github.com/young1906"
+    - name: instagram
+      url: "https://instagram.com/tutdo93"
 
   analytics:
     google:

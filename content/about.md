@@ -9,20 +9,30 @@ draft: false
 > PAGE UNDER CONSTRUCTION
 
 
----
 ## Resumes / Portfolio
 - [Academic Resume](/pdf/01_cv.pdf)
 - [Research portfolio](/pdf/interview-tudo.pdf)
 - Professional Resume
 
 
----
 ## Researchs / Publications
 
 ### Accepted
+
+- **(BME 2020)** Tu, Do Thanh, Thuong Nguyen, Anh Tho Le, Sinh Nguyen, Huong Ha. *"Automated EOG removal from EEG signal using Independent Component Analysis and Machine Learning Algorithms"* at The 8th International Conference in Vietnam on the Development of Biomedical Engineering. ([link]())
+
+- **(ICHST 2023)** Tu, Do Thanh, Luan Van Tran, Tho Anh Le, Thao Mai Thi Le, Lan‑Anh Hoang Duong, Thuong Hoai Nguyen, Anh Minh Hoang An, Duy The Phan, Khiet Thu Thi Dang, Quyen Hoang Quoc Vo, Nam Phuong Nguyen, Huong Thanh Thi Ha. *"Stress prediction using machine‑learning technique on physiological signal"* ([link]())
+
+- **(IJCNN 2024)** Tu T. Do, Mai Anh Vu, Hoang Thien Ly, Thu Nguyen, Steven A. Hicks, Michael A. Riegler, Pål Halvorsen Halvorsen and Binh T. Nguyen. *"Blockwise Principal Component Analysis for monotone missing data imputation and dimensionalityreduction"*
+
+
 ### Submitted 
 
----
+- Mai Anh Vu , Thu Nguyen , Tu T. Do , Nhan Phan, Nitesh V. Chawla, Pål Halvorsen, Michael A. Riegler and Binh T. Nguyen. *"Conditional expectation with regularization for missing data imputation"*
+
+- Tu T. Do, Mai Anh Vu, Hoang Thien Ly, Thu Nguyen, Steven A. Hicks, Michael A. Riegler, Pål Halvorsen Halvorsen and Binh T. Nguyen. *"Estimating lower‑dimensional space representation in Principal Component Analysis under missing data condition"*
+
+
 ## Contact
 
 |               |                               | 
