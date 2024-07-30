@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>pde on iamtu</title>
+    <link>https://iamtu.dev/tags/pde/</link>
+    <description>Recent content in pde on iamtu</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <lastBuildDate>Mon, 22 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/tags/pde/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learning to solve heat equation</title>
+      <link>https://iamtu.dev/posts/heat/</link>
+      <pubDate>Mon, 22 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://iamtu.dev/posts/heat/</guid>
+      <description>Motivation TBD
+Heat equations $$ \begin{equation} \begin{aligned} PDE: &amp;amp; &amp;amp; u_t = \alpha^2 u_{xx} &amp;amp; &amp;amp; 0 &amp;lt; x&amp;lt; 1 &amp;amp; &amp;amp; 0 &amp;lt; t &amp;lt; \infty \\ BCs: &amp;amp; &amp;amp; \begin{cases} u(0, t) = 0\\ u(1, t) = 0 \end{cases} &amp;amp; &amp;amp; 0 &amp;lt; t &amp;lt; \infty \\ ICs: &amp;amp; &amp;amp; u(x, 0) = \sin(2\pi x) &amp;amp; &amp;amp; 0 \leq x \leq 1 \end{aligned} \end{equation} $$
+Solving heat equation with variables seperation Suppose that we can factorize \(u(x, t) = X(x)T(t)\), from the PDE we have:</description>
+    </item>
+    
+  </channel>
+</rss>

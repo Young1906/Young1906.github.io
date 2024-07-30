@@ -2,13 +2,15 @@
 title: Learning to solve heat equation 
 date : 2024-07-22
 tags : [learn, ml, pde, pinn]
-draft: True 
+draft: False 
 categories: [
     "Machine Learning",
     "PDE",
     "Learning"
     ]
 ---
+## Motivation
+TBD
 
 ## Heat equations
 
@@ -258,9 +260,50 @@ Discretize the domain \\(\mathcal{D} = (0, 1) \times (0, T)\\) by constructing a
 - \\(t_m = (m - 1) \Delta t,\quad \Delta t = \frac{T}{M - 1}\\)
 
 
-
+Let \\(u(x, t)\\) be the true solution to the PDE
 
 #### Forward Time, Centered Space (FTCS)
+
+- Using First Order Forward Difference (equation 10) to approximate parital derivative of \\(u\\) at a grid point \\((x_i, t_m)\\):
+
+    $$
+    \begin{equation}
+        \begin{aligned}
+        \frac{\partial u}{\partial t} \bigg\vert_{x=x_i, t=t_m} 
+            & = \frac{u(x_i, t_m + \Delta t) - u(x_i, t_m)}{\Delta t} + \mathcal{O}(\Delta t)\\\
+            & \approx \frac{u_i^{m+1}-u_i^m}{\Delta t}
+        \end{aligned}
+    \end{equation}
+    $$
+    
+
+- Using Second Order Central Difference (equation 14) to approximate the second order partial derivative of \\(u\\) with respect to \\(x\\) at the grid point:
+    $$
+    \begin{equation}
+        \begin{aligned}
+        \frac{\partial^2 u}{\partial x^2} \bigg\vert_{x=x_i, t=t_m} 
+            & = \frac{u(x_i + \Delta x, t_m) - 2 u(x_i, t_m) + u(x_i - \Delta x, t_m)}{\Delta x^2} + \mathcal{O}(\Delta x^2)\\\
+            & \approx \frac{u_{i+1}^m - 2 u_i^m + u_{i-1}^m}{\Delta x^2}
+        \end{aligned}
+    \end{equation}
+    $$
+
+Where \\(u_i^m\\) is the numerical approximation of true function evaluated at the grid point \\((x_i, t_m)\\). Replacing equation (15) and (16) into the LHS and RHS of the PDE in (1):
+
+$$
+\begin{equation}
+    \begin{aligned}
+    & \frac{u_i^{m+1}-u_i^m}{\Delta t} = \alpha^2 \frac{u_{i+1}^m - 2 u_i^m + u_{i-1}^m}{\Delta x^2}\\\
+    \implies & u_i^{m+1} = u_i^m + \frac{\alpha^2 \Delta t}{\Delta x^2} (u_{i+1}^m - 2 u_i^m + u_{i-1}^m) \\\
+    & = 
+    \blue{u_i^m(1 - 2r) + r(u_{i+1}^m + u_{i-1}^m)}
+    \end{aligned}
+\end{equation}
+$$
+
+Where \\(r = \frac{\alpha^2\Delta t}{\Delta x^2}\\). In order for \\(u(x, t)\\) reach steady state, \\(r\\) must be smaller than \\(\frac{1}{2}\\). The proof was provided in [Von Neumann Stability Analysis](https://en.wikipedia.org/wiki/Von_Neumann_stability_analysis).
+
+> TODO: Haven't understood yet !!!
 
 #### Backward Time, Centered Space (BTCS)
 

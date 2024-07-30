@@ -5,7 +5,18 @@
     <link>https://iamtu.dev/posts/</link>
     <description>Recent content in Posts on iamtu</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Wed, 08 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/posts/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Learning to solve heat equation</title>
+      <link>https://iamtu.dev/posts/heat/</link>
+      <pubDate>Mon, 22 Jul 2024 00:00:00 +0000</pubDate>
+      
+      <guid>https://iamtu.dev/posts/heat/</guid>
+      <description>Motivation TBD
+Heat equations $$ \begin{equation} \begin{aligned} PDE: &amp;amp; &amp;amp; u_t = \alpha^2 u_{xx} &amp;amp; &amp;amp; 0 &amp;lt; x&amp;lt; 1 &amp;amp; &amp;amp; 0 &amp;lt; t &amp;lt; \infty \\ BCs: &amp;amp; &amp;amp; \begin{cases} u(0, t) = 0\\ u(1, t) = 0 \end{cases} &amp;amp; &amp;amp; 0 &amp;lt; t &amp;lt; \infty \\ ICs: &amp;amp; &amp;amp; u(x, 0) = \sin(2\pi x) &amp;amp; &amp;amp; 0 \leq x \leq 1 \end{aligned} \end{equation} $$
+Solving heat equation with variables seperation Suppose that we can factorize \(u(x, t) = X(x)T(t)\), from the PDE we have:</description>
+    </item>
+    
     <item>
       <title>Expectation Maximization - EM</title>
       <link>https://iamtu.dev/posts/em/</link>
@@ -25,7 +36,7 @@ As an example for this type of problem, there are two (unfair) coin A and B with
       <guid>https://iamtu.dev/posts/variational_inference/</guid>
       <description>This post is a note I take from while reading Blei et al 2018.
 Goal:
- Motivation of variational inference Understand the derivation of ELBO and its intiution Walk through the derivation, some of which was skip the in original paper Implementation of CAVI  ELBO Goal is to find \(q(z)\) to approximate \(p(z|x)\)
+Motivation of variational inference Understand the derivation of ELBO and its intiution Walk through the derivation, some of which was skip the in original paper Implementation of CAVI ELBO Goal is to find \(q(z)\) to approximate \(p(z|x)\)
 The KL-divergence
 $$ \begin{equation} \begin{aligned} KL[q(z)||p(z | x)] &amp;amp;= \int_z{q(z)\log{\frac{p(z|x)}{q(z)}} dz} \end{aligned} \end{equation} $$
 However, this quantity is intractable to compute hence, we&amp;rsquo;re unable to optimize this quantity directly.</description>
@@ -40,7 +51,7 @@ However, this quantity is intractable to compute hence, we&amp;rsquo;re unable t
       <description>Motivating example Evaluating following integral
 $$ I = \int_0^1{\frac{1 - x^2}{\ln{x}}dx} $$
 Closed-form results $$ \begin{equation} \begin{aligned} F(t) &amp;amp;= \int_0^1{\frac{1-x^t}{\ln(x)}dx} \\ \implies \frac{d}{dt}F &amp;amp;= \frac{d}{dt}\int_0^1{\frac{1-x^t}{\ln(x)}dx}\\ &amp;amp;= \int_0^1{ \frac{\partial}{\partial t} \frac{1-x^t}{\ln(x)}dx }\\ &amp;amp;= \int_0^1{ \frac{-\ln(x)x^t}{ln(x)} dx} \\ &amp;amp;= \bigg[-\frac{x^{t+1}}{t+1}\bigg]_0^1\\ &amp;amp;= -\frac{1}{t+1}\\ \implies F(t) &amp;amp;= -\ln({t+1}) \\ \implies I &amp;amp;= f(2) = -\ln3 \end{aligned} \end{equation} $$
-Numerical approximation Code to produce the figure 1 2 3 4 5 6 7 8  import numpy as np from matplotlib import pyplot as plt def I(): g = lambda x: (1 - x**2)/np.</description>
+Numerical approximation Code to produce the figure 1 2 3 4 5 6 7 8 import numpy as np from matplotlib import pyplot as plt def I(): g = lambda x: (1 - x**2)/np.</description>
     </item>
     
     <item>
@@ -51,7 +62,7 @@ Numerical approximation Code to produce the figure 1 2 3 4 5 6 7 8  import numpy
       <guid>https://iamtu.dev/posts/closed-form-kl-gaussian/</guid>
       <description>The closed form of KL divergence used in Variational Auto Encoder.
 Univariate case Let
- \(p(x) = \mathcal{N}(\mu_1, \sigma_1) = (2\pi\sigma_1^2)^{-\frac{1}{2}}\exp[-\frac{1}{2\sigma_1^2}(x-\mu_1)^2]\) \(q(x) = \mathcal{N}(\mu_1, \sigma_2) = (2\pi\sigma_2^2)^{-\frac{1}{2}}\exp[-\frac{1}{2\sigma_2^2}(x-\mu_2)^2]\)  KL divergence between \(p\) and \(q\) is defined as:
+\(p(x) = \mathcal{N}(\mu_1, \sigma_1) = (2\pi\sigma_1^2)^{-\frac{1}{2}}\exp[-\frac{1}{2\sigma_1^2}(x-\mu_1)^2]\) \(q(x) = \mathcal{N}(\mu_1, \sigma_2) = (2\pi\sigma_2^2)^{-\frac{1}{2}}\exp[-\frac{1}{2\sigma_2^2}(x-\mu_2)^2]\) KL divergence between \(p\) and \(q\) is defined as:
 $$ \begin{aligned} \text{KL}(p\parallel q) &amp;amp;= -\int_{x}{p(x)\log{\frac{q(x)}{p(x)}}dx} \\ &amp;amp;= -\int_x p(x) [\log{q(x)} - \log{p(x)}]dx \\ &amp;amp;= \underbrace{ \int_x{p(x)\log p(x) dx}}_A - \underbrace{ \int_x{p(x)\log q(x) dx}}_B \end{aligned} $$
 First quantity \(A\):
 $$ \begin{aligned} A &amp;amp;= \int_x{p(x)\log p(x) dx} \\ &amp;amp;= \int_x{p(x)\big[ -\frac{1}{2}\log{2\pi\sigma_1^2 - \frac{1}{2\sigma_1^2}(x - \mu_1)^2} \big]dx}\\ &amp;amp;= -\frac{1}{2}\log{2\pi\sigma_1^2}\int_x{p(x)dx} - \frac{1}{2\sigma_1^2} \underbrace{\int_x{p(x)(x-\mu_1)^2dx}}_{\text{var(x)}}\\ &amp;amp;= -\frac{1}{2}\log{2\pi} - \log\sigma_1-\frac{1}{2} \end{aligned} $$</description>
@@ -83,8 +94,9 @@ $$ J_T(\theta) = \frac{1}{2T}\sum_t{\log[h(x_t; 0)]} + \log[1-h(y_t; \theta)] $$
       
       <guid>https://iamtu.dev/posts/real-analysis/</guid>
       <description>Notes I took during studying MIT OCW Real Analysis. The class taught by Professor Casey Rodriguez, he also taught Functional analysis.
-Resources (Useful link)  Video lecture Course&amp;rsquo;s homepage  Lecture notes Goal of the course - Gain experience with proofs - Prove statements about the real numbers, function and limits
-Lecture 1: Sets, Set operations, and Mathematical Induction Definition (Sets) A sets is a collection of objects called elements/members.</description>
+Resources (Useful link) Video lecture Course&amp;rsquo;s homepage Lecture notes Goal of the course - Gain experience with proofs - Prove statements about the real numbers, function and limits
+Lecture 1: Sets, Set operations, and Mathematical Induction Definition (Sets) A sets is a collection of objects called elements/members.
+Definition (Empty set) A set with no elements, denoted as \(\emptyset\)</description>
     </item>
     
   </channel>
