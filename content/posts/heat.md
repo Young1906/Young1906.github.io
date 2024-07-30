@@ -1,14 +1,17 @@
 ---
 title: Learning to solve heat equation 
 date : 2024-07-22
-tags : [learn, ml, pde, pinn]
-draft: False 
+tags : [learn, fdm, ml, pde, pinn]
+draft: True 
 categories: [
     "Machine Learning",
     "PDE",
     "Learning"
     ]
 ---
+
+> EDITTING
+
 ## Motivation
 TBD
 
@@ -304,6 +307,29 @@ $$
 Where \\(r = \frac{\alpha^2\Delta t}{\Delta x^2}\\). In order for \\(u(x, t)\\) reach steady state, \\(r\\) must be smaller than \\(\frac{1}{2}\\). The proof was provided in [Von Neumann Stability Analysis](https://en.wikipedia.org/wiki/Von_Neumann_stability_analysis).
 
 > TODO: Haven't understood yet !!!
+
+
+Equation (17) allows us to sequentially compute the approximation \\(u_i^m\\) at any point \\((x_i, t_m)\\), where \\(u_i^0 = u(x_i, 0), i = 1\cdots N\\) were given by the initial and boundary conditions. In matrix notation, the series of equation can be written as:
+
+$$
+\begin{equation}
+\begin{aligned}
+    \begin{bmatrix}
+        r       & 1 - 2r    & r         & \cdots    & 0         & 0         & 0     \\\
+        0       & r         & 1 - 2r    & r         & \cdots    & 0         & 0     \\\
+        0       & 0         & r         & 1 - 2r    & r         & \cdots    & 0     \\\
+        \vdots  & \vdots    &\vdots     &\ddots     &\vdots     &\vdots     &\vdots \\\
+        0       &0          & 0         & \cdots    & r         & 1 - 2r    & r     \\\
+    \end{bmatrix} \begin{bmatrix}
+        u_1 \\\
+        u_2 \\\
+        u_3 \\\
+        \vdots \\\
+        u_N \\\
+    \end{bmatrix} = 
+\end{aligned}
+\end{equation}
+$$
 
 #### Backward Time, Centered Space (BTCS)
 
