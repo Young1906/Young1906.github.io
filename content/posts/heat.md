@@ -315,18 +315,24 @@ $$
 \begin{equation}
 \begin{aligned}
     \begin{bmatrix}
+        1       & 0         & 0         & 0         & 0         & 0         & 0     \\\
         r       & 1 - 2r    & r         & \cdots    & 0         & 0         & 0     \\\
-        0       & r         & 1 - 2r    & r         & \cdots    & 0         & 0     \\\
-        0       & 0         & r         & 1 - 2r    & r         & \cdots    & 0     \\\
         \vdots  & \vdots    &\vdots     &\ddots     &\vdots     &\vdots     &\vdots \\\
         0       &0          & 0         & \cdots    & r         & 1 - 2r    & r     \\\
-    \end{bmatrix} \begin{bmatrix}
-        u_1 \\\
-        u_2 \\\
-        u_3 \\\
-        \vdots \\\
-        u_N \\\
-    \end{bmatrix} = 
+        0       & 0         & 0         & 0         & 0         & 0         & 1
+    \end{bmatrix} \underbrace{\begin{bmatrix}
+        u_1^m   \\\
+        u_2^m   \\\
+        \vdots  \\\
+        u_{N-1}^m   \\\
+        u_N^m   \\\
+    \end{bmatrix}}\_{u^m} = \underbrace{\begin{bmatrix}
+        u_1^{m+1}   \\\
+        u_2^{m+1}   \\\
+        \vdots      \\\
+        u_{N-1}^{m+1}   \\\
+        u_N^{m+1}   \\\
+    \end{bmatrix}}_{u^{m+1}}
 \end{aligned}
 \end{equation}
 $$
