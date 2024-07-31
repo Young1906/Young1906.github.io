@@ -16,7 +16,7 @@ categories: [
 > - [ ] Compare FTCS with close-form solution
 > - [ ] Motivation section
 > - [ ] Introduction to heat equation 
-> - [ ] BTFC scheme 
+> - [ ] BTCS scheme 
 > - [ ] PINN 
 > - [ ] Citation?
 
@@ -348,6 +348,7 @@ $$
 
 > Note that \\(u_1^m\\), \\(u_N^m\\) are always equal to its value in the next time step. This is due to the boundary condition, the temperature at the boundary is always \\(0\\).
 
+
 {{< collapse summary="(code) Implementation of FTCS scheme" >}}
 ```python
 import numpy as np 
@@ -361,7 +362,8 @@ def solve_fdm(N: int, M: int, T: float):
         ICs: u(x, 0) = x - x**2
 
     args:
-        - N, M  : number of collocation points in spacial and temporal dimension
+        - N, M  : number of collocation points
+            in spacial and temporal dimension
         - T     : solving from t = 0 to T
     """
 
@@ -395,8 +397,9 @@ def solve_fdm(N: int, M: int, T: float):
 ```
 {{< /collapse >}}
 
-![img](/images/heat.gif)
-
+|
+:---:|:---:|
+![img](/images/heat.gif)|![img2](/images/heat.png)
 
 #### Backward Time, Centered Space (BTCS)
 
