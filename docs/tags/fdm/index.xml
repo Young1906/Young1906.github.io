@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
   <channel>
-    <title>pde on iamtu</title>
-    <link>https://iamtu.dev/tags/pde/</link>
-    <description>Recent content in pde on iamtu</description>
+    <title>fdm on iamtu</title>
+    <link>https://iamtu.dev/tags/fdm/</link>
+    <description>Recent content in fdm on iamtu</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Mon, 22 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/tags/pde/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Mon, 22 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/tags/fdm/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Learning to solve heat equation</title>
       <link>https://iamtu.dev/posts/heat/</link>

@@ -2,7 +2,7 @@
 title: Learning to solve heat equation 
 date : 2024-07-22
 tags : [learn, fdm, ml, pde, pinn]
-draft: True 
+draft: False 
 categories: [
     "Machine Learning",
     "PDE",
@@ -11,6 +11,15 @@ categories: [
 ---
 
 > EDITTING
+
+> TODO: 
+> - [ ] Compare FTCS with close-form solution
+> - [ ] Motivation section
+> - [ ] Introduction to heat equation 
+> - [ ] BTFC scheme 
+> - [ ] PINN 
+> - [ ] Citation?
+
 
 ## Motivation
 TBD
@@ -337,6 +346,58 @@ $$
 \end{equation}
 $$
 
+> Note that \\(u_1^m\\), \\(u_N^m\\) are always equal to its value in the next time step. This is due to the boundary condition, the temperature at the boundary is always \\(0\\).
+
+{{< collapse summary="(code) Implementation of FTCS scheme" >}}
+```python
+import numpy as np 
+
+
+def solve_fdm(N: int, M: int, T: float):
+    """
+    solving 1D heat equation:
+        PDE: u_t = u_xx (\alpha^2 = 1)
+        BCs: u(0, t) = u(1, t) = 0
+        ICs: u(x, 0) = x - x**2
+
+    args:
+        - N, M  : number of collocation points in spacial and temporal dimension
+        - T     : solving from t = 0 to T
+    """
+
+    # constructing the grid
+    dx = 1 / (N - 1) # 0 <= x <= 1
+    dt = T / (M - 1) # 0 < t <= T
+
+    r = dt/dx**2 # (alpha = 1)
+
+    # Condition for numerical stability
+    assert r < .5, ValueError(f"Choose smaller r, r={r:.4f}")
+
+    x_grid = np.linspace(0, 1, N)
+
+    # approximate the result 
+    U = np.zeros((N, M)) # already satisfied the BCs
+
+    # IC impose initial condition
+    ic = lambda x: np.sin(2 * np.pi * x) 
+    U[:, 0] = np.vectorize(ic)(x_grid)
+
+    # kernel to approximate 2nd derivative of u wrt x
+    ker = np.array([1., -2., 1.], dtype=np.float64)
+
+    for i in range(1, M):
+        ut = np.convolve(U[:, i - 1], ker, mode="same")
+        U[:,i] = U[:, i-1] + r * ut
+
+    return U
+
+```
+{{< /collapse >}}
+
+![img](/images/heat.gif)
+
+
 #### Backward Time, Centered Space (BTCS)
 
 
@@ -374,7 +435,6 @@ def solve_fdm(nx: int, nt: int, tx: float):
 {{< /collapse >}} 
 -->
 
-![img](/images/heat.gif)
 
 
 ## Physics Informed Neural Network
