@@ -16,13 +16,22 @@ categories: [
 > - [ ] Compare FTCS with close-form solution
 > - [ ] Motivation section
 > - [ ] Introduction to heat equation 
-> - [ ] BTCS scheme 
+> - [x] BTCS scheme 
 > - [ ] PINN 
 > - [ ] Citation?
 
 
-## Motivation
-TBD
+## TLDR 
+
+<!--
+This post aim to survey numerical methods of solving partial differential equations incl
+
+Goal:
+- 1D heat equation
+- Finite Difference Methods
+- Physics-Informed Neural Network and JAX implementation
+-->
+
 
 ## Heat equations
 
@@ -318,7 +327,7 @@ Where \\(r = \frac{\alpha^2\Delta t}{\Delta x^2}\\). In order for \\(u(x, t)\\) 
 > TODO: Haven't understood yet !!!
 
 
-Equation (17) allows us to sequentially compute the approximation \\(u_i^m\\) at any point \\((x_i, t_m)\\), where \\(u_i^0 = u(x_i, 0), i = 1\cdots N\\) were given by the initial and boundary conditions. In matrix notation, the series of equation can be written as:
+Equation (17) allows us to sequentially compute the approximation \\(u_i^m\\) at any point \\((x_i, t_m)\\), where \\(u_i^1 = u(x_i, 0), i = 1\cdots N\\) were given by the initial and boundary conditions. In matrix notation, the series of equation can be written as:
 
 $$
 \begin{equation}
@@ -349,7 +358,7 @@ $$
 > Note that \\(u_1^m\\), \\(u_N^m\\) are always equal to its value in the next time step. This is due to the boundary condition, the temperature at the boundary is always \\(0\\).
 
 
-{{< collapse summary="(code) Implementation of FTCS scheme" >}}
+{{< collapse summary="(code) Implementation of FTCS scheme `solve_fdm()`" >}}
 ```python
 import numpy as np 
 
@@ -393,9 +402,13 @@ def solve_fdm(N: int, M: int, T: float):
         U[:,i] = U[:, i-1] + r * ut
 
     return U
-
 ```
 {{< /collapse >}}
+
+```python
+# solving the PDE with 100x4000 grid from t=0 to t=0.2
+U = solve_fdm(100, 4000, .2)
+```
 
 |
 :---:|:---:|
@@ -403,41 +416,145 @@ def solve_fdm(N: int, M: int, T: float):
 
 #### Backward Time, Centered Space (BTCS)
 
+- Using First Order Backward Difference (equation 11) to approximate parital derivative of \\(u\\) at a grid point \\((x_i, t_m)\\):
 
-### Implementation 
+    $$
+    \begin{equation}
+        \begin{aligned}
+        \frac{\partial u}{\partial t} \bigg\vert_{x=x_i, t=t_m} 
+            & = \frac{u(x_i, t_m) - u(x_i, t_m - \Delta t)}{\Delta t} + \mathcal{O}(\Delta t)\\\
+            & \approx \frac{u_i^{m}-u_i^{m-1}}{\Delta t}
+        \end{aligned}
+    \end{equation}
+    $$
+    
 
-<!-- {{< collapse summary="Finite difference method" >}}
+- Using Second Order Central Difference (equation 14) to approximate the second order partial derivative of \\(u\\) with respect to \\(x\\) at the grid point:
+    $$
+    \begin{equation}
+        \begin{aligned}
+        \frac{\partial^2 u}{\partial x^2} \bigg\vert_{x=x_i, t=t_m} 
+            & = \frac{u(x_i + \Delta x, t_m) - 2 u(x_i, t_m) + u(x_i - \Delta x, t_m)}{\Delta x^2} + \mathcal{O}(\Delta x^2)\\\
+            & \approx \frac{u_{i+1}^m - 2 u_i^m + u_{i-1}^m}{\Delta x^2}
+        \end{aligned}
+    \end{equation}
+    $$
+
+Replacing equation (19), and (20) into LHS and RHS of the PDE in (1) respectively we have:
+
+
+$$
+\begin{equation}
+    \begin{aligned}
+    & \frac{u_i^{m}-u_i^{m-1}}{\Delta t} = \alpha^2 \frac{u_{i+1}^m - 2 u_i^m + u_{i-1}^m}{\Delta x^2}\\\
+    \implies & u_i^{m-1} = u_i^m - \frac{\alpha^2 \Delta t}{\Delta x^2} (u_{i+1}^m - 2 u_i^m + u_{i-1}^m) \\\
+    & = 
+    \blue{u_i^m(1 + 2r) - r(u_{i+1}^m + u_{i-1}^m)}
+    \end{aligned}
+\end{equation}
+$$
+
+
+Where \\(r = \frac{\alpha^2\Delta t}{\Delta x^2}\\). Rewriting equation(21) in matrix notation:
+
+$$
+\begin{equation}
+\begin{aligned}
+    \underbrace{\begin{bmatrix}
+        1       & 0         & 0         & 0         & 0         & 0         & 0     \\\
+        -r       & 1 + 2r    & -r         & \cdots    & 0         & 0         & 0     \\\
+        \vdots  & \vdots    &\vdots     &\ddots     &\vdots     &\vdots     &\vdots \\\
+        0       &0          & 0         & \cdots    & -r         & 1 + 2r    & -r     \\\
+        0       & 0         & 0         & 0         & 0         & 0         & 1
+    \end{bmatrix}}\_A \underbrace{\begin{bmatrix}
+        u_1^m   \\\
+        u_2^m   \\\
+        \vdots  \\\
+        u_{N-1}^m   \\\
+        u_N^m   \\\
+    \end{bmatrix}}\_{\mathbf{u}^m} = \underbrace{\begin{bmatrix}
+        u_1^{m-1}   \\\
+        u_2^{m-1}   \\\
+        \vdots      \\\
+        u_{N-1}^{m-1}   \\\
+        u_N^{m-1}   \\\
+    \end{bmatrix}}_{\mathbf{u}^{m-1}}
+\end{aligned}
+\end{equation}
+$$
+
+So that we can sequentially compute the next state by solving the system of linear equations in (22):
+
+$$
+\blue{
+    \mathbf{u}^{m} = A^{-1} \mathbf{u}^{m-1}; \quad m = 2,\cdots M
+}
+$$
+
+Where \\(\mathbf{u}_i^1\\) are given by the initial and boundary conditions. Unlike FTCS, BTCS are unconditionally stable with respect to the choice of \\(r\\). Therefore we can choose much fewer steps along temporal dimension.
+
+
+{{< collapse summary="(code) Implementation of BTCS scheme `solve_bdm()`" >}}
 ```python
-def solve_fdm(nx: int, nt: int, tx: float):
-    """
-    solving for:
-    PDE: u_t = u_xx
-    BCs: u(0, t) = u(1, t) = 0
-    ICs: u(x, 0) = x - x**2
-    """
+import numpy as np
+from scipy.sparse import diags
 
-    x_grid = np.linspace(0, 1, nx)
-    dt = tx / nt
+def solve_bdm(N: int, M: int, T: float):
+    """
+    solving 1D heat equation using BTCS scheme
+        PDE: u_t = u_xx (\alpha^2 = 1)
+        BCs: u(0, t) = u(1, t) = 0
+        ICs: u(x, 0) = x - x**2
+
+    args:
+        - N, M  : number of collocation points
+            in spacial and temporal dimension
+        - T     : solving from t = 0 to T
+    """
+    # constructing the grid
+    dx = 1 / (N - 1) # 0 <= x <= 1
+    dt = T / (M - 1) # 0 < t <= T
+
+    r = dt/dx**2 # (alpha = 1)
+
+    # construct A:
+    A = diags([-r, 1 + 2 * r, -r], [-1, 0, 1], shape=(N, N)).toarray()
+    A[0, :] = 0
+    A[-1, :] = 0
+    A[0, 0] = 1
+    A[-1,-1] = 1
+
+    A_inv = np.linalg.inv(A)
 
     # approximate the result 
-    U = np.zeros((nx, nt))
+    U = np.zeros((N, M)) # already satisfied the BCs
 
-    # IC 
-    # ic = lambda x: (x - x ** 2)*100
-    ic = lambda x: np.sin(2 * np.pi * x)
+    # IC impose initial condition
+    x_grid = np.linspace(0, 1, N)
+    ic = lambda x: np.sin(2 * np.pi * x) 
     U[:, 0] = np.vectorize(ic)(x_grid)
 
-    ker = 1000 * np.array([1., -2., 1.], dtype=np.float64)/tx**2
-
-    for i in range(1, nt):
-        ut = np.convolve(U[:, i - 1], ker, mode="valid")
-        U[1:-1,i] = dt * ut + U[1:-1, i-1]
+    for m in range(1, M):
+        U[:, m] = A_inv @ U[:, m-1]
 
     return U
-```
-{{< /collapse >}} 
--->
 
+```
+{{< /collapse >}}
+
+```python
+# solving the PDE with 100x100 grid from t=0 to t=0.2
+U = solve_bdm(100, 100, .2)
+```
+
+
+
+|
+:---:|:---:|
+![img](/images/heat_bdm.gif)|![img2](/images/heat_bdm.png)
+
+
+We can see that results of FTCS and BTCS agree with each other, however, BTCS only using a \\(100 \times 100\\) grid while FTCS using \\(100 \times 4000\\) grid.
 
 
 ## Physics Informed Neural Network
@@ -445,4 +562,5 @@ def solve_fdm(nx: int, nt: int, tx: float):
 
 
 # References
+- [Partial Differential Equations for Scientists and Engineers - Standley J. Farlow](https://www.amazon.com/Differential-Equations-Scientists-Engineers-Mathematics/dp/048667620X)
 - [Finite-Difference Approximations to the Heat Equation](http://dma.dima.uniroma1.it/users/lsa_adn/MATERIALE/FDheat.pdf)

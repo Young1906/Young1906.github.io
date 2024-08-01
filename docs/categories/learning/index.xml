@@ -14,8 +14,7 @@
       <guid>https://iamtu.dev/posts/heat/</guid>
       <description>EDITTING
   TODO:
- Compare FTCS with close-form solution Motivation section Introduction to heat equation BTCS scheme PINN Citation?   Motivation TBD
-Heat equations $$ \begin{equation} \begin{aligned} PDE: &amp;amp; &amp;amp; u_t = \alpha^2 u_{xx} &amp;amp; &amp;amp; 0 &amp;lt; x&amp;lt; 1 &amp;amp; &amp;amp; 0 &amp;lt; t &amp;lt; \infty \\ BCs: &amp;amp; &amp;amp; \begin{cases} u(0, t) = 0\\ u(1, t) = 0 \end{cases} &amp;amp; &amp;amp; 0 &amp;lt; t &amp;lt; \infty \\ ICs: &amp;amp; &amp;amp; u(x, 0) = \sin(2\pi x) &amp;amp; &amp;amp; 0 \leq x \leq 1 \end{aligned} \end{equation} $$</description>
+ Compare FTCS with close-form solution Motivation section Introduction to heat equation BTCS scheme PINN Citation?   TLDR Heat equations $$ \begin{equation} \begin{aligned} PDE: &amp;amp; &amp;amp; u_t = \alpha^2 u_{xx} &amp;amp; &amp;amp; 0 &amp;lt; x&amp;lt; 1 &amp;amp; &amp;amp; 0 &amp;lt; t &amp;lt; \infty \\ BCs: &amp;amp; &amp;amp; \begin{cases} u(0, t) = 0\\ u(1, t) = 0 \end{cases} &amp;amp; &amp;amp; 0 &amp;lt; t &amp;lt; \infty \\ ICs: &amp;amp; &amp;amp; u(x, 0) = \sin(2\pi x) &amp;amp; &amp;amp; 0 \leq x \leq 1 \end{aligned} \end{equation} $$</description>
     </item>
     
   </channel>
