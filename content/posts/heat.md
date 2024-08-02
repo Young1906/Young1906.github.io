@@ -34,7 +34,7 @@ Goal:
 - Physics-Informed Neural Network and JAX implementation
 -->
 
-Surveying numerical methods (finite difference methods), and physics-informed neural network to solve a 1D heat equation. This post was heavity inspired by:
+Surveying numerical methods (finite difference methods) and physics-informed neural networks to solve a 1D heat equation. This post was heavily inspired by:
 
 - **(Book) [Partial Differential Equations for Scientists and Engineers - Standley J. Farlow](https://www.amazon.com/Differential-Equations-Scientists-Engineers-Mathematics/dp/048667620X)** for deriving closed-form solution.
 - **(Article) [Finite-Difference Approximations to the Heat Equation](http://dma.dima.uniroma1.it/users/lsa_adn/MATERIALE/FDheat.pdf)**
@@ -42,7 +42,13 @@ Surveying numerical methods (finite difference methods), and physics-informed ne
 
 ## Introduction
 
-*Physics-Informed Machine Learning (PIML)* is an exciting subfield of Machine Learning which aims to incorporate physical law and/or constrains into statistical machine learning. The representations of laws constrains can be categorized into three groups (with decreasing strength of inductive bias):
+*Physics-Informed Machine Learning* (PIML) is an exciting subfield of Machine Learning that aims to incorporate physical laws and/or constraints into statistical machine learning. The representations of the laws and constraints can be categorized into three groups (with  decreasing strength of inductive bias):
+
+- Partial differential equations (PDE)
+- Symmetry: translatation, rotation invariant.
+- And intuitive physical constraints.
+
+The PINN method incorporates PDE into the learning problem by adding PDE as a regularization term into the machine learning loss term.
 
 - Partial differential equations (PDE)
 - Symmetry such as translatation, rotation invariant. (Instance of this are the image augmentation method in Computer Vision tasks)
