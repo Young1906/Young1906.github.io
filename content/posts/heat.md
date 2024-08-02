@@ -50,11 +50,6 @@ Surveying numerical methods (finite difference methods) and physics-informed neu
 
 The PINN method incorporates PDE into the learning problem by adding PDE as a regularization term into the machine learning loss term.
 
-- Partial differential equations (PDE)
-- Symmetry such as translatation, rotation invariant. (Instance of this are the image augmentation method in Computer Vision tasks)
-- And intuitive physical constraints.
-
-The PINN method incorporates PDE into the learning problem by adding PDE as a regularization term into the objective function.
 
 ## Heat equations
 This instance of the 1D heat equation describes how the temperature of an insulated rod changes over time at any point on the rod, where the two ends of the rod are kept at a constant temperature of \\(0^o C\\) and the initial temperature of the rod was given by a function of location \\(x\\).
