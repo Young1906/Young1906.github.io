@@ -10,16 +10,17 @@ categories: [
     ]
 ---
 
-> EDITTING
-
+{{< collapse summary="(note) Editting note" >}}
 > TODO: 
 > - [ ] Compare FTCS with close-form solution
 > - [ ] Motivation section
 > - [ ] Introduction to heat equation 
 > - [x] BTCS scheme 
-> - [ ] PINN 
+> - [x] PINN 
+>   - [ ] Theory?
+>   - [x] Coding
 > - [ ] Citation?
-
+{{< /collapse >}}
 
 ## TLDR 
 
@@ -556,11 +557,241 @@ U = solve_bdm(100, 100, .2)
 
 We can see that results of FTCS and BTCS agree with each other, however, BTCS only using a \\(100 \times 100\\) grid while FTCS using \\(100 \times 4000\\) grid.
 
+> There is one more scheme for finite different methods which is Crank-Nicolson methods, which use central diffence method to estimate first order derivative !!
 
 ## Physics Informed Neural Network
 
+Let's rewrite the heat equation in a more general form:
+
+
+$$
+\begin{equation}
+\begin{aligned}
+PDE: & & u_t = \alpha^2 u_{xx} & & 0 < x< 1 & & 0 < t < \infty \\\
+BCs: & & \begin{cases}
+u(0, t) = f_0(t)\\\
+u(1, t) = f_1(t)
+\end{cases} & & 0 < t < \infty \\\
+ICs: & & u(x, 0) = \phi(t) & & 0 \leq x \leq 1
+\end{aligned}
+\end{equation}
+$$
+
+In our case, \\(f_0(t) = f_1(t) = 0\\) and \\(\phi(x) = \sin 2\pi x\\). PINN approximate the function \\(u(x, t)\\) by a neural network \\(U_\theta(x, t)\\), and then learn the networks parameters \\(\theta\\) by minimize the loss function: 
+
+$$
+\begin{equation}
+    \begin{aligned}
+        \mathcal{L}(\theta) & = 
+        \frac{1}{N}\sum_{i=1}^N{[U_\theta(x_i, t_i) - u_i]^2} & \text{(Supervised loss)}\\\
+        & + \frac{\lambda_j}{M_j} \sum_{j=1}^{M_j}{\bigg[
+            \frac{\partial U_\theta}{\partial t}- \alpha^2 \frac{\partial^2 U_\theta}{\partial x^2}
+        \bigg](x_j, t_j)} & \text{(PDE residual)}\\\
+        & + \frac{\lambda_k}{M_k} \sum_{k=1}^{M_k}{[(U_\theta(0, t_k) - f_0(t_k))^2 + (U_\theta(1, t_k) - f_1(t_k))^2]} 
+            & \text{(Boundary conditions)} \\\
+        & + \frac{\lambda_h}{M_h} \sum_{h=1}^{M_h}{[U_\theta(x_h, 0) - \phi(x_h)]^2} & \text{(Initial condition)}
+        \end{aligned}
+\end{equation}
+$$
+
+
+- The first term is the supervised loss, coinciding with statistical machine learning. Where \\(\{(x_i, t_i, u_i)\}_{i=1\cdots N}\\) is the set of collocation points \\((x_i, t_i)\\), and value of \\(u_i = u(x_i, t_i)\\).
+
+- The second term is the PDE residual, where: 
+    - \\(\frac{\partial U_\theta}{\partial t}\\) is the partial derivative of the network \\(U_\theta\\) with respect to the time input \\(t\\). 
+    - Similarly, \\(\frac{\partial^2 U_\theta}{\partial x^2}\\) is the second derivative of the network with repsect to location \\(x\\).
+
+- Second and third terms are the initial and boundary conditions, given by equation (23).
+
+We don't necessarily have access to the first loss term. In the implementation bellow, I ignored the first loss term. For the remaining three loss terms:
+
+- PDE residual: \\(x_j \sim \text{Uniform}(0, 1); t_j \sim\text{Uniform}(0, 0.2)\\) 
+- Boundary condition: \\(t_k \sim \text{Uniform}(0, 0.2)\\)
+- Initial condition: \\(x_h \sim \text{Uniform}(0, 1)\\)
+
+> Note: The code need some refactoring but it still works.
+
+{{< collapse summary="(code) JAX Implementation of PINN" >}}
+```python
+"""
+Solving PDE using PINN
+    PDE: u_t = \alpha^2 u_{xx}          0 < x < 1; 0 < t < \infty
+    BCs: u(0, t) = u(1, t) = 0          0 < t < \infty
+    ICs: u(x, 0) = \sin(2\pi x)         0 < x < 1 
+
+Params:
+    alpha^2 = 1 
+"""
+
+import jax 
+import jax.numpy as jnp
+import equinox as eqx
+import optax
+from tqdm import trange
+from matplotlib import pyplot as plt
+
+
+class U(eqx.Module):
+    """
+    Simple MLP taking (x, t) as input, return mlp(x, t)
+    """
+
+    layers: list #
+
+    def __init__(self, layers: list[int], key):
+        self.layers = []
+
+        for _in, _out in zip(layers[:-1], layers[1:]):
+            key, subkey = jax.random.split(key, 2)
+            self.layers.append(eqx.nn.Linear(_in, _out, key=subkey))
+    
+    def __call__(self, x, t):
+        """
+        assuming x \in R^{n x (d - 1)}, t \in R
+        """
+        out = jnp.concatenate([x, t], axis=-1)
+
+        for layer in self.layers[:-1]:
+            out = layer(out)
+            out = jax.nn.tanh(out)
+
+        out = self.layers[-1](out)
+        return jax.nn.tanh(out)
+
+
+def interior_loss(u, x, t):
+    """
+    """
+    # First and second derivative of u wrt x
+    u_x = jax.grad(lambda x, t: jnp.squeeze(u(x, t)), argnums=0)
+    u_xx = jax.grad(lambda x, t: jnp.squeeze(u_x(x, t)), argnums=0)
+    u_t = jax.grad(lambda x, t: jnp.squeeze(u(x, t)), argnums=1)
+
+    pde_resid = jax.vmap(u_t)(x, t) - jax.vmap(u_xx)(x, t)
+    return jnp.mean(pde_resid**2)
+
+
+def boundary_loss(u, x, t, f_bc: callable):
+    """
+    """
+    # compute boundary value at each collocation point
+    y = jax.vmap(f_bc)(x, t)
+    y_hat = jax.vmap(u)(x, t)
+
+    return jnp.mean((y - y_hat) ** 2)
+
+
+def initial_condition_loss(u, x, t, f_ic):
+    y = jax.vmap(f_ic)(x, t)
+    y_hat = jax.vmap(u)(x, t)
+
+    return jnp.mean((y - y_hat) ** 2)
+
+
+def generate_interior_batch(key, n):
+    """
+    interior collocation points
+    """
+    # sample, discretizing interior point
+    key, subkey = jax.random.split(key, 2)
+    X = jax.random.uniform(subkey, shape=(n, 1), minval=1e-5, maxval=1-1e-5)
+
+    key, subkey = jax.random.split(key, 2)
+    T = jax.random.uniform(subkey, shape=(n, 1), minval=1e-5, maxval=.2)
+
+    return X, T
+
+def generate_ic_batch(key, n):
+    """
+    initial collocation points {(x_i, 0)}
+    """
+    # sample, discretizing interior point
+    key, subkey = jax.random.split(key, 2)
+    X = jax.random.uniform(subkey, shape=(n, 1), minval=1e-5, maxval=1-1e-5)
+
+    key, subkey = jax.random.split(key, 2)
+    T = jnp.zeros(shape=(n, 1))
+
+    return X, T
+
+def generate_bc_batch(key, n):
+    """
+    initial collocation points {(0/1, t_m)}
+    """
+    # sample, discretizing interior point
+    key, subkey = jax.random.split(key, 2)
+    X = jax.random.randint(subkey, shape=(n, 1), minval=0., maxval=2.)
+
+    key, subkey = jax.random.split(key, 2)
+    T = jax.random.uniform(subkey, shape=(n, 1), minval=1e-5, maxval=.2)
+
+    return X, T
+
+
+
+def main():
+    key = jax.random.PRNGKey(0)
+
+    key, subkey = jax.random.split(key, 2)
+    u = U([2, 128, 64, 32, 1], subkey)
+
+    def loss_fn(u, x_i, t_i, x_ic, t_ic, x_bc, t_bc, f_ic, f_bc):
+        """
+        u: model
+        x_i, t_i: interior collocation point
+        x_ic, t_ic: initial points 
+        x_bc, t_bc: boundar points 
+        f_ic: initial condition
+        f_bc: boundary condition 
+        """
+        return interior_loss(u, x_i, t_i) +\
+                initial_condition_loss(u, x_ic, t_ic, f_ic) +\
+                boundary_loss(u, x_bc, t_bc, f_bc)
+
+
+    # definite initial condition
+    def f_ic(x, t):
+        return jnp.sin(2 * jnp.pi * x)
+
+    def f_bc(x, t):
+        return 0.
+
+    grad_loss_fn = jax.value_and_grad(loss_fn)
+    optim = optax.adam(1e-3)
+    optim_state = optim.init(u)
+
+    @jax.jit
+    def train_step(model, key, optim_state):
+        # Generate data point
+        ic_key, bc_key, i_key = jax.random.split(key, 3)
+        x_ic, t_ic = generate_ic_batch(ic_key, 16)
+        x_bc, t_bc = generate_bc_batch(bc_key, 16)
+        x_i, t_i = generate_interior_batch(i_key, 128)
+
+        loss_val, grads = grad_loss_fn(model, x_i, t_i, x_ic, t_ic, x_bc, t_bc, f_ic, f_bc)
+        updates, optim_state = optim.update(grads, optim_state) 
+        new_model = eqx.apply_updates(model, updates)
+
+        return loss_val, new_model, key, optim_state
+
+    losses = []
+    pbar = trange(10000)
+
+    for i in pbar:
+        loss, u, key, optim_state = train_step(u, key, optim_state)
+        pbar.set_description(f"Loss = {loss:.4f}")
+        losses.append(loss)
+
+    plt.plot(losses)
+    plt.show()
+
+```
+{{< /collapse >}}
+
+![pinn-loss](/images/pinn_loss.png)
 
 
 # References
 - [Partial Differential Equations for Scientists and Engineers - Standley J. Farlow](https://www.amazon.com/Differential-Equations-Scientists-Engineers-Mathematics/dp/048667620X)
 - [Finite-Difference Approximations to the Heat Equation](http://dma.dima.uniroma1.it/users/lsa_adn/MATERIALE/FDheat.pdf)
+- [ETH Zurich | Deep Learning for Scientific Computing 2023](https://www.youtube.com/watch?v=IDIv92Z6Qvc&list=PLJkYEExhe7rYY5HjpIJbgo-tDZ3bIAqAm&index=5)
