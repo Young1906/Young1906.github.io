@@ -12,14 +12,15 @@ categories: [
 
 {{< collapse summary="(note) Editting note" >}}
 > TODO: 
-> - [ ] Compare FTCS with close-form solution
 > - [ ] Motivation section
-> - [ ] Introduction to heat equation 
+> - [x] Introduction to heat equation 
 > - [x] BTCS scheme 
 > - [x] PINN 
->   - [ ] Theory?
+>   - [x] Theory?
 >   - [x] Coding
 > - [ ] Citation?
+> - [ ] Compare results with close-form solution
+> - [ ] Proof read?
 {{< /collapse >}}
 
 ## TLDR 
@@ -33,8 +34,25 @@ Goal:
 - Physics-Informed Neural Network and JAX implementation
 -->
 
+Surveying numerical methods (finite difference methods), and physics-informed neural network to solve a 1D heat equation. This post was heavity inspired by:
+
+- (Book) Partial Differential Equations for Scientists and Engineers - Standley J. Farlow for deriving closed-form solution.
+- (Article) Finite-Difference Approximations to the Heat Equation - Gerald W. Recktenwald
+- (Course) ETH Zürich | Deep Learning in Scientific Computing 2023 for Theory and Implementation of Physics-Informed Neural Network.
+
+## Introduction
+
+*Physics-Informed Machine Learning (PIML)* is an exciting subfield of Machine Learning which aims to incorporate physical law and/or constrains into statistical machine learning. The representations of laws constrains can be categorized into three groups (with decreasing strength of inductive bias):
+
+- Partial differential equations (PDE)
+- Symmetry: translatation, rotation invariant.
+- And intuitive physical constraints.
+
+The PINN method incorporates PDE into the learning problem by adding PDE as a regularization term into the machine learning loss term.
 
 ## Heat equations
+This instance of the 1D heat equation describes how the temperature of an insulated rod changes over time at any point on the rod, where the two ends of the rod are kept at a constant temperature of \\(0^o C\\) and the initial temperature of the rod was given by a function of location \\(x\\).
+
 
 $$
 \begin{equation}
@@ -44,7 +62,7 @@ BCs: & & \begin{cases}
 u(0, t) = 0\\\
 u(1, t) = 0
 \end{cases} & & 0 < t < \infty \\\
-ICs: & & u(x, 0) = \sin(2\pi x) & & 0 \leq x \leq 1
+IC: & & u(x, 0) = \sin(2\pi x) & & 0 \leq x \leq 1
 \end{aligned}
 \end{equation}
 $$
@@ -572,7 +590,7 @@ BCs: & & \begin{cases}
 u(0, t) = f_0(t)\\\
 u(1, t) = f_1(t)
 \end{cases} & & 0 < t < \infty \\\
-ICs: & & u(x, 0) = \phi(t) & & 0 \leq x \leq 1
+IC: & & u(x, 0) = \phi(t) & & 0 \leq x \leq 1
 \end{aligned}
 \end{equation}
 $$
@@ -792,6 +810,7 @@ def main():
 
 
 # References
+
 - [Partial Differential Equations for Scientists and Engineers - Standley J. Farlow](https://www.amazon.com/Differential-Equations-Scientists-Engineers-Mathematics/dp/048667620X)
 - [Finite-Difference Approximations to the Heat Equation](http://dma.dima.uniroma1.it/users/lsa_adn/MATERIALE/FDheat.pdf)
 - [ETH Zurich | Deep Learning for Scientific Computing 2023](https://www.youtube.com/watch?v=IDIv92Z6Qvc&list=PLJkYEExhe7rYY5HjpIJbgo-tDZ3bIAqAm&index=5)
