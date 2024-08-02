@@ -36,19 +36,19 @@ Goal:
 
 Surveying numerical methods (finite difference methods), and physics-informed neural network to solve a 1D heat equation. This post was heavity inspired by:
 
-- (Book) Partial Differential Equations for Scientists and Engineers - Standley J. Farlow for deriving closed-form solution.
-- (Article) Finite-Difference Approximations to the Heat Equation - Gerald W. Recktenwald
-- (Course) ETH Zürich | Deep Learning in Scientific Computing 2023 for Theory and Implementation of Physics-Informed Neural Network.
+- **(Book) [Partial Differential Equations for Scientists and Engineers - Standley J. Farlow](https://www.amazon.com/Differential-Equations-Scientists-Engineers-Mathematics/dp/048667620X)** for deriving closed-form solution.
+- **(Article) [Finite-Difference Approximations to the Heat Equation](http://dma.dima.uniroma1.it/users/lsa_adn/MATERIALE/FDheat.pdf)**
+- **(Course) [ETH Zurich | Deep Learning for Scientific Computing 2023](https://www.youtube.com/watch?v=IDIv92Z6Qvc&list=PLJkYEExhe7rYY5HjpIJbgo-tDZ3bIAqAm&index=5)** for Theory and Implementation of Physics-Informed Neural Network.
 
 ## Introduction
 
 *Physics-Informed Machine Learning (PIML)* is an exciting subfield of Machine Learning which aims to incorporate physical law and/or constrains into statistical machine learning. The representations of laws constrains can be categorized into three groups (with decreasing strength of inductive bias):
 
 - Partial differential equations (PDE)
-- Symmetry: translatation, rotation invariant.
+- Symmetry such as translatation, rotation invariant. (Instance of this are the image augmentation method in Computer Vision tasks)
 - And intuitive physical constraints.
 
-The PINN method incorporates PDE into the learning problem by adding PDE as a regularization term into the machine learning loss term.
+The PINN method incorporates PDE into the learning problem by adding PDE as a regularization term into the objective function.
 
 ## Heat equations
 This instance of the 1D heat equation describes how the temperature of an insulated rod changes over time at any point on the rod, where the two ends of the rod are kept at a constant temperature of \\(0^o C\\) and the initial temperature of the rod was given by a function of location \\(x\\).
@@ -811,6 +811,3 @@ def main():
 
 # References
 
-- [Partial Differential Equations for Scientists and Engineers - Standley J. Farlow](https://www.amazon.com/Differential-Equations-Scientists-Engineers-Mathematics/dp/048667620X)
-- [Finite-Difference Approximations to the Heat Equation](http://dma.dima.uniroma1.it/users/lsa_adn/MATERIALE/FDheat.pdf)
-- [ETH Zurich | Deep Learning for Scientific Computing 2023](https://www.youtube.com/watch?v=IDIv92Z6Qvc&list=PLJkYEExhe7rYY5HjpIJbgo-tDZ3bIAqAm&index=5)

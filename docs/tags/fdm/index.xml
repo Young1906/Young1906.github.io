@@ -14,7 +14,7 @@
       <guid>https://iamtu.dev/posts/heat/</guid>
       <description>(note) Editting note TODO:
 Motivation section Introduction to heat equation BTCS scheme PINN Theory? Coding Citation? Compare results with close-form solution Proof read? TLDR Surveying numerical methods (finite difference methods), and physics-informed neural network to solve a 1D heat equation. This post was heavity inspired by:
-(Book) Partial Differential Equations for Scientists and Engineers - Standley J. Farlow for deriving closed-form solution. (Article) Finite-Difference Approximations to the Heat Equation - Gerald W.</description>
+(Book) Partial Differential Equations for Scientists and Engineers - Standley J. Farlow for deriving closed-form solution. (Article) Finite-Difference Approximations to the Heat Equation (Course) ETH Zurich | Deep Learning for Scientific Computing 2023 for Theory and Implementation of Physics-Informed Neural Network.</description>
     </item>
     
   </channel>
