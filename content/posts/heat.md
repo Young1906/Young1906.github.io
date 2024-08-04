@@ -8,6 +8,7 @@ categories: [
     "PDE",
     "Learning"
     ]
+comments: True
 ---
 
 {{< collapse summary="(note) Editting note" >}}
@@ -798,6 +799,7 @@ def main():
 
 ```
 {{< /collapse >}}
+
 
 | | 
 :---:|:---:|:---:|
