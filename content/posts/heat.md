@@ -9,6 +9,8 @@ categories: [
     "Learning"
     ]
 comments: True
+cover:
+    image: "/images/heat_bdm.png"
 ---
 
 {{< collapse summary="(note) Editting note" >}}
