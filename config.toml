@@ -1,7 +1,7 @@
 baseURL = "https://iamtu.dev"
 languageCode = "en-us"
 title = "iamtu.dev"
-theme="PaperMod"
+theme = "paper"
 disqusShortname = "iamtu-dev"
 copyright = "© iamtu_ricatto"
 
@@ -17,7 +17,7 @@ copyright = "© iamtu_ricatto"
   # home page profile
   # avatar = 'GRAVATAR_EMAIL'                 # gravatar email or image url
   name = 'Tu T. Do'
-  bio = "2024: Currently looking for PhD Opportunity in the field of AI/ML. My research interest lies in Reinforcement Learning and Physics-Informed Machine Learning.<\br>2022: I am 29. My undergrad was Economics at a local university, and I am going back to school so I can pursue higher education in the field of Machine Learning & Artificial Intelligence."
+  bio = ""
   math = true
   mathjax = true
   katex = true
@@ -39,7 +39,6 @@ url = "/posts"
 weight = 2
 
 # [[menu.main]]
-    "study",
 # name = "About"
 # url = "/about"
 # weight = 3

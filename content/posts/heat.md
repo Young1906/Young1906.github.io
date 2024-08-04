@@ -25,14 +25,6 @@ categories: [
 
 ## TLDR 
 
-<!--
-This post aim to survey numerical methods of solving partial differential equations incl
-
-Goal:
-- 1D heat equation
-- Finite Difference Methods
-- Physics-Informed Neural Network and JAX implementation
--->
 
 Surveying numerical methods (finite difference methods) and physics-informed neural networks to solve a 1D heat equation. This post was heavily inspired by:
 
@@ -52,7 +44,7 @@ The PINN method incorporates PDE into the learning problem by adding PDE as a re
 
 
 ## Heat equations
-This instance of the 1D heat equation describes how the temperature of an insulated rod changes over time at any point on the rod, where the two ends of the rod are kept at a constant temperature of \\(0^o C\\) and the initial temperature of the rod was given by a function of location \\(x\\).
+This instance of the 1D heat equation describes how the temperature of an insulated rod changes over time at any point on the rod, where the two ends of the rod are kept at a constant temperature of $0^o C$ and the initial temperature of the rod was given by a function of location $x$.
 
 
 $$
@@ -71,7 +63,7 @@ $$
 
 ## Solving heat equation with variables seperation
 
-Suppose that we can factorize \\(u(x, t) = X(x)T(t)\\), from the PDE we have:
+Suppose that we can factorize $u(x, t) = X(x)T(t)$, from the PDE we have:
 
 $$
 \begin{equation}
@@ -86,7 +78,7 @@ X^{\prime\prime}(x) - \mu X(x) = 0 & & (2b)
 \end{equation}
 $$
 
-From equation (2a), \\(T(t) = Ae^{\mu\alpha^2t}\\). This implies \\(\mu\\) must be negative so that \\(T\\) doesn't go to \\(\infty\\). Let \\(\mu = -\lambda^2\\), so \\(T(t) = Ae^{-\lambda^2\alpha^2t}\\). Replacing into (2), we have:
+From equation (2a), $T(t) = Ae^{\mu\alpha^2t}$. This implies $\mu$ must be negative so that $T$ doesn't go to $\infty$. Let $\mu = -\lambda^2$, so $T(t) = Ae^{-\lambda^2\alpha^2t}$. Replacing into (2), we have:
 
 $$
 \begin{equation}
@@ -97,7 +89,7 @@ $$
 \end{equation}
 $$
 
-Substitute \\(T(t), X(x)\\) into \\(u(x, t)\\):
+Substitute $T(t), X(x)$ into $u(x, t)$:
 
 $$
 \begin{equation}
@@ -128,7 +120,7 @@ B = 0 \\\
 $$
 
 
-So for a given \\(n\\), we have a particular solution for \\(u(x, t)\\):
+So for a given $n$, we have a particular solution for $u(x, t)$:
 
 $$
 \begin{equation}
@@ -136,7 +128,7 @@ u_n(x, t) = A_n e^{-n^2\pi^2\alpha^2 t} \sin n\pi x
 \end{equation}
 $$
 
-And the general solution for \\(u(x, t)\\):
+And the general solution for $u(x, t)$:
 
 $$
 \begin{equation}
@@ -145,7 +137,7 @@ u(x, t) = \sum_{n=1}^\infty{A}_n e^{-n^2\pi^2\alpha^2t} \sin n\pi x
 $$
 
 
-Where \\(A_n\\) is given by:
+Where $A_n$ is given by:
 
 $$
 \begin{equation}
@@ -171,7 +163,7 @@ $$
 
 #### First Order Forward Difference 
 
-Consider a Taylor series expansion of \\(\phi(x)\\) about point \\(x_i\\) 
+Consider a Taylor series expansion of $\phi(x)$ about point $x_i$ 
 
 $$
 \begin{equation}
@@ -185,7 +177,7 @@ $$
 \end{equation}
 $$
 
-Replace \\(\delta x = \Delta x \ll 1\\) in equation (10):
+Replace $\delta x = \Delta x \ll 1$ in equation (10):
 
 $$
 \begin{aligned}
@@ -206,11 +198,11 @@ $$
 \end{aligned}
 $$
 
-> Note that in [this tutorial](http://dma.dima.uniroma1.it/users/lsa_adn/MATERIALE/FDheat.pdf), the truncation error is \\(\mathcal{O}(\Delta x^2)\\). I haven't been able to understand why yet!!!. 
+> Note that in [this tutorial](http://dma.dima.uniroma1.it/users/lsa_adn/MATERIALE/FDheat.pdf), the truncation error is $\mathcal{O}(\Delta x^2)$. I haven't been able to understand why yet!!!. 
 
 
 #### First Order Backward Difference 
-Replace \\(\delta x = -\Delta x, \Delta x \ll 1\\) in equation (10):
+Replace $\delta x = -\Delta x, \Delta x \ll 1$ in equation (10):
 
 $$
 \begin{equation}
@@ -236,7 +228,7 @@ $$
 #### Second Order Central Difference
 
 Replace in equation (10):
-- \\(\delta x = \Delta x\\)
+- $\delta x = \Delta x$
 
 $$
 \begin{equation}
@@ -250,7 +242,7 @@ $$
 \end{equation}
 $$
 
-- \\(\delta x = -\Delta x\\)
+- $\delta x = -\Delta x$
 
 $$
 \begin{equation}
@@ -294,18 +286,18 @@ $$
 
 
 
-Discretize the domain \\(\mathcal{D} = (0, 1) \times (0, T)\\) by constructing a grid
-\\(\\{x_i\\}\_{i=1\cdots N} \times \\{t_m\\}\_{m=1\cdots M\}\\). Where: 
+Discretize the domain $\mathcal{D} = (0, 1) \times (0, T)$ by constructing a grid
+$\\{x_i\\}\_{i=1\cdots N} \times \\{t_m\\}\_{m=1\cdots M\}$. Where: 
 
-- \\(x_i = (i - 1) \Delta x,\quad \Delta x = \frac{1}{N - 1}\\)
-- \\(t_m = (m - 1) \Delta t,\quad \Delta t = \frac{T}{M - 1}\\)
+- $x_i = (i - 1) \Delta x,\quad \Delta x = \frac{1}{N - 1}$
+- $t_m = (m - 1) \Delta t,\quad \Delta t = \frac{T}{M - 1}$
 
 
-Let \\(u(x, t)\\) be the true solution to the PDE
+Let $u(x, t)$ be the true solution to the PDE
 
 #### Forward Time, Centered Space (FTCS)
 
-- Using First Order Forward Difference (equation 10) to approximate parital derivative of \\(u\\) at a grid point \\((x_i, t_m)\\):
+- Using First Order Forward Difference (equation 10) to approximate parital derivative of $u$ at a grid point $(x_i, t_m)$:
 
     $$
     \begin{equation}
@@ -318,7 +310,7 @@ Let \\(u(x, t)\\) be the true solution to the PDE
     $$
     
 
-- Using Second Order Central Difference (equation 14) to approximate the second order partial derivative of \\(u\\) with respect to \\(x\\) at the grid point:
+- Using Second Order Central Difference (equation 14) to approximate the second order partial derivative of $u$ with respect to $x$ at the grid point:
     $$
     \begin{equation}
         \begin{aligned}
@@ -329,7 +321,7 @@ Let \\(u(x, t)\\) be the true solution to the PDE
     \end{equation}
     $$
 
-Where \\(u_i^m\\) is the numerical approximation of true function evaluated at the grid point \\((x_i, t_m)\\). Replacing equation (15) and (16) into the LHS and RHS of the PDE in (1):
+Where $u_i^m$ is the numerical approximation of true function evaluated at the grid point $(x_i, t_m)$. Replacing equation (15) and (16) into the LHS and RHS of the PDE in (1):
 
 $$
 \begin{equation}
@@ -342,12 +334,12 @@ $$
 \end{equation}
 $$
 
-Where \\(r = \frac{\alpha^2\Delta t}{\Delta x^2}\\). In order for \\(u(x, t)\\) reach steady state, \\(r\\) must be smaller than \\(\frac{1}{2}\\). The proof was provided in [Von Neumann Stability Analysis](https://en.wikipedia.org/wiki/Von_Neumann_stability_analysis).
+Where $r = \frac{\alpha^2\Delta t}{\Delta x^2}$. In order for $u(x, t)$ reach steady state, $r$ must be smaller than $\frac{1}{2}$. The proof was provided in [Von Neumann Stability Analysis](https://en.wikipedia.org/wiki/Von_Neumann_stability_analysis).
 
 > TODO: Haven't understood yet !!!
 
 
-Equation (17) allows us to sequentially compute the approximation \\(u_i^m\\) at any point \\((x_i, t_m)\\), where \\(u_i^1 = u(x_i, 0), i = 1\cdots N\\) were given by the initial and boundary conditions. In matrix notation, the series of equation can be written as:
+Equation (17) allows us to sequentially compute the approximation $u_i^m$ at any point $(x_i, t_m)$, where $u_i^1 = u(x_i, 0), i = 1\cdots N$ were given by the initial and boundary conditions. In matrix notation, the series of equation can be written as:
 
 $$
 \begin{equation}
@@ -375,7 +367,7 @@ $$
 \end{equation}
 $$
 
-> Note that \\(u_1^m\\), \\(u_N^m\\) are always equal to its value in the next time step. This is due to the boundary condition, the temperature at the boundary is always \\(0\\).
+> Note that $u_1^m$, $u_N^m$ are always equal to its value in the next time step. This is due to the boundary condition, the temperature at the boundary is always $0$.
 
 
 {{< collapse summary="(code) Implementation of FTCS scheme `solve_fdm()`" >}}
@@ -436,7 +428,7 @@ U = solve_fdm(100, 4000, .2)
 
 #### Backward Time, Centered Space (BTCS)
 
-- Using First Order Backward Difference (equation 11) to approximate parital derivative of \\(u\\) at a grid point \\((x_i, t_m)\\):
+- Using First Order Backward Difference (equation 11) to approximate parital derivative of $u$ at a grid point $(x_i, t_m)$:
 
     $$
     \begin{equation}
@@ -449,7 +441,7 @@ U = solve_fdm(100, 4000, .2)
     $$
     
 
-- Using Second Order Central Difference (equation 14) to approximate the second order partial derivative of \\(u\\) with respect to \\(x\\) at the grid point:
+- Using Second Order Central Difference (equation 14) to approximate the second order partial derivative of $u$ with respect to $x$ at the grid point:
     $$
     \begin{equation}
         \begin{aligned}
@@ -475,7 +467,7 @@ $$
 $$
 
 
-Where \\(r = \frac{\alpha^2\Delta t}{\Delta x^2}\\). Rewriting equation(21) in matrix notation:
+Where $r = \frac{\alpha^2\Delta t}{\Delta x^2}$. Rewriting equation(21) in matrix notation:
 
 $$
 \begin{equation}
@@ -511,7 +503,7 @@ $$
 }
 $$
 
-Where \\(\mathbf{u}_i^1\\) are given by the initial and boundary conditions. Unlike FTCS, BTCS are unconditionally stable with respect to the choice of \\(r\\). Therefore we can choose much fewer steps along temporal dimension.
+Where $\mathbf{u}_i^1$ are given by the initial and boundary conditions. Unlike FTCS, BTCS are unconditionally stable with respect to the choice of $r$. Therefore we can choose much fewer steps along temporal dimension.
 
 
 {{< collapse summary="(code) Implementation of BTCS scheme `solve_bdm()`" >}}
@@ -574,7 +566,7 @@ U = solve_bdm(100, 100, .2)
 ![img](/images/heat_bdm.gif)|![img2](/images/heat_bdm.png)
 
 
-We can see that results of FTCS and BTCS agree with each other, however, BTCS only using a \\(100 \times 100\\) grid while FTCS using \\(100 \times 4000\\) grid.
+We can see that results of FTCS and BTCS agree with each other, however, BTCS only using a $100 \times 100$ grid while FTCS using $100 \times 4000$ grid.
 
 > There is one more scheme for finite different methods which is Crank-Nicolson methods, which use central diffence method to estimate first order derivative !!
 
@@ -596,7 +588,7 @@ IC: & & u(x, 0) = \phi(t) & & 0 \leq x \leq 1
 \end{equation}
 $$
 
-In our case, \\(f_0(t) = f_1(t) = 0\\) and \\(\phi(x) = \sin 2\pi x\\). PINN approximate the function \\(u(x, t)\\) by a neural network \\(U_\theta(x, t)\\), and then learn the networks parameters \\(\theta\\) by minimize the loss function: 
+In our case, $f_0(t) = f_1(t) = 0$ and $\phi(x) = \sin 2\pi x$. PINN approximate the function $u(x, t)$ by a neural network $U_\theta(x, t)$, and then learn the networks parameters $\theta$ by minimize the loss function: 
 
 $$
 \begin{equation}
@@ -614,19 +606,19 @@ $$
 $$
 
 
-- The first term is the supervised loss, coinciding with statistical machine learning. Where \\(\{(x_i, t_i, u_i)\}_{i=1\cdots N}\\) is the set of collocation points \\((x_i, t_i)\\), and value of \\(u_i = u(x_i, t_i)\\).
+- The first term is the supervised loss, coinciding with statistical machine learning. Where $\{(x_i, t_i, u_i)\}_{i=1\cdots N}$ is the set of collocation points $(x_i, t_i)$, and value of $u_i = u(x_i, t_i)$.
 
 - The second term is the PDE residual, where: 
-    - \\(\frac{\partial U_\theta}{\partial t}\\) is the partial derivative of the network \\(U_\theta\\) with respect to the time input \\(t\\). 
-    - Similarly, \\(\frac{\partial^2 U_\theta}{\partial x^2}\\) is the second derivative of the network with repsect to location \\(x\\).
+    - $\frac{\partial U_\theta}{\partial t}$ is the partial derivative of the network $U_\theta$ with respect to the time input $t$. 
+    - Similarly, $\frac{\partial^2 U_\theta}{\partial x^2}$ is the second derivative of the network with repsect to location $x$.
 
 - Second and third terms are the initial and boundary conditions, given by equation (23).
 
 We don't necessarily have access to the first loss term. In the implementation bellow, I ignored the first loss term. For the remaining three loss terms:
 
-- PDE residual: \\(x_j \sim \text{Uniform}(0, 1); t_j \sim\text{Uniform}(0, 0.2)\\) 
-- Boundary condition: \\(t_k \sim \text{Uniform}(0, 0.2)\\)
-- Initial condition: \\(x_h \sim \text{Uniform}(0, 1)\\)
+- PDE residual: $x_j \sim \text{Uniform}(0, 1); t_j \sim\text{Uniform}(0, 0.2)$ 
+- Boundary condition: $t_k \sim \text{Uniform}(0, 0.2)$
+- Initial condition: $x_h \sim \text{Uniform}(0, 1)$
 
 > Note: The code need some refactoring but it still works.
 
@@ -807,8 +799,7 @@ def main():
 ```
 {{< /collapse >}}
 
-![pinn-loss](/images/pinn_loss.png)
-
-
-# References
+| | 
+:---:|:---:|:---:|
+![pinn-loss](/images/pinn_loss.png) | ![heat_pinn](/images/heat_pinn.png)
 
