@@ -35,6 +35,16 @@
   </div>
   {{- end }}
 
+  {{- if (.Param "comments") }}
+	<script src="https://utteranc.es/client.js"
+	        repo="https://github.com/young1906/young1906.github.io"
+	        issue-term="pathname"
+	        theme="github-light"
+	        crossorigin="anonymous"
+	        async>
+	</script>
+  {{- end }}
+
   <footer class="post-footer">
     {{- $tags := .Language.Params.Taxonomies.tag | default "tags" }}
     <ul class="post-tags">
@@ -50,9 +60,6 @@
     {{- end }}
   </footer>
 
-  {{- if (.Param "comments") }}
-  {{- partial "comments.html" . }}
-  {{- end }}
 </article>
 
 {{- end }}{{/* end main */}}
