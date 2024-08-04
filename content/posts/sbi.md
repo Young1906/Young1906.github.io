@@ -6,6 +6,8 @@ draft: false
 categories: [
     "Machine Learning",
     ]
+cover:
+    image: "/images/amcmc.png"
 ---
 
 
