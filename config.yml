@@ -34,7 +34,7 @@ params:
   ShowReadingTime: true 
   ShowShareButtons: false 
   ShowPostNavLinks: true
-  ShowBreadCrumbs: true 
+  ShowBreadCrumbs: false 
   ShowCodeCopyButtons: true 
   ShowWordCount: true
   ShowRssButtonInSectionTermList: false 
@@ -67,7 +67,7 @@ params:
     enabled: false # needs to be explicitly set
     title: iamtu.dev 
     subtitle: "This is subtitle"
-    # imageUrl: "<img location>"
+    # imageUrl: "/images/heat_pinn.png"
     imageWidth: 120
     imageHeight: 120
     imageTitle: my image
@@ -101,9 +101,9 @@ params:
       SiteVerificationTag: "XYZabc"
 
   cover:
-    hidden: true # hide everywhere but not in structured data
-    hiddenInList: true # hide on list pages and home
-    hiddenInSingle: true # hide on single page
+    hidden: false# hide everywhere but not in structured data
+    hiddenInList: false # hide on list pages and home
+    hiddenInSingle: false # hide on single page
 
       # editPost:
       #   URL: "https://github.com/<path_to_repo>/content"
