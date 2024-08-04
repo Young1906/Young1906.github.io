@@ -4,10 +4,6 @@ date: 2024-05-09
 draft: false 
 ---
 
-<!-- (**May 2024**) Currently looking for PhD Opportunity in the field of AI/ML. My research interest lies in Reinforcement Learning and Physics-Informed Machine Learning. -->
-
-> PAGE UNDER CONSTRUCTION
-
 
 ## Resumes / Portfolio
 - [Academic Resume](/pdf/01_cv.pdf)
@@ -46,10 +42,14 @@ draft: false
 ##  Update
 ###  2024
 
+#### May
+- Accepted into a graduate program.
+
 #### Apr
 - Currently looking for PhD Opportunity in the field of AI/ML. My research interest lies in Reinforcement Learning and Physics-Informed Machine Learning.
 
 ### 2022
+#### Dec
 - I am 29. My undergrad was Economics at a local university, and I am going back to school so I can pursue higher education in the field of Machine Learning & Artificial Intelligence.
 
 

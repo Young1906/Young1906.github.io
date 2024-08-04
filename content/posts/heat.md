@@ -8,7 +8,7 @@ categories: [
     "Machine Learning",
     "PDE",
     ]
-comments: true 
+comments: True 
 cover:
     image: "/images/heat_pinn.gif"
 ---
@@ -852,6 +852,16 @@ def compute_grid(model: eqx.Module, config: PINNConfig):
 {{< /collapse >}}
 
 ```python
+"""
+# Config
+params:
+  key: 0
+  layers: [2, 128, 64, 32, 1]
+  batch_ic_size: 16
+  batch_bc_size: 16
+  batch_interior_size: 128
+
+"""
 @click.command()
 @click.option("--config", "-C", type=str, required=True, help="path/to/config")
 def main(config: str):
@@ -875,9 +885,6 @@ def main(config: str):
     animate(U, config.fn_path_gif)
 
     return
-
-
-if __name__ == "__main__": main()
 ```
 
 

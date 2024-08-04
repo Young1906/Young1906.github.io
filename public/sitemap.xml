@@ -14,9 +14,6 @@
     <loc>http://localhost:1313/tags/learn/</loc>
     <lastmod>2024-07-22T00:00:00+00:00</lastmod>
   </url><url>
-    <loc>http://localhost:1313/categories/learning/</loc>
-    <lastmod>2024-07-22T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>http://localhost:1313/posts/heat/</loc>
     <lastmod>2024-07-22T00:00:00+00:00</lastmod>
   </url><url>
@@ -40,6 +37,9 @@
   </url><url>
     <loc>http://localhost:1313/tags/</loc>
     <lastmod>2024-07-22T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>http://localhost:1313/categories/learning/</loc>
+    <lastmod>2024-05-23T00:00:00+00:00</lastmod>
   </url><url>
     <loc>http://localhost:1313/posts/pde/</loc>
     <lastmod>2024-05-23T00:00:00+00:00</lastmod>
