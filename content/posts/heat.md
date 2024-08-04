@@ -188,7 +188,7 @@ $$
         + \cdots \\\
     \implies 
     & \frac{\partial \phi}{\partial x}\bigg\vert_{x_i} 
-    = \frac{\phi(x_i +\Delta x) - \phi(x_i)}{\Delta x} 
+    = \frac{\phi(x_i +\Delta x) - \phi(x_i)}{\Delta x}
         \red{\underbrace{
         - \frac{\partial^2 \phi}{\partial x^2}\bigg\vert_{x_i} \frac{\Delta x}{2!}
         - \frac{\partial^3 \phi}{\partial x^3}\bigg\vert_{x_i} \frac{\Delta x^2}{3!} 
@@ -608,17 +608,17 @@ $$
 
 - The first term is the supervised loss, coinciding with statistical machine learning. Where $\{(x_i, t_i, u_i)\}_{i=1\cdots N}$ is the set of collocation points $(x_i, t_i)$, and value of $u_i = u(x_i, t_i)$.
 
-- The second term is the PDE residual, where: 
-    - $\frac{\partial U_\theta}{\partial t}$ is the partial derivative of the network $U_\theta$ with respect to the time input $t$. 
+- The second term is the PDE residual, where:
+    - \\(\frac{\partial U_\theta}{\partial t}\\) is the partial derivative of the network \\(U_\theta\\) with respect to the time input \\(t\\)
     - Similarly, $\frac{\partial^2 U_\theta}{\partial x^2}$ is the second derivative of the network with repsect to location $x$.
 
 - Second and third terms are the initial and boundary conditions, given by equation (23).
 
 We don't necessarily have access to the first loss term. In the implementation bellow, I ignored the first loss term. For the remaining three loss terms:
 
-- PDE residual: $x_j \sim \text{Uniform}(0, 1); t_j \sim\text{Uniform}(0, 0.2)$ 
-- Boundary condition: $t_k \sim \text{Uniform}(0, 0.2)$
-- Initial condition: $x_h \sim \text{Uniform}(0, 1)$
+- PDE residual: \\(x_j \sim \text{Uniform}(0, 1); t_j \sim\text{Uniform}(0, 0.2)\\)
+- Boundary condition: \\(t_k \sim \text{Uniform}(0, 0.2)\\)
+- Initial condition: \\(x_h \sim \text{Uniform}(0, 1)\\)
 
 > Note: The code need some refactoring but it still works.
 

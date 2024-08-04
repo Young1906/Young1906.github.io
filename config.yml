@@ -1,6 +1,6 @@
 baseURL: "https://iamtu.dev/"
 title: iamtu
-paginate: 10
+paginate: 5
 theme: PaperMod 
 
 enableRobotsTXT: true
