@@ -6,10 +6,10 @@ draft: False
 categories: [
     "Machine Learning",
     ]
+cover:
+    image: "/images/em_cover.png"
 ---
 
-
-<!--  As of May'24, I am looking for a doctoral training opportunity. Please check out [my resume](/about) if you think I am a good fit for your program. -->
 
 ## Problem 
 
