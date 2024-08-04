@@ -10,7 +10,7 @@ categories: [
     ]
 comments: True
 cover:
-    image: "/images/heat_bdm.png"
+    image: "/images/heat_pinn.gif"
 ---
 
 {{< collapse summary="(note) Editting note" >}}
@@ -625,24 +625,35 @@ We don't necessarily have access to the first loss term. In the implementation b
 
 > Note: The code need some refactoring but it still works.
 
-{{< collapse summary="(code) JAX Implementation of PINN" >}}
+{{< collapse summary="**(code) JAX Implementation of PINN**: `train()`, and `compute_grid()`" >}}
 ```python
-"""
-Solving PDE using PINN
-    PDE: u_t = \alpha^2 u_{xx}          0 < x < 1; 0 < t < \infty
-    BCs: u(0, t) = u(1, t) = 0          0 < t < \infty
-    ICs: u(x, 0) = \sin(2\pi x)         0 < x < 1 
-
-Params:
-    alpha^2 = 1 
-"""
-
+import numpy as np
+import click
+import equinox as eqx
 import jax 
 import jax.numpy as jnp
-import equinox as eqx
 import optax
-from tqdm import trange
+import yaml
 from matplotlib import pyplot as plt
+from pydantic import BaseModel
+from pydantic import PositiveInt
+from tqdm import trange
+from src.viz import plot_heatmap
+from src.viz import animate 
+
+
+# Plot config
+plt.style.use('ggplot')
+
+
+class PINNConfig(BaseModel):
+    key: int 
+    layers: list[PositiveInt]
+    batch_ic_size: PositiveInt
+    batch_bc_size: PositiveInt
+    batch_interior_size: PositiveInt
+    fn_path: str
+    fn_path_gif: str
 
 
 class U(eqx.Module):
@@ -661,7 +672,7 @@ class U(eqx.Module):
     
     def __call__(self, x, t):
         """
-        assuming x \in R^{n x (d - 1)}, t \in R
+        assuming x in R^{n x (d - 1)}, t in R
         """
         out = jnp.concatenate([x, t], axis=-1)
 
@@ -742,51 +753,60 @@ def generate_bc_batch(key, n):
     return X, T
 
 
+def loss_fn(u, x_i, t_i, x_ic, t_ic, x_bc, t_bc, f_ic, f_bc):
+    """
+    u: model
+    x_i, t_i: interior collocation point
+    x_ic, t_ic: initial points 
+    x_bc, t_bc: boundar points 
+    f_ic: initial condition
+    f_bc: boundary condition 
+    """
+    return interior_loss(u, x_i, t_i) +\
+            initial_condition_loss(u, x_ic, t_ic, f_ic) +\
+            boundary_loss(u, x_bc, t_bc, f_bc)
 
-def main():
-    key = jax.random.PRNGKey(0)
 
+
+def train(config: PINNConfig):
+    key = jax.random.PRNGKey(config.key)
     key, subkey = jax.random.split(key, 2)
-    u = U([2, 128, 64, 32, 1], subkey)
 
-    def loss_fn(u, x_i, t_i, x_ic, t_ic, x_bc, t_bc, f_ic, f_bc):
-        """
-        u: model
-        x_i, t_i: interior collocation point
-        x_ic, t_ic: initial points 
-        x_bc, t_bc: boundar points 
-        f_ic: initial condition
-        f_bc: boundary condition 
-        """
-        return interior_loss(u, x_i, t_i) +\
-                initial_condition_loss(u, x_ic, t_ic, f_ic) +\
-                boundary_loss(u, x_bc, t_bc, f_bc)
+    # define the model
+    u = U(config.layers, subkey)
 
-
-    # definite initial condition
+    # define initial condition
     def f_ic(x, t):
         return jnp.sin(2 * jnp.pi * x)
 
+    # define boundary condition
     def f_bc(x, t):
         return 0.
 
+    # compute loss & loss gradient
     grad_loss_fn = jax.value_and_grad(loss_fn)
-    optim = optax.adam(1e-3)
-    optim_state = optim.init(u)
-
+    
     @jax.jit
     def train_step(model, key, optim_state):
         # Generate data point
         ic_key, bc_key, i_key = jax.random.split(key, 3)
-        x_ic, t_ic = generate_ic_batch(ic_key, 16)
-        x_bc, t_bc = generate_bc_batch(bc_key, 16)
-        x_i, t_i = generate_interior_batch(i_key, 128)
-
-        loss_val, grads = grad_loss_fn(model, x_i, t_i, x_ic, t_ic, x_bc, t_bc, f_ic, f_bc)
+        x_ic, t_ic = generate_ic_batch(ic_key, config.batch_ic_size)
+        x_bc, t_bc = generate_bc_batch(bc_key, config.batch_bc_size)
+        x_i, t_i = generate_interior_batch(i_key, config.batch_interior_size)
+    
+        loss_val, grads = grad_loss_fn(
+                model, x_i, t_i,
+                x_ic, t_ic,
+                x_bc, t_bc,
+                f_ic, f_bc)
         updates, optim_state = optim.update(grads, optim_state) 
         new_model = eqx.apply_updates(model, updates)
-
+    
         return loss_val, new_model, key, optim_state
+
+    # optimizer
+    optim = optax.adam(1e-3)
+    optim_state = optim.init(u)
 
     losses = []
     pbar = trange(10000)
@@ -796,14 +816,68 @@ def main():
         pbar.set_description(f"Loss = {loss:.4f}")
         losses.append(loss)
 
-    plt.plot(losses)
-    plt.show()
+    losses = jnp.array(losses)
+
+    return u, losses
+
+
+def compute_grid(model: eqx.Module, config: PINNConfig):
+    """
+    compute model output on 100 x 100 grid over following domain
+    x in (0, 1)
+    t in (0, 0.2)
+    """
+
+    def _compute(x, t):
+        # transform scalar into a 1d vector x -> [x]
+        x, t = jnp.expand_dims(x, 0),\
+                jnp.expand_dims(t, 0)
+
+        u = model(x, t)
+        u = jnp.squeeze(u)
+
+        return u
+
+    x = jnp.linspace(0, 1, 100)
+    t = jnp.linspace(0, 0.2, 100)
+
+    xx, tt = np.meshgrid(x, t, sparse=True)
+    U = np.vectorize(_compute)(xx, tt).T
+
+    return U
 
 ```
 {{< /collapse >}}
 
+```python
+@click.command()
+@click.option("--config", "-C", type=str, required=True, help="path/to/config")
+def main(config: str):
+    """
+    Solving PDE using PINN
+        PDE: u_t = alpha^2 u_{xx}       0 < x < 1; 0 < t < \infty
+        BCs: u(0, t) = u(1, t) = 0      0 < t < \infty
+        ICs: u(x, 0) = sin(2pi x)       0 < x < 1 
+    
+    Params:
+        alpha^2 = 1 
+    """
+    with open(config, "r") as f:
+        config = yaml.safe_load(f)
+        config = PINNConfig(**config["params"])
 
-| | 
-:---:|:---:|:---:|
-![pinn-loss](/images/pinn_loss.png) | ![heat_pinn](/images/heat_pinn.png)
+    model, losses = train(config)
+    U = compute_grid(model, config)
+
+    plot_heatmap(U, config.fn_path)
+    animate(U, config.fn_path_gif)
+
+    return
+
+
+if __name__ == "__main__": main()
+```
+
+
+![image](/images/heat_pinn.gif)
 

@@ -45,7 +45,7 @@ params:
   hidemeta: true 
   hideSummary: false
   showtoc: true 
-  tocopen: true 
+  tocopen: false 
   math: true
 
   assets:
