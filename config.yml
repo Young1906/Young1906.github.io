@@ -5,27 +5,27 @@ theme: PaperMod
 
 enableRobotsTXT: true
 buildDrafts: false 
-buildFuture: false
+buildFuture: true 
 buildExpired: false
 
 googleAnalytics: G-PWLR4FLELZ
-disqusShortname: iamtu-dev.disqus.com
+disqusShortname: iamtu-dev
 
 services:
   disqus:
-    shortname: iamtu-dev.disqus.com
+    shortname: iamtu-dev
 
 minify:
-  disableXML: true
+  disableXML: false 
   minifyOutput: true
 
 params:
   env: production # to enable google analytics, opengraph, twitter-cards and schema.
   title: iamtu
   description: "My research blog"
-  # keywords: [Blog, Portfolio, PaperMod]
+  # keywords: [Blog, Portfolio, note]
   author: Tu T. Do 
-  author: ["Me", "You"] # multiple authors
+  # author: ["Me", "You"] # multiple authors
   # images: ["<link or path of image for opengraph, twitter-cards>"]
   DateFormat: "January 2, 2006"
   defaultTheme: light # auto # dark, light
@@ -33,8 +33,8 @@ params:
 
   ShowReadingTime: true 
   ShowShareButtons: false 
-  ShowPostNavLinks: false 
-  ShowBreadCrumbs: false 
+  ShowPostNavLinks: true 
+  ShowBreadCrumbs: true 
   ShowCodeCopyButtons: true 
   ShowWordCount: true
   ShowRssButtonInSectionTermList: false 
@@ -42,7 +42,7 @@ params:
   disableSpecial1stPost: false
   disableScrollToTop: false
   comments: True 
-  hidemeta: True 
+  hidemeta: False 
   hideSummary: False 
   showtoc: True 
   tocopen: false 
