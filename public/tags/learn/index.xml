@@ -13,7 +13,7 @@
       <pubDate>Mon, 22 Jul 2024 00:00:00 +0000</pubDate>
       
       <guid>http://localhost:1313/posts/heat/</guid>
-      <description>TLDR Surveying numerical methods (finite difference methods) and physics-informed neural networks to solve a 1D heat equation. This post was heavily inspired by:
+      <description>Surveying numerical methods (finite difference methods) and physics-informed neural networks to solve a 1D heat equation. This post was heavily inspired by:
 (Book) Partial Differential Equations for Scientists and Engineers - Standley J. Farlow for deriving closed-form solution. (Article) Finite-Difference Approximations to the Heat Equation (Course) ETH Zurich | Deep Learning for Scientific Computing 2023 for Theory and Implementation of Physics-Informed Neural Network. Introduction Physics-Informed Machine Learning (PIML) is an exciting subfield of Machine Learning that aims to incorporate physical laws and/or constraints into statistical machine learning.</description>
     </item>
     

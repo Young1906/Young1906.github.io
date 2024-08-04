@@ -29,9 +29,6 @@ cover:
 {{< /collapse >}}
 -->
 
-## TLDR 
-
-
 Surveying numerical methods (finite difference methods) and physics-informed neural networks to solve a 1D heat equation. This post was heavily inspired by:
 
 - **(Book) [Partial Differential Equations for Scientists and Engineers - Standley J. Farlow](https://www.amazon.com/Differential-Equations-Scientists-Engineers-Mathematics/dp/048667620X)** for deriving closed-form solution.
