@@ -17,10 +17,14 @@ copyright = "© iamtu_ricatto"
   # home page profile
   # avatar = 'GRAVATAR_EMAIL'                 # gravatar email or image url
   name = 'Tu T. Do'
-  bio = ""
+  bio = "Into drawing chart and browsing meme"
   math = true
   mathjax = true
   katex = true
+
+  # misc
+  monoDarkIcon = true
+  disablePostNavigation = false 
 
 
 [[menu.main]]
@@ -47,3 +51,9 @@ weight = 2
 name = "Tags"
 url = "/tags"
 weight = 4
+
+[[menu.main]]
+name = "About"
+url = "/about"
+weight = 5
+
