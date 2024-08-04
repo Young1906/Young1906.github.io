@@ -1,20 +1,2 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>probabilistic-ml on iamtu</title>
-    <link>https://iamtu.dev/tags/probabilistic-ml/</link>
-    <description>Recent content in probabilistic-ml on iamtu</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Sat, 23 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/tags/probabilistic-ml/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Noise constrastive estimation</title>
-      <link>https://iamtu.dev/posts/noise-contrastive-estimation/</link>
-      <pubDate>Sat, 23 Sep 2023 00:00:00 +0000</pubDate>
-      
-      <guid>https://iamtu.dev/posts/noise-contrastive-estimation/</guid>
-      <description>TLDR The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise drawn from a distribution. The paper setups the problem into a dataset of \(T\) observations \((x_1, &amp;hellip; x_T)\) drawn from a true distribution \(p_d(.)\). We then try to approximate \(p_d\) by a parameterized function \(p_m(.;\theta)\). The estimator \(\hat{\theta}_T\) is defined to be the \(\theta\) that maximize function
-$$ J_T(\theta) = \frac{1}{2T}\sum_t{\log[h(x_t; 0)]} + \log[1-h(y_t; \theta)] $$</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>probabilistic-ml on iamtu</title><link>https://iamtu.dev/tags/probabilistic-ml/</link><description>Recent content in probabilistic-ml on iamtu</description><generator>Hugo -- gohugo.io</generator><lastBuildDate>Sat, 23 Sep 2023 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/tags/probabilistic-ml/index.xml" rel="self" type="application/rss+xml"/><item><title>Noise constrastive estimation</title><link>https://iamtu.dev/posts/noise-contrastive-estimation/</link><pubDate>Sat, 23 Sep 2023 00:00:00 +0000</pubDate><guid>https://iamtu.dev/posts/noise-contrastive-estimation/</guid><description>TLDR The paper proposed a method to estimate the probability density function of a dataset by discriminating observed data and noise drawn from a distribution. The paper setups the problem into a dataset of \(T\) observations \((x_1, &amp;hellip; x_T)\) drawn from a true distribution \(p_d(.)\). We then try to approximate \(p_d\) by a parameterized function \(p_m(.;\theta)\). The estimator \(\hat{\theta}_T\) is defined to be the \(\theta\) that maximize function
+$$ J_T(\theta) = \frac{1}{2T}\sum_t{\log[h(x_t; 0)]} + \log[1-h(y_t; \theta)] $$</description></item></channel></rss>

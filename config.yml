@@ -81,7 +81,7 @@ params:
 
   # home-info mode
   homeInfoParams:
-    Title: "Tu T. Do"
+    Title: "Thanh Tu, Do"
     Content: "Into drawing chart and browsing meme."
 
   socialIcons:
@@ -92,7 +92,7 @@ params:
     - name: facebook 
       url: "https://facebook.com/tu.dothanh"
     - name: linkedin 
-      url: "https://linkedin.com/tu.dothanh"
+      url: "https://www.linkedin.com/in/tudothanh"
     - name: github
       url: "https://github.com/young1906"
     - name: instagram
