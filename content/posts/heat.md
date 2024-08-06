@@ -8,7 +8,7 @@ categories: [
     "Machine Learning",
     "PDE",
     ]
-comments: True 
+comments: true 
 cover:
     image: "/images/heat_pinn.gif"
 ---
@@ -884,5 +884,6 @@ def main(config: str):
     return
 ```
 
+<!-- {{< figure align=center title="Test" caption="Test" src="/images/heat_pinn.gif" >}} -->
 
-![image](/images/heat_pinn.gif)
+![img](/images/heat_pinn.gif)

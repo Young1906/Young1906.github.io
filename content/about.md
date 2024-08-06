@@ -1,7 +1,9 @@
 ---
 title: "About"
 date: 2024-05-09
-draft: false 
+draft: false
+comments: false
+showtoc: false
 ---
 
 ##  Update
