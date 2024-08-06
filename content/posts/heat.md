@@ -40,7 +40,7 @@ Surveying numerical methods (finite difference methods) and physics-informed neu
 *Physics-Informed Machine Learning* (PIML) is an exciting subfield of Machine Learning that aims to incorporate physical laws and/or constraints into statistical machine learning. The representations of the laws and constraints can be categorized into three groups (with  decreasing strength of inductive bias):
 
 - Partial differential equations (PDE)
-- Symmetry: translatation, rotation invariant.
+- Symmetry: translation, rotation invariant.
 - And intuitive physical constraints.
 
 The PINN method incorporates PDE into the learning problem by adding PDE as a regularization term into the machine learning loss term.
