@@ -18,7 +18,7 @@ comments: true
 - Some special form of Euler-Lagrange
 -->
 
-My goal for this post is to have a basic understanding of Calculus of Variations, so that I can be more comfortable with mathematics in NeuralODE paper, where the problem can be formulated as a optimization of a functional with ODE constraint. 
+My goal for this post is to have a basic understanding of Calculus of Variations, so that I can be more comfortable with mathematics in [NeuralODE paper](https://arxiv.org/abs/1806.07366), where the problem can be formulated as a optimization of a functional with ODE constraint ([Adjoint State Method for an ODE](https://www.youtube.com/watch?v=k6s2G5MZv-I&t=556s)). 
 
 My first encounter with Calculus of Variation is one of my homework where we try to derive probablity density function of some distribution by the principle of maximum entropy. This is my note of a more thorough investigation of the topic and it is heavily based on the content of [this tutorial](https://www.open.edu/openlearn/8b/91/8b919cebaa524d141308761405438be36126c07d?response-content-disposition=inline%3Bfilename%3D%22Introduction%20to%20the%20calculus%20of%20variations_ms327.pdf%22&response-content-type=application%2Fpdf&Expires=1727281020&Signature=Y5qPgt8T-FL6MrViTgisHOaDvOZrnyRTlog5CKdcx3O3IaYDepGQ43r2ZdUf2rX3tGPulZYzYbf1H1RhB6Xv2V80TZtQThFlBZLMgHWWNDR3AZKxqL8FD3Xq2vlRwft~grD5fGpioT6G57~zDUKl0TQ7bR3PDv4DzUakrkhDg-NWehqo4dIk7v5PnyFEeki7qsvbz6Dtkqo9MwEn8Z-CDWg2IUwZ5ocNFSts7Hj8ABQpljFITa8C36XvZBgy8lcmPCAhAr4gFi26Y5PXnytW7~3FCqnlLJd6pA7yK-t9A5UMW7dooi6el4bvbuMVrbrZ~sLTNXeM9SXOryke07jTBw__&Key-Pair-Id=K87HJKWMK329B).
 
@@ -340,6 +340,6 @@ Finally, we have \\(x = \frac{h^2}{2}(2\theta - \sin 2\theta) + c\\) and \\(y = 
 
 ## References
 
-1. [Introduction to Calculus of Vartiations - Open University]()
-2. [Tutorial on Adjoint State Methods - Youtube]()
-3. [Original NeuralODE paper]()
+1. [Introduction to Calculus of Vartiations - Open University](https://www.open.edu/openlearn/8b/91/8b919cebaa524d141308761405438be36126c07d?response-content-disposition=inline%3Bfilename%3D%22Introduction%20to%20the%20calculus%20of%20variations_ms327.pdf%22&response-content-type=application%2Fpdf&Expires=1727281020&Signature=Y5qPgt8T-FL6MrViTgisHOaDvOZrnyRTlog5CKdcx3O3IaYDepGQ43r2ZdUf2rX3tGPulZYzYbf1H1RhB6Xv2V80TZtQThFlBZLMgHWWNDR3AZKxqL8FD3Xq2vlRwft~grD5fGpioT6G57~zDUKl0TQ7bR3PDv4DzUakrkhDg-NWehqo4dIk7v5PnyFEeki7qsvbz6Dtkqo9MwEn8Z-CDWg2IUwZ5ocNFSts7Hj8ABQpljFITa8C36XvZBgy8lcmPCAhAr4gFi26Y5PXnytW7~3FCqnlLJd6pA7yK-t9A5UMW7dooi6el4bvbuMVrbrZ~sLTNXeM9SXOryke07jTBw__&Key-Pair-Id=K87HJKWMK329B)
+2. [Adjoint State Method for an ODE](https://www.youtube.com/watch?v=k6s2G5MZv-I&t=556s)
+3. [Original NeuralODE paper](https://arxiv.org/abs/1806.07366)
