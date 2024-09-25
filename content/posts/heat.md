@@ -887,4 +887,4 @@ def main(config: str):
 <!-- {{< figure align=center title="Test" caption="Test" src="/images/heat_pinn.gif" >}} -->
 
 
-{{< video library=1 src="/images/heat_pinn.mp4" control="yes" >}}
+<!-- {{< video library=1 src="/images/heat_pinn.mp4" control="yes" >}} -->
