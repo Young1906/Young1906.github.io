@@ -2,13 +2,14 @@
 title: My calculus of variations crash course
 date : 2024-09-24
 tags : [learn, fdm, ml, pde, pinn]
-
 draft: false 
 categories: [
     "Machine Learning",
     "PDE",
     ]
 comments: true 
+cover:
+    image: "/images/cal_fig1.png"
 ---
 
 <!-- outline -->
