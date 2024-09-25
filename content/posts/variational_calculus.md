@@ -45,7 +45,7 @@ Then the length of curve \\(y\\) is given by the sum of all \\(dS\\) along \\(y\
 
 $$
 \begin{equation}
-S[y] = \int_a^b{dS} = \int_a^b{\sqrt{1 + (\dot{y})^2}dx}
+S[y] = \int_{P_A}^{P_B}{dS} = \int_a^b{\sqrt{1 + (\dot{y})^2}dx}
 \end{equation}
 $$
 
@@ -208,18 +208,131 @@ Because \\(\eta\\) is arbitrary, in order for equality (4) to hold, quantity \\(
 This equation is known as Euler-Lagrange equation. Any function \\(y\\) satisfied this equation will be a stationary path of functional \\(S\\).
 
 
-### Some special form of the equations
+### Alternative forms of the Euler-Lagrange equation
 
-#### \\(F\\) does not explicitly depend on \\(y\\)
-#### \\(F\\) does not explicitly depend on \\(\dot{y}\\)
+#### Special case where \\(F\\) does not explicitly depend on \\(y\\) \\(F(x, \dot{y})\\)
 
+Because \\(F\\) does not explicity dependence on \\(y\\), we have \\(\partial F/\partial y =0\\). By equation 12, it immediately follows:
 
+$$
+\begin{equation}
+\begin{aligned}
+    & \frac{d}{dx}(\frac{\partial F}{\partial \dot{y}}) = 0 \\\
+\iff & \frac{\partial F}{\partial \dot{y}} = \text{constant}
+\end{aligned}
+\end{equation}
+$$
+
+#### First integral of Euler-Lagrange equation \\(F(y, \dot{y})\\)
+
+Consider the total derivative of \\(F\\) with respect to \\(x\\):
+
+$$
+\begin{equation}
+\begin{aligned}
+\frac{dF}{dx} & =
+    \underbrace{\frac{\partial F}{\partial x}}\_{=0}
+    + \frac{\partial F}{\partial y}\frac{dy}{dx}
+    + \frac{\partial F}{\partial \dot{y}}\frac{d \dot{y}}{dx} & (F \text{ does not depend on }x) \\\
+& = \frac{d}{dx}\big(\frac{\partial F}{\partial \dot{y}}\big)\dot{y} + \frac{\partial F}{\partial \dot{y}}\ddot{y} 
+    & \text{(Equation 12)}\\\
+& = \frac{d}{dx}\big(\dot{y}\frac{\partial F}{\partial\dot{y}}\big) & u\dot{v} + v\dot{u} = \dot{(uv)} \\\
+\implies & 
+    \dot{y}\frac{\partial F}{\partial\dot{y}} - F = \text{constant}
+\end{aligned}
+\end{equation}
+$$
+
+This equation is called the first integral of Euler-Lagrange equation.
 
 ## Applying Euler-Lagrange equation to the motivating examples 
 
 ### Shortest path between two point on a plane 
+
+Reiterate that the path length of curve \\(y(x)\\) is a functional \\(S\\) of \\(y\\):
+
+$$
+\begin{equation}
+\begin{aligned}
+& S[y] = \int_{P_A}^{P_B}{dS} = \int_a^b{\sqrt{1 + (\dot{y})^2}dx} =: \int_a^b{F(\dot{y})dx};\\\
+& y(a)=A, y(b) = B
+\end{aligned}
+\end{equation}
+$$
+
+From equation 15, we have 
+
+$$
+\begin{equation}
+\begin{aligned}
+& \frac{\partial F}{\partial \dot{y}} = \text{constant} \\\
+\iff & 
+    \frac{\partial}{\partial \dot{y}}\sqrt{1 + (\dot{y})^2} = \text{constant} \\\
+\iff & 
+    \frac{\dot{y}}{\sqrt{1 + (\dot{y})^2}} = \text{constant} \\\
+\iff &
+    \dot{y} = \text{constant} \\\
+\implies &
+    y = ax + b
+\end{aligned}
+\end{equation}
+$$
+
+So the shortest path between two points on a plane is a line. 
+
+
 ### Brachistochrone problem
 
+Time functional \\(T\\) of curve \\(y(x)\\):
+
+$$
+\begin{equation}
+\begin{aligned}
+    T[y] = \int_0^b{\sqrt{\frac{1+(\dot{y})^2}{2gy}}dx} =: \int_0^b{F(y,\dot{y}) dx}
+\end{aligned}
+\end{equation}
+$$
+
+Using the first integral of the Euler-Lagrange equation, we have
+
+\begin{equation}
+\begin{aligned}
+& \dot{y}\frac{\partial F}{\partial \dot{y}} - F = c & \text{(c is some constant)} \\\
+\iff & 
+    \dot{y}\frac{\partial}{\partial{\dot{y}}}\big(
+        \sqrt{\frac{1 + (\dot{y})^2}{2gy}}
+    \big)
+        - \sqrt{\frac{1 + (\dot{y})^2}{2gy}} = c \\\
+\iff &
+    \frac{(\dot{y})^2}{\sqrt{2gy[1+(\dot{y})^2]}}
+        - \sqrt{\frac{1 + (\dot{y})^2}{2gy}} = c \\\
+\iff & 
+    \frac{1}{\sqrt{y[1+(\dot{y})^2]}} = k & \text{(for some constant k)} \\\
+\implies &
+    \dot{y} = \sqrt{\frac{h^2}{y} - 1} = \sqrt{\frac{h^2 - y}{y}} & (\text{for constant } h^2=1/k^2 > 0) \\\
+\implies &
+    dx = \sqrt{\frac{y}{h^2 - y}}dy
+\end{aligned}
+\end{equation}
+
+Let \\(y = h^2 \sin^2\theta\\), so \\(dy = 2h^2\sin\theta\cos\theta d\theta\\). Subsititutes this into equation 18, we have
+
+$$
+\begin{equation}
+\begin{aligned}
+    dx & = \sqrt{\frac{h^2 \sin^2\theta}{h^2(1 - \sin^2\theta)}}2h^2\sin\theta\cos\theta d\theta \\\
+    & = 2h^2 \sin^2\theta d\theta
+\end{aligned}
+\end{equation}
+$$
+
+Take the antiderivative for both sides, we have
+
+$$
+x = \frac{h^2}{2}(2\theta - \sin 2\theta) + c
+$$
+
+Finally, we have \\(x = \frac{h^2}{2}(2\theta - \sin 2\theta) + c\\) and \\(y = h^2\sin^2\theta\\), for some \\(h, c\\) determined by \\(y(0) = 0, y(b) = 1\\). In the tutorial, \\(h\\) and \\( c\\) can only be determined numerically.
 
 <!-- ## Review of mathematical concepts -->
 
