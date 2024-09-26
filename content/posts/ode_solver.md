@@ -2,7 +2,7 @@
 title: Numerical Integrations 
 date : 2024-09-26
 tags : [learn]
-draft: true 
+draft: false 
 categories: [
     "Machine Learning",
     "PDE",
