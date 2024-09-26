@@ -135,14 +135,14 @@ So the second order ODE describes motion of mass \\(m\\) is transformed into a f
 
 ## Numerical methods of solving first order ODE
 
-Given the formulation \\(\frac{dS}{dt} = \mathcal{F}(t, S(t))\\), and a regular grid on temporal interval \\([0, T]: \\{t_0, t_1,\cdots t_N\\}\\), where \\(t_i = i\frac{T}{N}=:ih\\). The Taylor expansion of \\(S\\) about \\(t_i\\) is given by: 
+Given the formulation \\(\frac{dS}{dt} = \mathcal{F}(t, S(t))\\), and a regular grid on temporal interval \\([0, T]: \\{t_0, t_1,\cdots t_N\\}\\), where \\(t_i = i\frac{T}{N}=:ih\\). The Taylor expansion of \\(S\\) about \\(t\\) is given by: 
 
 $$
 \begin{equation}
 \begin{aligned}
-    S(t_{i+1}) = S(t_i) + \sum_1^k{
+    S(t+h) = S(t) + \sum_1^k{
         \frac{h^k}{k!}
-        \frac{d^{(k)}S}{dt}(t_i)
+        \frac{d^{(k)}S}{dt}(t)
     } + \mathcal{O}(h^{k+1})
 \end{aligned}
 \end{equation}
@@ -154,8 +154,8 @@ The Euler method approximate the next state by simply truncating the Taylor expa
 $$
 \begin{equation}
     \begin{aligned}
-    \hat{S}(t_{i+1}) & = S(t_i) + h \frac{dS}{dt}(t_i) + \mathcal{O}(h^2)\\\
-    & = S(t_i)  + h\mathcal{F}(t, S(t)) + \underbrace{\red{\mathcal{O}(h^2)}}\_{\text{Truncation Error}}
+    \hat{S}(t_{i+1}) = S(t_i + h) & = S(t_i) + h \frac{dS}{dt}(t_i) + \mathcal{O}(h^2)\\\
+    & = S(t_i)  + h\mathcal{F}(t_i, S(t_i)) + \underbrace{\red{\mathcal{O}(h^2)}}\_{\text{Truncation Error}}
     \end{aligned}
 \end{equation}
 $$
@@ -269,7 +269,60 @@ plt.show()
 
 ### Runge-Kutta
 
+#### Second-Order Runge-Kutta Method
+Second-Order Runge-Kutta Method reduces the truncation errors in the estmation of the next state to \\(\mathcal{O}(h^3)\\) by keeping the \\(3^{rd}\\) term in the Taylor expansion.
+
+$$
+\begin{equation}
+S(t_{i+1}) = S(t_i + h) = S(t_i) + h \mathcal{F}(t_i, S(t_i)) +
+    \underbrace{
+        \frac{h^2}{2!} \mathcal{F}^\prime(t_i, S(t_i))
+    }\_{A} + \mathcal{O}(h^3)
+\end{equation}
+$$
+
+Consider quantity \\(A\\):
+
+$$
+\begin{equation}
+\begin{aligned}
+    A & = \frac{d}{dt} \mathcal{F}(t, S(t)) = \frac{\partial\mathcal{F}}{\partial t} 
+        + \frac{\partial F}{\partial S}\frac{dS}{dt} \\\
+        & = \frac{\partial\mathcal{F}}{\partial t} + \frac{\partial\mathcal{F}}{\partial S} F & \text{(Equation 5)}
+\end{aligned}
+\end{equation}
+$$
+
+Substitute equation 10 into equation 9:
+
+$$
+\begin{equation}
+\begin{aligned}
+S(t_{i+1}) = S(t_i + h) & = S + h\mathcal{F} \\\ & + 
+\frac{h^2}{2}\big(
+        \frac{\partial\mathcal{F}}{\partial t} + \frac{\partial\mathcal{F}}{\partial S}\mathcal{F}
+\big) \\\ &+ \mathcal{O}(h^3)
+\end{aligned}
+\end{equation}
+$$
+
+
+Consider approximation of \\(\mathcal{F}\\) in the neighbor of \\((t, S\\)
+
+$$
+\begin{equation}
+\begin{aligned}
+\mathcal{F}(t + ph, S + qhF) & = F + \frac{\partial\mathcal{F}}{\partial t}\delta t 
+    + \frac{\partial\mathcal{F}}{\partial S} \delta S \\\
+    & = S + 
+\end{aligned}
+\end{equation}
+$$
+
+#### Fourth-Order Runge-Kutta Method
+
 
 ## References
 - (Book) [Partial Differential Equations for Scientists and Engineers - Standley J. Farlow](https://www.amazon.com/Differential-Equations-Scientists-Engineers-Mathematics/dp/048667620X)
 - (Book) [Python Programming and Numerical Methods - A Guide]() - Chapter 22
+- (Web) [Introduction to Taylor's theorem for multivariable functions](https://mathinsight.org/taylors_theorem_multivariable_introduction)
