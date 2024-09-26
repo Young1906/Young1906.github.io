@@ -265,7 +265,7 @@ plt.show()
 
 #### Results
 
-
+> Position of the mass \\(x(t)\\).
 ![](/images/ode_euler_rs.png)
 
 ### Runge-Kutta
