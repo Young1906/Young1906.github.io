@@ -2,7 +2,7 @@
 title: Numerical Integrations 
 date : 2024-09-26
 tags : [learn]
-draft: false 
+draft: true 
 categories: [
     "Machine Learning",
     "PDE",
@@ -10,10 +10,13 @@ categories: [
     ]
 comments: true 
 cover:
-    image: "/images/ode_fig1.png"
+    image: "/images/ode_rs.png"
 ---
 
-> EDITTING
+
+**todo**
+- [ ] Derivation of second and forth order Runge-Kutta methods
+- [ ] Comparison of truncation error with different step-size
 
 
 ## Ordinary Differential Equation (ODE) Initial Value Problem
@@ -319,10 +322,111 @@ $$
 \end{equation}
 $$
 
+{{< collapse summary="**(code) JAX Implementation of Second-Order Runge Kutta method `RK2()`**" >}} 
+```python
+def RK2(z0, t0, t1, f, return_seq: bool):
+    """
+    Second-Order Runge-Kutta Method
+    S(t + h) = S(t) + 1/2(k1 + k2)h
+    k1 = F(t, S(t))
+    k2 = F(t + h, S(t) + hk1)
+    """
+    n_steps = int(jnp.ceil(jnp.abs(t1 - t0)/H_MAX))
+
+    # Compute step size
+    h = (t1 - t0)/n_steps
+
+    t = t0
+    z = z0
+
+    seq = [(z, t)]
+
+    for i in range(n_steps):
+        k1 = f(z, t)
+        k2 = f(z + h * k1, t + h)
+        z = z + .5 * (k1 + k2) * h
+        t = t + h
+
+        seq.append((z, t))
+
+    if return_seq:
+        return z, seq
+
+    return z
+
+```
+{{< /collapse >}}
+
+
+
 #### Fourth-Order Runge-Kutta Method
 
+
+$$
+\begin{equation}
+\begin{aligned}
+    \hat{S}(t + h) & = S(t) + \frac{h}{6}(k_1 + 2k_2 + 2k_3 + k_4) +
+    \underbrace{\red{\mathcal{O}(h^4)}}_{\text{Truncation error}} \\\
+    \text{Where:}\\\
+    k_1 & = \mathcal{F}(t, S(t)) \\\
+    k_2 & = \mathcal{F}(t + \frac{h}{2}, S(t) + \frac{hk_1}{2}) \\\
+    k_3 & = \mathcal{F}(t + \frac{h}{2}, S(t) + \frac{hk_2}{2} \\\
+    k_4 & = \mathcal{F}(t + h, S(t) + hk_3) \\\
+\end{aligned}
+\end{equation}
+$$
+
+{{< collapse summary="**(code) JAX Implementation of Second-Order Runge Kutta method `RK2()`**" >}} 
+```python
+def RK4(z0, t0, t1, f, return_seq: bool):
+    """
+    Fourth-Order Runge-Kutta Method
+    S(t + h) = S(t) + 1/2(k1 + k2)h
+    k1 = F(t, S(t))
+    k2 = F(t + .5h, S(t) + .5 h k1)
+    k3 = F(t + .5h, S(t) + .5 h k2)
+    k4 = F(t + h, S(t) + h k3)
+    """
+    n_steps = int(jnp.ceil(jnp.abs(t1 - t0)/H_MAX))
+
+    # Compute step size
+    h = (t1 - t0)/n_steps
+
+    t = t0
+    z = z0
+
+    seq = [(z, t)]
+
+
+    for i in range(n_steps):
+        k1 = f(z, t)
+        k2 = f(z + .5 * k1, t + .5 * h)
+        k3 = f(z + .5 * k2, t + .5 * h)
+        k4 = f(z + k3, t + h)
+
+        z = z + (k1 + 2 * k2 + 2 * k3 + k4) * h / 6
+
+        seq.append((z, t))
+
+    if return_seq:
+        return z, seq
+
+    return z
+
+```
+{{< /collapse >}}
+
+
+## Empirical result
+
+### Numerical error by different step-size
+
+### Position and Trajectory in state-space 
+
+![fig2](/images/ode_rs.png)
 
 ## References
 - (Book) [Partial Differential Equations for Scientists and Engineers - Standley J. Farlow](https://www.amazon.com/Differential-Equations-Scientists-Engineers-Mathematics/dp/048667620X)
 - (Book) [Python Programming and Numerical Methods - A Guide]() - Chapter 22
 - (Web) [Introduction to Taylor's theorem for multivariable functions](https://mathinsight.org/taylors_theorem_multivariable_introduction)
+- (Web) [Analytical solution to Damped Harmonic Occiliator - https://phys.libretexts.org ](https://phys.libretexts.org/Bookshelves/Mathematical_Physics_and_Pedagogy/Complex_Methods_for_the_Sciences_(Chong)/05%3A_Complex_Oscillations/5.03%3A_General_Solution_for_the_Damped_Harmonic_Oscillator)
