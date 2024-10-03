@@ -1,7 +1,7 @@
 ---
 title: Real Analysis - Lecture notes
 draft: false 
-date: 2024-2-19
+# date: 2024-2-19
 tags: [learning, real-analysis]
 ---
 

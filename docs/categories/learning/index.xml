@@ -1,22 +1,18 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
-  <channel>
-    <title>Learning on iamtu</title>
-    <link>https://iamtu.dev/categories/learning/</link>
-    <description>Recent content in Learning on iamtu</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
-    <lastBuildDate>Mon, 22 Jul 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/categories/learning/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Learning to solve heat equation</title>
-      <link>https://iamtu.dev/posts/heat/</link>
-      <pubDate>Mon, 22 Jul 2024 00:00:00 +0000</pubDate>
-      
-      <guid>https://iamtu.dev/posts/heat/</guid>
-      <description>(note) Editting note TODO:
-Motivation section Introduction to heat equation BTCS scheme PINN Theory? Coding Citation? Compare results with close-form solution Proof read? TLDR Surveying numerical methods (finite difference methods) and physics-informed neural networks to solve a 1D heat equation. This post was heavily inspired by:
-(Book) Partial Differential Equations for Scientists and Engineers - Standley J. Farlow for deriving closed-form solution. (Article) Finite-Difference Approximations to the Heat Equation (Course) ETH Zurich | Deep Learning for Scientific Computing 2023 for Theory and Implementation of Physics-Informed Neural Network.</description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Learning on iamtu</title><link>https://iamtu.dev/categories/learning/</link><description>Recent content in Learning on iamtu</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 23 May 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/categories/learning/index.xml" rel="self" type="application/rss+xml"/><item><title>Numerical methods for PDE</title><link>https://iamtu.dev/posts/pde/</link><pubDate>Thu, 23 May 2024 00:00:00 +0000</pubDate><guid>https://iamtu.dev/posts/pde/</guid><description>&lt;p>Outline&lt;/p>
+&lt;ul>
+&lt;li>ODE with initial value problem&lt;/li>
+&lt;li>Reduction of orders&lt;/li>
+&lt;li>Euler method&lt;/li>
+&lt;/ul></description></item><item><title>Learning physics-informed Neural Networks (PINN)</title><link>https://iamtu.dev/posts/pinn/</link><pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate><guid>https://iamtu.dev/posts/pinn/</guid><description>&lt;p>My goal is to familiarize myself with physics-informed neural network(PINN), consist of &amp;hellip; Having no formal training on solving PDE, the first section will outline basic concepts in solving partial differential equations (PDEs), an example of a PDE, and its closed-form solution.&lt;/p>
+&lt;p>Outline:&lt;/p>
+&lt;ul>
+&lt;li>PDE&lt;/li>
+&lt;li>Closed-formed solution&lt;/li>
+&lt;li>Generating data&lt;/li>
+&lt;li>PINN&lt;/li>
+&lt;/ul>
+&lt;h2 id="pde-and-the-legendre-differential-equation">PDE and the Legendre Differential Equation&lt;/h2>
+&lt;p>This section is written with instruction from &lt;a href="https://web.math.ucsb.edu/~moore/pde.pdf">this introduction&lt;/a> by JD Moore.&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;p>&lt;strong>Definition&lt;/strong> (Power series)&lt;/p></description></item></channel></rss>

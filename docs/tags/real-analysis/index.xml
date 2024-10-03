@@ -1,4 +1,13 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Real-Analysis on iamtu</title><link>https://iamtu.dev/tags/real-analysis/</link><description>Recent content in Real-Analysis on iamtu</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="https://iamtu.dev/tags/real-analysis/index.xml" rel="self" type="application/rss+xml"/><item><title>Real Analysis - Lecture notes</title><link>https://iamtu.dev/posts/real-analysis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://iamtu.dev/posts/real-analysis/</guid><description>Notes I took during studying MIT OCW Real Analysis. The class taught by Professor Casey Rodriguez, he also taught Functional analysis.
-Resources (Useful link) Video lecture Course&amp;rsquo;s homepage Lecture notes Goal of the course - Gain experience with proofs - Prove statements about the real numbers, function and limits
-Lecture 1: Sets, Set operations, and Mathematical Induction Definition (Sets) A sets is a collection of objects called elements/members.
-Definition (Empty set) A set with no elements, denoted as \(\emptyset\)</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Real-Analysis on iamtu</title><link>https://iamtu.dev/tags/real-analysis/</link><description>Recent content in Real-Analysis on iamtu</description><generator>Hugo -- gohugo.io</generator><language>en</language><atom:link href="https://iamtu.dev/tags/real-analysis/index.xml" rel="self" type="application/rss+xml"/><item><title>Real Analysis - Lecture notes</title><link>https://iamtu.dev/posts/real-analysis/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://iamtu.dev/posts/real-analysis/</guid><description>&lt;p>Notes I took during studying MIT OCW &lt;a href="https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/">Real Analysis&lt;/a>. The class taught by Professor Casey Rodriguez, he also taught &lt;a href="https://tarheels.live/crodriguez/168-2/">Functional analysis&lt;/a>.&lt;/p>
+&lt;h2 id="resources-useful-link">Resources (Useful link)&lt;/h2>
+&lt;ul>
+&lt;li>&lt;a href="https://www.youtube.com/watch?v=LY7YmuDbuW0&amp;amp;list=PLUl4u3cNGP61O7HkcF7UImpM0cR_L2gSw">Video lecture&lt;/a>&lt;/li>
+&lt;li>&lt;a href="https://ocw.mit.edu/courses/18-100a-real-analysis-fall-2020/">Course&amp;rsquo;s homepage&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;h2 id="lecture-notes">Lecture notes&lt;/h2>
+&lt;p>Goal of the course
+- Gain experience with proofs
+- Prove statements about the real numbers, function and limits&lt;/p>
+&lt;h3 id="lecture-1-sets-set-operations-and-mathematical-induction">Lecture 1: Sets, Set operations, and Mathematical Induction&lt;/h3>
+&lt;p>&lt;strong>Definition&lt;/strong> (Sets) A sets is a collection of objects called elements/members.&lt;/p>
+&lt;p>&lt;strong>Definition&lt;/strong> (Empty set) A set with no elements, denoted as \(\emptyset\)&lt;/p></description></item></channel></rss>

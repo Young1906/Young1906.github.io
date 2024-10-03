@@ -1,4 +1,4 @@
 dev: 
 	hugo server --buildDrafts
 build:
-	hugo --destination docs
+	hugo --destination docs --buildDrafts

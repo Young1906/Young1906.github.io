@@ -1,4 +1,43 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Numerical Methods on iamtu</title><link>https://iamtu.dev/categories/numerical-methods/</link><description>Recent content in Numerical Methods on iamtu</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 26 Sep 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/categories/numerical-methods/index.xml" rel="self" type="application/rss+xml"/><item><title>Numerical Integrations</title><link>https://iamtu.dev/posts/ode_solver/</link><pubDate>Thu, 26 Sep 2024 00:00:00 +0000</pubDate><guid>https://iamtu.dev/posts/ode_solver/</guid><description>EDITTING
-Ordinary Differential Equation (ODE) Initial Value Problem A differential equation is differential equation is a relationship between function \(f(x)\), its independent variable \(x\), and any number of its derivative. An ODE is a differential equation where the independent variable and its derivatives are in one dimension.
-$$ \begin{equation} F(x, f(x), f^{(1)}(x), f^{(2)}, \cdots f^{(n-1)}(x)) = f^{(n)}(x) \end{equation} $$
-Where \(f^{(i)}\) is the \(i^{th}\) order derivative of \(f\). Initial value is a set of known value at \(x = 0\), namely \(f(0), f^{(1)}(0), f^{(2)}, \cdots f^{(n-1)}(0)\).</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Numerical Methods on iamtu</title><link>https://iamtu.dev/categories/numerical-methods/</link><description>Recent content in Numerical Methods on iamtu</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 01 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/categories/numerical-methods/index.xml" rel="self" type="application/rss+xml"/><item><title>Understanding Adjoint sensitivity method</title><link>https://iamtu.dev/posts/adjoint_state_method/</link><pubDate>Tue, 01 Oct 2024 00:00:00 +0000</pubDate><guid>https://iamtu.dev/posts/adjoint_state_method/</guid><description>&lt;h1 id="problem">Problem&lt;/h1>
+&lt;p>$$
+\begin{equation}
+\begin{aligned}
+\text{ODE:}\quad &amp;amp;\begin{cases} \frac{du}{dt} &amp;amp;= f(u, t; \theta) &amp;amp;\text{(Dynamic function)}\\
+u(t=0) &amp;amp;= u_0 &amp;amp; \text{(Initial value)}
+\end{cases}
+\end{aligned}
+\end{equation}
+$$&lt;/p>
+&lt;p>Minimize loss functional:&lt;/p>
+&lt;p>$$
+\begin{equation}
+\begin{aligned}
+\mathcal{J}[\theta] = \int_{0}^T{g(u; \theta)} dt
+\end{aligned}
+\end{equation}
+$$&lt;/p>
+&lt;h2 id="formulating-as-an-optimization-with-ode-constraint">Formulating as an optimization with ODE constraint:&lt;/h2>
+&lt;p>$$
+\begin{equation}
+\begin{aligned}
+\min_\theta \mathcal{J}(\theta) = \min_\theta \int_0^Tg(u; \theta) dt \\
+\text{such that: } \
+\frac{du}{dt} - f(u, t;\theta) = 0
+\end{aligned}
+\end{equation}
+$$&lt;/p>
+&lt;!-- raw HTML omitted -->
+&lt;!-- raw HTML omitted -->
+&lt;h1 id="derivation-of-the-adjoint-state">Derivation of the adjoint-state&lt;/h1>
+&lt;p>The Lagrangian of the optimization problem&lt;/p></description></item><item><title>Numerical Integrations</title><link>https://iamtu.dev/posts/ode_solver/</link><pubDate>Thu, 26 Sep 2024 00:00:00 +0000</pubDate><guid>https://iamtu.dev/posts/ode_solver/</guid><description>&lt;p>&lt;strong>todo&lt;/strong>&lt;/p>
+&lt;ul>
+&lt;li>&lt;input disabled="" type="checkbox"> Derivation of second and forth order Runge-Kutta methods&lt;/li>
+&lt;li>&lt;input disabled="" type="checkbox"> Comparison of truncation error with different step-size&lt;/li>
+&lt;/ul>
+&lt;h2 id="ordinary-differential-equation-ode-initial-value-problem">Ordinary Differential Equation (ODE) Initial Value Problem&lt;/h2>
+&lt;p>A &lt;strong>differential equation&lt;/strong> is differential equation is a relationship between function \(f(x)\), its independent variable \(x\), and any number of its derivative. An &lt;strong>ODE&lt;/strong> is a differential equation where the independent variable and its derivatives are in one dimension.&lt;/p>
+&lt;p>$$
+\begin{equation}
+F(x, f(x), f^{(1)}(x), f^{(2)}, \cdots f^{(n-1)}(x)) = f^{(n)}(x)
+\end{equation}
+$$&lt;/p></description></item></channel></rss>
