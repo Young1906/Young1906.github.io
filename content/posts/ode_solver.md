@@ -2,7 +2,7 @@
 title: Numerical Integrations 
 date : 2024-09-26
 tags : [learn]
-draft: true 
+draft: false 
 categories: [
     "Machine Learning",
     "PDE",
@@ -400,9 +400,9 @@ def RK4(z0, t0, t1, f, return_seq: bool):
 
     for i in range(n_steps):
         k1 = f(z, t)
-        k2 = f(z + .5 * k1, t + .5 * h)
-        k3 = f(z + .5 * k2, t + .5 * h)
-        k4 = f(z + k3, t + h)
+        k2 = f(z    + .5 * k1 * h, t + .5  *   h)
+        k3 = f(z    + .5 * k2 * h, t + .5  *   h)
+        k4 = f(z    +      k3 * h, t +         h)
 
         z = z + (k1 + 2 * k2 + 2 * k3 + k4) * h / 6
 
@@ -412,7 +412,6 @@ def RK4(z0, t0, t1, f, return_seq: bool):
         return z, seq
 
     return z
-
 ```
 {{< /collapse >}}
 

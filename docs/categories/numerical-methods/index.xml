@@ -1,35 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Numerical Methods on iamtu</title><link>https://iamtu.dev/categories/numerical-methods/</link><description>Recent content in Numerical Methods on iamtu</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 01 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/categories/numerical-methods/index.xml" rel="self" type="application/rss+xml"/><item><title>Understanding Adjoint sensitivity method</title><link>https://iamtu.dev/posts/adjoint_state_method/</link><pubDate>Tue, 01 Oct 2024 00:00:00 +0000</pubDate><guid>https://iamtu.dev/posts/adjoint_state_method/</guid><description>&lt;h1 id="problem">Problem&lt;/h1>
-&lt;p>$$
-\begin{equation}
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Numerical Methods on iamtu</title><link>https://iamtu.dev/categories/numerical-methods/</link><description>Recent content in Numerical Methods on iamtu</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 01 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="https://iamtu.dev/categories/numerical-methods/index.xml" rel="self" type="application/rss+xml"/><item><title>Understanding Adjoint sensitivity method</title><link>https://iamtu.dev/posts/adjoint_state_method/</link><pubDate>Tue, 01 Oct 2024 00:00:00 +0000</pubDate><guid>https://iamtu.dev/posts/adjoint_state_method/</guid><description>&lt;p>Suppose we have a dataset \({(t_i, u_{t_i})}_{i=0\cdots N-1}, \quad u_{t_i} \in \mathbb{R}^N\) is the observed state of a dynamical system given by ODE&lt;/p>
+&lt;p>\begin{equation}
 \begin{aligned}
-\text{ODE:}\quad &amp;amp;\begin{cases} \frac{du}{dt} &amp;amp;= f(u, t; \theta) &amp;amp;\text{(Dynamic function)}\\
-u(t=0) &amp;amp;= u_0 &amp;amp; \text{(Initial value)}
+\begin{cases}
+u(t=t_i) = u_{t_i} \
+\frac{du}{dt} = f(u, t, \theta)
 \end{cases}
 \end{aligned}
-\end{equation}
-$$&lt;/p>
-&lt;p>Minimize loss functional:&lt;/p>
+\end{equation}&lt;/p>
+&lt;p>For simplicity, assume we only have 2 observed states \((t_0, u_0), (t_1, u_1)\). So that we can write \(u_1\) in term of \(u_0\) and the dynamic \(f\)&lt;/p>
 &lt;p>$$
 \begin{equation}
 \begin{aligned}
-\mathcal{J}[\theta] = \int_{0}^T{g(u; \theta)} dt
+u(t_1) = u_0 + \int_{t_0}^{t_1}{f(u, t, \theta) dt}
 \end{aligned}
 \end{equation}
-$$&lt;/p>
-&lt;h2 id="formulating-as-an-optimization-with-ode-constraint">Formulating as an optimization with ODE constraint:&lt;/h2>
-&lt;p>$$
-\begin{equation}
-\begin{aligned}
-\min_\theta \mathcal{J}(\theta) = \min_\theta \int_0^Tg(u; \theta) dt \\
-\text{such that: } \
-\frac{du}{dt} - f(u, t;\theta) = 0
-\end{aligned}
-\end{equation}
-$$&lt;/p>
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
-&lt;h1 id="derivation-of-the-adjoint-state">Derivation of the adjoint-state&lt;/h1>
-&lt;p>The Lagrangian of the optimization problem&lt;/p></description></item><item><title>Numerical Integrations</title><link>https://iamtu.dev/posts/ode_solver/</link><pubDate>Thu, 26 Sep 2024 00:00:00 +0000</pubDate><guid>https://iamtu.dev/posts/ode_solver/</guid><description>&lt;p>&lt;strong>todo&lt;/strong>&lt;/p>
+$$&lt;/p></description></item><item><title>Numerical Integrations</title><link>https://iamtu.dev/posts/ode_solver/</link><pubDate>Thu, 26 Sep 2024 00:00:00 +0000</pubDate><guid>https://iamtu.dev/posts/ode_solver/</guid><description>&lt;p>&lt;strong>todo&lt;/strong>&lt;/p>
 &lt;ul>
 &lt;li>&lt;input disabled="" type="checkbox"> Derivation of second and forth order Runge-Kutta methods&lt;/li>
 &lt;li>&lt;input disabled="" type="checkbox"> Comparison of truncation error with different step-size&lt;/li>
