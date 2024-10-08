@@ -1,35 +1,23 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Machine Learning on iamtu</title><link>http://localhost:1313/categories/machine-learning/</link><description>Recent content in Machine Learning on iamtu</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 01 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/machine-learning/index.xml" rel="self" type="application/rss+xml"/><item><title>Understanding Adjoint sensitivity method</title><link>http://localhost:1313/posts/adjoint_state_method/</link><pubDate>Tue, 01 Oct 2024 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/adjoint_state_method/</guid><description>&lt;h1 id="problem">Problem&lt;/h1>
-&lt;p>$$
-\begin{equation}
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Machine Learning on iamtu</title><link>http://localhost:40633/categories/machine-learning/</link><description>Recent content in Machine Learning on iamtu</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 01 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:40633/categories/machine-learning/index.xml" rel="self" type="application/rss+xml"/><item><title>Understanding Adjoint sensitivity method</title><link>http://localhost:40633/posts/adjoint_state_method/</link><pubDate>Tue, 01 Oct 2024 00:00:00 +0000</pubDate><guid>http://localhost:40633/posts/adjoint_state_method/</guid><description>&lt;blockquote>
+&lt;p>\( \red{\text{NOTE EDITING} \)&lt;/p>
+&lt;/blockquote>
+&lt;p>Suppose we have a dataset \({(t_i, u_{t_i})}_{i=0\cdots N-1}, \quad u_{t_i} \in \mathbb{R}^N\) is the observed state of a dynamical system given by ODE&lt;/p>
+&lt;p>\begin{equation}
 \begin{aligned}
-\text{ODE:}\quad &amp;amp;\begin{cases} \frac{du}{dt} &amp;amp;= f(u, t; \theta) &amp;amp;\text{(Dynamic function)}\\
-u(t=0) &amp;amp;= u_0 &amp;amp; \text{(Initial value)}
+\begin{cases}
+u(t=t_i) = u_{t_i} \
+\frac{du}{dt} = f(u, t, \theta)
 \end{cases}
 \end{aligned}
-\end{equation}
-$$&lt;/p>
-&lt;p>Minimize loss functional:&lt;/p>
+\end{equation}&lt;/p>
+&lt;p>For simplicity, assume we only have 2 observed states \((t_0, u_0), (t_1, u_1)\). So that we can write \(u_1\) in term of \(u_0\) and the dynamic \(f\)&lt;/p>
 &lt;p>$$
 \begin{equation}
 \begin{aligned}
-\mathcal{J}[\theta] = \int_{0}^T{g(u; \theta)} dt
+u(t_1) = u_0 + \int_{t_0}^{t_1}{f(u, t, \theta) dt}
 \end{aligned}
 \end{equation}
-$$&lt;/p>
-&lt;h2 id="formulating-as-an-optimization-with-ode-constraint">Formulating as an optimization with ODE constraint:&lt;/h2>
-&lt;p>$$
-\begin{equation}
-\begin{aligned}
-\min_\theta \mathcal{J}(\theta) = \min_\theta \int_0^Tg(u; \theta) dt \\
-\text{such that: } \
-\frac{du}{dt} - f(u, t;\theta) = 0
-\end{aligned}
-\end{equation}
-$$&lt;/p>
-&lt;!-- raw HTML omitted -->
-&lt;!-- raw HTML omitted -->
-&lt;h1 id="derivation-of-the-adjoint-state">Derivation of the adjoint-state&lt;/h1>
-&lt;p>The Lagrangian of the optimization problem&lt;/p></description></item><item><title>Numerical Integrations</title><link>http://localhost:1313/posts/ode_solver/</link><pubDate>Thu, 26 Sep 2024 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/ode_solver/</guid><description>&lt;p>&lt;strong>todo&lt;/strong>&lt;/p>
+$$&lt;/p></description></item><item><title>Numerical Integrations</title><link>http://localhost:40633/posts/ode_solver/</link><pubDate>Thu, 26 Sep 2024 00:00:00 +0000</pubDate><guid>http://localhost:40633/posts/ode_solver/</guid><description>&lt;p>&lt;strong>todo&lt;/strong>&lt;/p>
 &lt;ul>
 &lt;li>&lt;input disabled="" type="checkbox"> Derivation of second and forth order Runge-Kutta methods&lt;/li>
 &lt;li>&lt;input disabled="" type="checkbox"> Comparison of truncation error with different step-size&lt;/li>
@@ -40,11 +28,11 @@ $$&lt;/p>
 \begin{equation}
 F(x, f(x), f^{(1)}(x), f^{(2)}, \cdots f^{(n-1)}(x)) = f^{(n)}(x)
 \end{equation}
-$$&lt;/p></description></item><item><title>My calculus of variations crash course</title><link>http://localhost:1313/posts/variational_calculus/</link><pubDate>Tue, 24 Sep 2024 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/variational_calculus/</guid><description>&lt;!-- raw HTML omitted -->
+$$&lt;/p></description></item><item><title>My calculus of variations crash course</title><link>http://localhost:40633/posts/variational_calculus/</link><pubDate>Tue, 24 Sep 2024 00:00:00 +0000</pubDate><guid>http://localhost:40633/posts/variational_calculus/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;!-- raw HTML omitted -->
 &lt;!-- raw HTML omitted -->
 &lt;p>My goal for this post is to have a basic understanding of Calculus of Variations, so that I can be more comfortable with mathematics in &lt;a href="https://arxiv.org/abs/1806.07366">NeuralODE paper&lt;/a>, where the problem can be formulated as a optimization of a functional with ODE constraint (&lt;a href="https://www.youtube.com/watch?v=k6s2G5MZv-I&amp;amp;t=556s">Adjoint State Method for an ODE&lt;/a>).&lt;/p>
-&lt;p>My first encounter with Calculus of Variation is one of my homework where we try to derive probablity density function of some distribution by the principle of maximum entropy. This is my note of a more thorough investigation of the topic and it is heavily based on the content of &lt;a href="https://www.open.edu/openlearn/8b/91/8b919cebaa524d141308761405438be36126c07d?response-content-disposition=inline%3Bfilename%3D%22Introduction%20to%20the%20calculus%20of%20variations_ms327.pdf%22&amp;amp;response-content-type=application%2Fpdf&amp;amp;Expires=1727281020&amp;amp;Signature=Y5qPgt8T-FL6MrViTgisHOaDvOZrnyRTlog5CKdcx3O3IaYDepGQ43r2ZdUf2rX3tGPulZYzYbf1H1RhB6Xv2V80TZtQThFlBZLMgHWWNDR3AZKxqL8FD3Xq2vlRwft~grD5fGpioT6G57~zDUKl0TQ7bR3PDv4DzUakrkhDg-NWehqo4dIk7v5PnyFEeki7qsvbz6Dtkqo9MwEn8Z-CDWg2IUwZ5ocNFSts7Hj8ABQpljFITa8C36XvZBgy8lcmPCAhAr4gFi26Y5PXnytW7~3FCqnlLJd6pA7yK-t9A5UMW7dooi6el4bvbuMVrbrZ~sLTNXeM9SXOryke07jTBw__&amp;amp;Key-Pair-Id=K87HJKWMK329B">this tutorial&lt;/a>.&lt;/p></description></item><item><title>Learning to solve heat equation</title><link>http://localhost:1313/posts/heat/</link><pubDate>Mon, 22 Jul 2024 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/heat/</guid><description>&lt;!-- raw HTML omitted -->
+&lt;p>My first encounter with Calculus of Variation is one of my homework where we try to derive probablity density function of some distribution by the principle of maximum entropy. This is my note of a more thorough investigation of the topic and it is heavily based on the content of &lt;a href="https://www.open.edu/openlearn/8b/91/8b919cebaa524d141308761405438be36126c07d?response-content-disposition=inline%3Bfilename%3D%22Introduction%20to%20the%20calculus%20of%20variations_ms327.pdf%22&amp;amp;response-content-type=application%2Fpdf&amp;amp;Expires=1727281020&amp;amp;Signature=Y5qPgt8T-FL6MrViTgisHOaDvOZrnyRTlog5CKdcx3O3IaYDepGQ43r2ZdUf2rX3tGPulZYzYbf1H1RhB6Xv2V80TZtQThFlBZLMgHWWNDR3AZKxqL8FD3Xq2vlRwft~grD5fGpioT6G57~zDUKl0TQ7bR3PDv4DzUakrkhDg-NWehqo4dIk7v5PnyFEeki7qsvbz6Dtkqo9MwEn8Z-CDWg2IUwZ5ocNFSts7Hj8ABQpljFITa8C36XvZBgy8lcmPCAhAr4gFi26Y5PXnytW7~3FCqnlLJd6pA7yK-t9A5UMW7dooi6el4bvbuMVrbrZ~sLTNXeM9SXOryke07jTBw__&amp;amp;Key-Pair-Id=K87HJKWMK329B">this tutorial&lt;/a>.&lt;/p></description></item><item><title>Learning to solve heat equation</title><link>http://localhost:40633/posts/heat/</link><pubDate>Mon, 22 Jul 2024 00:00:00 +0000</pubDate><guid>http://localhost:40633/posts/heat/</guid><description>&lt;!-- raw HTML omitted -->
 &lt;!-- raw HTML omitted -->
 &lt;p>Surveying numerical methods (finite difference methods) and physics-informed neural networks to solve a 1D heat equation. This post was heavily inspired by:&lt;/p>
 &lt;ul>
@@ -53,12 +41,12 @@ $$&lt;/p></description></item><item><title>My calculus of variations crash cours
 &lt;li>&lt;strong>(Course) &lt;a href="https://www.youtube.com/watch?v=IDIv92Z6Qvc&amp;amp;list=PLJkYEExhe7rYY5HjpIJbgo-tDZ3bIAqAm&amp;amp;index=5">ETH Zurich | Deep Learning for Scientific Computing 2023&lt;/a>&lt;/strong> for Theory and Implementation of Physics-Informed Neural Network.&lt;/li>
 &lt;/ul>
 &lt;h2 id="introduction">Introduction&lt;/h2>
-&lt;p>&lt;em>Physics-Informed Machine Learning&lt;/em> (PIML) is an exciting subfield of Machine Learning that aims to incorporate physical laws and/or constraints into statistical machine learning. The representations of the laws and constraints can be categorized into three groups (with decreasing strength of inductive bias):&lt;/p></description></item><item><title>Numerical methods for PDE</title><link>http://localhost:1313/posts/pde/</link><pubDate>Thu, 23 May 2024 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/pde/</guid><description>&lt;p>Outline&lt;/p>
+&lt;p>&lt;em>Physics-Informed Machine Learning&lt;/em> (PIML) is an exciting subfield of Machine Learning that aims to incorporate physical laws and/or constraints into statistical machine learning. The representations of the laws and constraints can be categorized into three groups (with decreasing strength of inductive bias):&lt;/p></description></item><item><title>Numerical methods for PDE</title><link>http://localhost:40633/posts/pde/</link><pubDate>Thu, 23 May 2024 00:00:00 +0000</pubDate><guid>http://localhost:40633/posts/pde/</guid><description>&lt;p>Outline&lt;/p>
 &lt;ul>
 &lt;li>ODE with initial value problem&lt;/li>
 &lt;li>Reduction of orders&lt;/li>
 &lt;li>Euler method&lt;/li>
-&lt;/ul></description></item><item><title>Learning physics-informed Neural Networks (PINN)</title><link>http://localhost:1313/posts/pinn/</link><pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/pinn/</guid><description>&lt;p>My goal is to familiarize myself with physics-informed neural network(PINN), consist of &amp;hellip; Having no formal training on solving PDE, the first section will outline basic concepts in solving partial differential equations (PDEs), an example of a PDE, and its closed-form solution.&lt;/p>
+&lt;/ul></description></item><item><title>Learning physics-informed Neural Networks (PINN)</title><link>http://localhost:40633/posts/pinn/</link><pubDate>Thu, 09 May 2024 00:00:00 +0000</pubDate><guid>http://localhost:40633/posts/pinn/</guid><description>&lt;p>My goal is to familiarize myself with physics-informed neural network(PINN), consist of &amp;hellip; Having no formal training on solving PDE, the first section will outline basic concepts in solving partial differential equations (PDEs), an example of a PDE, and its closed-form solution.&lt;/p>
 &lt;p>Outline:&lt;/p>
 &lt;ul>
 &lt;li>PDE&lt;/li>
@@ -70,13 +58,13 @@ $$&lt;/p></description></item><item><title>My calculus of variations crash cours
 &lt;p>This section is written with instruction from &lt;a href="https://web.math.ucsb.edu/~moore/pde.pdf">this introduction&lt;/a> by JD Moore.&lt;/p>
 &lt;!-- raw HTML omitted -->
 &lt;!-- raw HTML omitted -->
-&lt;p>&lt;strong>Definition&lt;/strong> (Power series)&lt;/p></description></item><item><title>Expectation Maximization - EM</title><link>http://localhost:1313/posts/em/</link><pubDate>Wed, 08 May 2024 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/em/</guid><description>&lt;h2 id="problem">Problem&lt;/h2>
+&lt;p>&lt;strong>Definition&lt;/strong> (Power series)&lt;/p></description></item><item><title>Expectation Maximization - EM</title><link>http://localhost:40633/posts/em/</link><pubDate>Wed, 08 May 2024 00:00:00 +0000</pubDate><guid>http://localhost:40633/posts/em/</guid><description>&lt;h2 id="problem">Problem&lt;/h2>
 &lt;p>Given a statistical model \(P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta})\), which generate set of observations \(\boldsymbol{X}\), where \(\boldsymbol{Z}\) is a latent variable and unknow parameter vector \(\boldsymbol{\theta}\). The goal is to find \(\boldsymbol{\theta}\) that maximize the marginal likelihood:&lt;/p>
 &lt;p>$$
 \mathcal{L}(\boldsymbol{\theta}; \boldsymbol{X}) = P(\boldsymbol{X} | \boldsymbol{\theta})
 = \int_{\boldsymbol{Z}}P(\boldsymbol{X}, \boldsymbol{Z} | \boldsymbol{\theta})d\boldsymbol{Z}
 $$&lt;/p>
-&lt;p>As an example for this type of problem, there are two (unfair) coin A and B with probability of head for each coin is \(p_A(H) = p \text{ and } p_B(H) = q\). For each trial, we select coin A with probability \(p(A) = \tau\) and coin B with probability \(p(B) = 1 -\tau\), toss the coin and record the observation. The set of observations \(\boldsymbol{X}\) is the record of head or tail \(\{H, T, H, H, \cdots\}\), the latent variable which is unobserved is which coint is selected for each trail \(\{A, B, B, A, \cdots\}\), and the unknown parameter vector \(\boldsymbol{\theta} = [p, q, \tau]\). The goal is to find \(\boldsymbol{\theta}\) that best fit observations; EM is an instance of Maximum Likelihood Estimation (MLE).&lt;/p></description></item><item><title>Implementing Automatic Differentiation</title><link>http://localhost:1313/posts/auto-grad/</link><pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/auto-grad/</guid><description/></item><item><title>Understanding Variational Inference</title><link>http://localhost:1313/posts/variational_inference/</link><pubDate>Thu, 29 Feb 2024 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/variational_inference/</guid><description>&lt;p>This post is a note I take from while reading &lt;a href="">Blei et al 2018&lt;/a>.&lt;/p>
+&lt;p>As an example for this type of problem, there are two (unfair) coin A and B with probability of head for each coin is \(p_A(H) = p \text{ and } p_B(H) = q\). For each trial, we select coin A with probability \(p(A) = \tau\) and coin B with probability \(p(B) = 1 -\tau\), toss the coin and record the observation. The set of observations \(\boldsymbol{X}\) is the record of head or tail \(\{H, T, H, H, \cdots\}\), the latent variable which is unobserved is which coint is selected for each trail \(\{A, B, B, A, \cdots\}\), and the unknown parameter vector \(\boldsymbol{\theta} = [p, q, \tau]\). The goal is to find \(\boldsymbol{\theta}\) that best fit observations; EM is an instance of Maximum Likelihood Estimation (MLE).&lt;/p></description></item><item><title>Implementing Automatic Differentiation</title><link>http://localhost:40633/posts/auto-grad/</link><pubDate>Mon, 15 Apr 2024 00:00:00 +0000</pubDate><guid>http://localhost:40633/posts/auto-grad/</guid><description/></item><item><title>Understanding Variational Inference</title><link>http://localhost:40633/posts/variational_inference/</link><pubDate>Thu, 29 Feb 2024 00:00:00 +0000</pubDate><guid>http://localhost:40633/posts/variational_inference/</guid><description>&lt;p>This post is a note I take from while reading &lt;a href="">Blei et al 2018&lt;/a>.&lt;/p>
 &lt;p>Goal:&lt;/p>
 &lt;ul>
 &lt;li>Motivation of variational inference&lt;/li>
@@ -95,5 +83,5 @@ KL[q(z)||p(z | x)] &amp;amp;=
 \end{aligned}
 \end{equation}
 $$&lt;/p>
-&lt;p>However, this quantity is intractable to compute hence, we&amp;rsquo;re unable to optimize this quantity directly.&lt;/p></description></item><item><title>Likelihood-free MCMC with Amortized Ratio Estimator</title><link>http://localhost:1313/posts/sbi/</link><pubDate>Tue, 31 Oct 2023 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/sbi/</guid><description>&lt;h2 id="simulation-based-inference">Simulation Based Inference&lt;/h2>
+&lt;p>However, this quantity is intractable to compute hence, we&amp;rsquo;re unable to optimize this quantity directly.&lt;/p></description></item><item><title>Likelihood-free MCMC with Amortized Ratio Estimator</title><link>http://localhost:40633/posts/sbi/</link><pubDate>Tue, 31 Oct 2023 00:00:00 +0000</pubDate><guid>http://localhost:40633/posts/sbi/</guid><description>&lt;h2 id="simulation-based-inference">Simulation Based Inference&lt;/h2>
 &lt;p>Imagine we have some black-box machine; such a machine has some knobs and levels so we can change its inner configurations. The machine churns out some data for each configuration. The Simulation-based inference (SBI) solves the inverse problem that is given some data, estimating the configuration (Frequentist approach) or sampling the configuration from the posterior distribution (for Bayesian approach). For a formal definition and review of current methods for SBI, see &lt;a href="https://www.pnas.org/doi/full/10.1073/pnas.1912789117">this paper&lt;/a>. In the analogy above, the black box represents the simulator, and the configurations are the simulator’s parameters.&lt;/p></description></item></channel></rss>

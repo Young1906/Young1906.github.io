@@ -11,6 +11,13 @@ categories: [
 comments: true 
 ---
 
+
+# Note
+
+$$
+\red{\text{==================editing====================}} 
+$$
+
 Suppose we have a dataset \\(\{(t_i, u\_{t_i})\}\_{i=0\cdots N-1}, \quad u_{t_i} \in \mathbb{R}^N\\) is the observed state of a dynamical system given by ODE
 
 \begin{equation}
