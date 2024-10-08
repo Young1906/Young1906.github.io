@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Calculus on iamtu</title><link>http://localhost:40633/tags/calculus/</link><description>Recent content in Calculus on iamtu</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 16 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:40633/tags/calculus/index.xml" rel="self" type="application/rss+xml"/><item><title>Differentiation under integral sign</title><link>http://localhost:40633/posts/diff-under-integral-sign/</link><pubDate>Thu, 16 Nov 2023 00:00:00 +0000</pubDate><guid>http://localhost:40633/posts/diff-under-integral-sign/</guid><description>&lt;h2 id="motivating-example">Motivating example&lt;/h2>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Calculus on iamtu</title><link>http://localhost:1313/tags/calculus/</link><description>Recent content in Calculus on iamtu</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Thu, 16 Nov 2023 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/tags/calculus/index.xml" rel="self" type="application/rss+xml"/><item><title>Differentiation under integral sign</title><link>http://localhost:1313/posts/diff-under-integral-sign/</link><pubDate>Thu, 16 Nov 2023 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/diff-under-integral-sign/</guid><description>&lt;h2 id="motivating-example">Motivating example&lt;/h2>
 &lt;p>Evaluating following integral&lt;/p>
 &lt;p>$$
 I = \int_0^1{\frac{1 - x^2}{\ln{x}}dx}
@@ -24,7 +24,7 @@ dx} \\
 \end{equation}
 $$&lt;/p>
 &lt;h3 id="numerical-approximation">Numerical approximation&lt;/h3>
-&lt;p>&lt;img loading="lazy" src="http://localhost:40633/images/mcmc_integral.png" alt="image" />
+&lt;p>&lt;img loading="lazy" src="http://localhost:1313/images/mcmc_integral.png" alt="image" />
 &lt;/p>
 &lt;p>&lt;details >
 &lt;summary markdown="span">Code to produce the figure&lt;/summary>

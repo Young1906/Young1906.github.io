@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Numerical Methods on iamtu</title><link>http://localhost:40633/categories/numerical-methods/</link><description>Recent content in Numerical Methods on iamtu</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 01 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:40633/categories/numerical-methods/index.xml" rel="self" type="application/rss+xml"/><item><title>Understanding Adjoint sensitivity method</title><link>http://localhost:40633/posts/adjoint_state_method/</link><pubDate>Tue, 01 Oct 2024 00:00:00 +0000</pubDate><guid>http://localhost:40633/posts/adjoint_state_method/</guid><description>&lt;blockquote>
-&lt;p>\( \red{\text{NOTE EDITING} \)&lt;/p>
-&lt;/blockquote>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/"><channel><title>Numerical Methods on iamtu</title><link>http://localhost:1313/categories/numerical-methods/</link><description>Recent content in Numerical Methods on iamtu</description><generator>Hugo -- gohugo.io</generator><language>en</language><lastBuildDate>Tue, 01 Oct 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/numerical-methods/index.xml" rel="self" type="application/rss+xml"/><item><title>Understanding Adjoint sensitivity method</title><link>http://localhost:1313/posts/adjoint_state_method/</link><pubDate>Tue, 01 Oct 2024 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/adjoint_state_method/</guid><description>&lt;h1 id="note">Note&lt;/h1>
+&lt;p>$$
+\red{\text{==================editing====================}}
+$$&lt;/p>
 &lt;p>Suppose we have a dataset \({(t_i, u_{t_i})}_{i=0\cdots N-1}, \quad u_{t_i} \in \mathbb{R}^N\) is the observed state of a dynamical system given by ODE&lt;/p>
 &lt;p>\begin{equation}
 \begin{aligned}
@@ -17,7 +18,7 @@ u(t=t_i) = u_{t_i} \
 u(t_1) = u_0 + \int_{t_0}^{t_1}{f(u, t, \theta) dt}
 \end{aligned}
 \end{equation}
-$$&lt;/p></description></item><item><title>Numerical Integrations</title><link>http://localhost:40633/posts/ode_solver/</link><pubDate>Thu, 26 Sep 2024 00:00:00 +0000</pubDate><guid>http://localhost:40633/posts/ode_solver/</guid><description>&lt;p>&lt;strong>todo&lt;/strong>&lt;/p>
+$$&lt;/p></description></item><item><title>Numerical Integrations</title><link>http://localhost:1313/posts/ode_solver/</link><pubDate>Thu, 26 Sep 2024 00:00:00 +0000</pubDate><guid>http://localhost:1313/posts/ode_solver/</guid><description>&lt;p>&lt;strong>todo&lt;/strong>&lt;/p>
 &lt;ul>
 &lt;li>&lt;input disabled="" type="checkbox"> Derivation of second and forth order Runge-Kutta methods&lt;/li>
 &lt;li>&lt;input disabled="" type="checkbox"> Comparison of truncation error with different step-size&lt;/li>

@@ -123,7 +123,7 @@ $$
 			\frac{\partial g}{\partial u(t_1)}\frac{\partial f}{\partial u}
 			+ \lambda(t) \frac{\partial f}{\partial u} + \frac{d\lambda}{dt}
 		\bigg)\red{\frac{du}{d\theta}}dt} \\\
-		& + \lambda(t_0)\frac{du(t_0)}{d\theta} - \red{\lambda(t_1)\frac{du(t_1)}{d\theta}}
+		& + \lambda(t_0)\underbrace{\frac{du(t_0)}{d\theta}}_{=0} - \red{\lambda(t_1)\frac{du(t_1)}{d\theta}}
 	\end{aligned}
 \end{equation}
 $$
@@ -162,9 +162,7 @@ And eq.(\ref{eq:sensitivity_2}) becomes:
 
 \begin{equation}
 	\begin{aligned}
-		\frac{dL}{d\theta} = 
-		\big(a(t_0) - \frac{\partial g}{\partial u(t_1)}\big)\frac{du(t_0)}{d\theta}
-		+ \int_{t_0}^{t_1}{a(t)\frac{\partial f}{\partial\theta} dt} 
+		\frac{dL}{d\theta} = \int_{t_0}^{t_1}{a(t)\frac{\partial f}{\partial\theta} dt} 
 	\end{aligned}
 \end{equation}
 
